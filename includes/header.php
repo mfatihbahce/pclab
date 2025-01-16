@@ -4,14 +4,61 @@ require_once __DIR__ . '/db.php';
 require_once __DIR__ . '/functions.php';
 
 // Aktif sayfayı belirle
-$current_page = basename($_SERVER['PHP_SELF']);
+$current_page = basename($_SERVER['PHP_SELF'], '.php');
+
+// SEO ayarlarını veritabanından çek
+$db = Database::getInstance();
+$seo = $db->query("SELECT * FROM seo_settings WHERE page_identifier = ?", [$current_page])->fetch();
 ?>
 <!DOCTYPE html>
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GENÇ SANLIURFA</title>
+    
+    <?php if($seo): ?>
+        <title><?= htmlspecialchars($seo['title']) ?></title>
+        <meta name="description" content="<?= htmlspecialchars($seo['description']) ?>">
+        <meta name="keywords" content="<?= htmlspecialchars($seo['keywords']) ?>">
+        
+        <?php if($seo['canonical_url']): ?>
+            <link rel="canonical" href="<?= htmlspecialchars($seo['canonical_url']) ?>">
+        <?php endif; ?>
+        
+        <meta name="robots" content="<?= htmlspecialchars($seo['robots']) ?>">
+        
+        <!-- Open Graph Meta Tags -->
+        <meta property="og:type" content="website">
+        <meta property="og:url" content="<?= SITE_URL . '/' . $current_page ?>">
+        <meta property="og:title" content="<?= htmlspecialchars($seo['og_title'] ?? $seo['title']) ?>">
+        <meta property="og:description" content="<?= htmlspecialchars($seo['og_description'] ?? $seo['description']) ?>">
+        <?php if($seo['og_image']): ?>
+            <meta property="og:image" content="<?= htmlspecialchars($seo['og_image']) ?>">
+        <?php endif; ?>
+        
+        <!-- Twitter Card Meta Tags -->
+        <meta name="twitter:card" content="<?= htmlspecialchars($seo['twitter_card'] ?? 'summary_large_image') ?>">
+        <meta name="twitter:title" content="<?= htmlspecialchars($seo['og_title'] ?? $seo['title']) ?>">
+        <meta name="twitter:description" content="<?= htmlspecialchars($seo['og_description'] ?? $seo['description']) ?>">
+        <?php if($seo['og_image']): ?>
+            <meta name="twitter:image" content="<?= htmlspecialchars($seo['og_image']) ?>">
+        <?php endif; ?>
+        
+        <?php if($seo['schema_type']): ?>
+            <script type="application/ld+json">
+            {
+                "@context": "https://schema.org",
+                "@type": "<?= htmlspecialchars($seo['schema_type']) ?>",
+                "name": "<?= htmlspecialchars($seo['title']) ?>",
+                "description": "<?= htmlspecialchars($seo['description']) ?>",
+                "url": "<?= SITE_URL . '/' . $current_page ?>"
+            }
+            </script>
+        <?php endif; ?>
+    <?php else: ?>
+        <title>GENÇ ŞANLIURFA</title>
+    <?php endif; ?>
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
     <link href="<?= SITE_URL ?>/assets/css/style.css" rel="stylesheet">
@@ -157,7 +204,7 @@ $current_page = basename($_SERVER['PHP_SELF']);
         <nav class="navbar navbar-expand-lg">
             <div class="container">
                 <a class="navbar-brand" href="<?= SITE_URL ?>">
-                    <i class="bi bi-robot me-2"></i>GENÇ SANLIURFA
+                    <i class="bi bi-robot me-2"></i>GENÇ ŞANLIURFA
                 </a>
                 
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -203,31 +250,39 @@ $current_page = basename($_SERVER['PHP_SELF']);
                         </li>
                     </ul>
 
-                    <ul class="navbar-nav auth-buttons">
-                        <?php if (isset($_SESSION['user_id'])): ?>
-                            <li class="nav-item">
-                                <a class="nav-link login-btn" href="<?= SITE_URL ?>/admin/dashboard">
-                                    <i class="bi bi-speedometer2"></i>Panel
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link register-btn" href="<?= SITE_URL ?>/logout">
-                                    <i class="bi bi-box-arrow-right"></i>Çıkış Yap
-                                </a>
-                            </li>
-                        <?php else: ?>
-                            <li class="nav-item">
-                                <a class="nav-link login-btn" href="<?= SITE_URL ?>/login">
-                                    <i class="bi bi-box-arrow-in-right"></i>Giriş
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link register-btn" href="<?= SITE_URL ?>/register">
-                                    <i class="bi bi-person-plus"></i>Kayıt Ol
-                                </a>
-                            </li>
-                        <?php endif; ?>
-                    </ul>
+<!-- Önceki kodlar aynı kalacak -->
+
+<ul class="navbar-nav auth-buttons">
+    <?php if (isset($_SESSION['user_id'])): 
+        // Kullanıcı rolünü veritabanından kontrol et
+        $user = $db->query("SELECT role FROM users WHERE id = ?", [$_SESSION['user_id']])->fetch();
+        $dashboard_url = ($user['role'] === 'admin') ? SITE_URL . '/admin/dashboard' : SITE_URL . '/admin/userlistedu';
+    ?>
+        <li class="nav-item">
+            <a class="nav-link login-btn" href="<?= $dashboard_url ?>">
+                <i class="bi bi-speedometer2"></i>Panel
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link register-btn" href="<?= SITE_URL ?>/logout">
+                <i class="bi bi-box-arrow-right"></i>Çıkış Yap
+            </a>
+        </li>
+    <?php else: ?>
+        <li class="nav-item">
+            <a class="nav-link login-btn" href="<?= SITE_URL ?>/login">
+                <i class="bi bi-box-arrow-in-right"></i>Giriş
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link register-btn" href="<?= SITE_URL ?>/register">
+                <i class="bi bi-person-plus"></i>Kayıt Ol
+            </a>
+        </li>
+    <?php endif; ?>
+</ul>
+
+<!-- Sonraki kodlar aynı kalacak -->
                 </div>
             </div>
         </nav>

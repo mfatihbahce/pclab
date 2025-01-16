@@ -12,38 +12,69 @@ if ($registration_id && $training_id && $unit_id) {
     $db = Database::getInstance();
     
     try {
-        // Kayıt bilgilerini al
+        // Başvuru bilgilerini al
         $registration = $db->query(
-            "SELECT * FROM training_registrations WHERE id = ?",
+            "SELECT ta.*, u.first_name, u.last_name, u.tc_no, u.birth_date, 
+                    u.nationality, u.district_id, u.phone
+             FROM training_applications ta
+             JOIN users u ON ta.user_id = u.id
+             WHERE ta.id = ?",
             [$registration_id]
         )->fetch();
 
         if ($registration) {
-            // Öğrenci listesine ekle
-            $db->query(
-                "INSERT INTO students (
-                    first_name, last_name, tc_no, birth_date, nationality,
-                    district_id, neighborhood, phone, unit_id, training_id
-                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
-                [
-                    $registration['first_name'],
-                    $registration['last_name'],
-                    $registration['tc_no'],
-                    $registration['birth_date'],
-                    $registration['nationality'],
-                    $registration['district_id'],
-                    $registration['neighborhood'],
-                    $registration['phone'],
-                    $unit_id,
-                    $training_id
-                ]
-            );
-            
-            setSuccess('Kayıt onaylandı ve öğrenci listesine eklendi.');
+            // Önce bu TC no ile aynı eğitimde kayıt var mı kontrol et
+            $existingStudent = $db->query(
+                "SELECT id FROM students 
+                 WHERE tc_no = ? AND training_id = ?",
+                [$registration['tc_no'], $training_id]
+            )->fetch();
+
+            if ($existingStudent) {
+                setError('Bu öğrenci zaten bu eğitime kayıtlı.');
+            } else {
+                // Öğrenci listesine ekle
+                $db->query(
+                    "INSERT INTO students SET 
+                        first_name = ?,
+                        last_name = ?,
+                        tc_no = ?,
+                        birth_date = ?,
+                        nationality = ?,
+                        district_id = ?,
+                        phone = ?,
+                        unit_id = ?,
+                        training_id = ?,
+                        created_at = NOW()",
+                    [
+                        $registration['first_name'],
+                        $registration['last_name'],
+                        $registration['tc_no'],
+                        $registration['birth_date'],
+                        $registration['nationality'],
+                        $registration['district_id'],
+                        $registration['phone'],
+                        $unit_id,
+                        $training_id
+                    ]
+                );
+
+                // Başvuru durumunu güncelle
+                $db->query(
+                    "UPDATE training_applications 
+                     SET status = 'approved' 
+                     WHERE id = ?",
+                    [$registration_id]
+                );
+                
+                setSuccess('Başvuru onaylandı ve öğrenci listesine eklendi.');
+            }
+        } else {
+            setError('Başvuru bulunamadı.');
         }
     } catch (Exception $e) {
-        setError('Kayıt onaylanırken bir hata oluştu: ' . $e->getMessage());
+        setError('Başvuru onaylanırken bir hata oluştu: ' . $e->getMessage());
     }
 }
 
-redirect('training-registrations.php?id=' . $training_id); 
+redirect('training-applications.php?id=' . $training_id);

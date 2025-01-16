@@ -4,6 +4,11 @@ require_once 'includes/db.php';
 require_once 'includes/functions.php';
 
 $db = Database::getInstance();
+
+// SEO için sayfa tanımlayıcısını belirle
+$page_identifier = 'home';
+$page_title = 'Ana Sayfa';
+
 // Son 4 haberi getir
 $news = $db->query("SELECT * FROM news ORDER BY created_at DESC LIMIT 4")->fetchAll();
 
@@ -50,16 +55,25 @@ include 'includes/header.php';
         // Aktif eğitimleri getir (son 4 eğitim)
         $trainings = $db->query(
             "SELECT t.*, u.name as unit_name, u.address,
-                    (SELECT COUNT(*) FROM training_registrations WHERE training_id = t.id) as registered
+                    (SELECT COUNT(*) FROM training_applications WHERE training_id = t.id) as registered
              FROM trainings t 
              JOIN units u ON t.unit_id = u.id 
-             WHERE t.is_active = 1 AND t.end_date >= CURDATE()
+             WHERE t.end_date >= CURDATE()
              ORDER BY t.start_date ASC
              LIMIT 4"
         )->fetchAll();
 
-        if ($trainings):
-            foreach ($trainings as $training): 
+        // Kullanıcının başvurduğu eğitimleri getir
+        $user_applications = [];
+        if (isLoggedIn()) {
+            $user_applications = $db->query("
+                SELECT training_id 
+                FROM training_applications 
+                WHERE user_id = ?
+            ", [$_SESSION['user_id']])->fetchAll(PDO::FETCH_COLUMN);
+        }
+
+        if ($trainings): foreach ($trainings as $training): 
         ?>
             <div class="col-md-3" data-aos="fade-up">
                 <div class="card h-100 training-card">
@@ -78,12 +92,12 @@ include 'includes/header.php';
                             <li class="mb-2 d-flex align-items-center">
                                 <i class="bi bi-clock me-2 text-primary"></i>
                                 <span><?= date('d.m.Y', strtotime($training['start_date'])) ?></span> - 
-								<span><?= date('d.m.Y', strtotime($training['end_date'])) ?></span>
+                                <span><?= date('d.m.Y', strtotime($training['end_date'])) ?></span>
                             </li>
                             <li class="mb-2 d-flex align-items-center">
                                 <i class="bi bi-calendar3 me-2 text-primary"></i>
                                 <span>Son Başvuru: <?= date('d.m.Y', strtotime($training['deadline_date'])) ?></span>
-                            </li>							
+                            </li>
                             <li class="d-flex align-items-center">
                                 <i class="bi bi-people me-2 text-primary"></i>
                                 <div class="progress flex-grow-1" style="height: 8px;">
@@ -96,15 +110,30 @@ include 'includes/header.php';
                     </div>
 
                     <div class="card-footer bg-transparent border-0">
-                        <?php if ($training['registered'] < $training['capacity']): ?>
-                            <a href="training-register.php?id=<?= $training['id'] ?>" 
-                               class="btn btn-primary w-100 rounded-pill hover-scale">
-                                <i class="bi bi-person-plus me-1"></i>Başvur
+                        <?php if (!isLoggedIn()): ?>
+                            <a href="register.php" class="btn btn-primary w-100 rounded-pill hover-scale">
+                                <i class="bi bi-person-plus me-1"></i>Kayıt Ol ve Başvur
                             </a>
-                        <?php else: ?>
+                        <?php elseif (in_array($training['id'], $user_applications)): ?>
+                            <button class="btn btn-success w-100 rounded-pill" disabled>
+                                <i class="bi bi-check-circle me-1"></i>Başvuru Yaptınız
+                            </button>
+                        <?php elseif (!isProfileComplete($_SESSION['user_id'])): ?>
+                            <a href="profile.php" class="btn btn-warning w-100 rounded-pill">
+                                <i class="bi bi-person-gear me-1"></i>Profili Tamamla
+                            </a>
+                        <?php elseif ($training['registered'] >= $training['capacity']): ?>
                             <button class="btn btn-secondary w-100 rounded-pill" disabled>
                                 <i class="bi bi-x-circle me-1"></i>Kontenjan Dolu
                             </button>
+                        <?php else: ?>
+                            <form action="training_actions.php" method="POST">
+                                <input type="hidden" name="action" value="apply">
+                                <input type="hidden" name="training_id" value="<?= $training['id'] ?>">
+                                <button type="submit" class="btn btn-primary w-100 rounded-pill hover-scale">
+                                    <i class="bi bi-send me-1"></i>Başvur
+                                </button>
+                            </form>
                         <?php endif; ?>
                     </div>
                 </div>
@@ -118,6 +147,14 @@ include 'includes/header.php';
                     <i class="bi bi-info-circle me-2"></i>
                     Şu anda açık eğitim bulunmamaktadır.
                 </div>
+            </div>
+        <?php endif; ?>
+
+        <?php if (count($trainings) > 0): ?>
+            <div class="col-12 text-center mt-4">
+                <a href="trainings.php" class="btn btn-outline-primary btn-lg rounded-pill hover-scale">
+                    <i class="bi bi-grid me-2"></i>Tüm Eğitimleri Gör
+                </a>
             </div>
         <?php endif; ?>
     </div>

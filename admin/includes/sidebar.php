@@ -58,7 +58,13 @@
                 <a class="nav-link" href="<?= SITE_URL ?>/admin/training-requests">
                     <i class="bi bi-list"></i> Eğitim Talep Listesi
                 </a>
-            </li>		
+            </li>
+			<li class="nav-item">
+                <a class="nav-link" href="<?= SITE_URL ?>/admin/seo-settings">
+                    <i class="bi bi-list"></i> SEO Ayarları
+                </a>
+            </li>
+		
         <?php endif; ?>
         
         <!-- Her kullanıcı için görünür -->

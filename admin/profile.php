@@ -193,7 +193,7 @@ include 'includes/header.php';
     <select name="nationality" class="form-select" required>
         <option value="">Seçiniz</option>
         <?php
-        $nationalities = ['Türk', 'Suriyeli', 'Diğer'];
+        $nationalities = ['Turk', 'Suriyeli', 'Diger'];
         foreach ($nationalities as $nat) {
             $selected = ($user['nationality'] == $nat) ? 'selected' : '';
             echo "<option value=\"{$nat}\" {$selected}>" . htmlspecialchars($nat) . "</option>";

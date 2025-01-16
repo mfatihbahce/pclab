@@ -22,6 +22,39 @@ function checkAdmin() {
     }
 }
 
+/**
+ * Kullanıcının giriş yapıp yapmadığını kontrol eder
+ * @return bool
+ */
+function isLoggedIn() {
+    return isset($_SESSION['user_id']) && !empty($_SESSION['user_id']);
+}
+
+/**
+ * Kullanıcının profil bilgilerinin tam olup olmadığını kontrol eder
+ * @param int $userId
+ * @return bool
+ */
+function isProfileComplete($user_id) {
+    $db = Database::getInstance();
+    
+    $user = $db->query(
+        "SELECT first_name, last_name, tc_no, birth_date, phone, district_id 
+         FROM users 
+         WHERE id = ?", 
+        [$user_id]
+    )->fetch();
+    
+    // Tüm gerekli alanların dolu olup olmadığını kontrol et
+    return $user && 
+           !empty($user['first_name']) && 
+           !empty($user['last_name']) && 
+           !empty($user['tc_no']) && 
+           !empty($user['birth_date']) && 
+           !empty($user['phone']) && 
+           !empty($user['district_id']);
+}
+
 // Yönlendirme fonksiyonu
 function redirect($url) {
     header("Location: " . $url);

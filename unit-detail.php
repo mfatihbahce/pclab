@@ -20,9 +20,23 @@ $gallery = $db->query("SELECT * FROM unit_gallery WHERE unit_id = ?", [$unit_id]
 
 // Aktif eğitimleri getir
 $trainings = $db->query(
-    "SELECT * FROM trainings WHERE unit_id = ? AND is_active = 1 AND end_date >= CURDATE()",
+    "SELECT t.*, 
+            (SELECT COUNT(*) FROM training_applications WHERE training_id = t.id) as registered
+     FROM trainings t 
+     WHERE t.unit_id = ? AND t.end_date >= CURDATE()
+     ORDER BY t.start_date ASC",
     [$unit_id]
 )->fetchAll();
+
+// Kullanıcının başvurduğu eğitimleri getir
+$user_applications = [];
+if (isLoggedIn()) {
+    $user_applications = $db->query("
+        SELECT training_id 
+        FROM training_applications 
+        WHERE user_id = ?
+    ", [$_SESSION['user_id']])->fetchAll(PDO::FETCH_COLUMN);
+}
 
 $page_title = $unit['name'];
 include 'includes/header.php';
@@ -50,11 +64,38 @@ include 'includes/header.php';
 }
 
 .training-card {
-    transition: transform 0.3s ease;
+    transition: all 0.3s ease;
+    border: none;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    margin-bottom: 1rem;
 }
 
 .training-card:hover {
     transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+}
+
+.progress {
+    background-color: #e9ecef;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    background: linear-gradient(45deg, var(--bs-primary), #4e73df);
+    border-radius: 10px;
+}
+
+.btn-sm.rounded-pill {
+    padding: 0.4rem 1rem;
+}
+
+.hover-scale {
+    transition: transform 0.3s ease;
+}
+
+.hover-scale:hover {
+    transform: scale(1.05);
 }
 
 /* Harita kontrolleri için stil */
@@ -137,32 +178,63 @@ include 'includes/header.php';
                     </h5>
                 </div>
                 <div class="card-body">
-                    <?php if ($trainings): ?>
-                        <?php foreach ($trainings as $training): ?>
-                        <div class="card mb-3 training-card">
+                    <?php if ($trainings): foreach ($trainings as $training): ?>
+                        <div class="card training-card">
                             <div class="card-body">
                                 <h6 class="card-title"><?= htmlspecialchars($training['title']) ?></h6>
-                                <p class="card-text small">
-                                    <i class="bi bi-calendar me-1"></i>
-                                    <?= date('d.m.Y', strtotime($training['start_date'])) ?> - 
-                                    <?= date('d.m.Y', strtotime($training['end_date'])) ?>
-                                </p>
-                                <p class="card-text small">
-                                    <i class="bi bi-people me-1"></i>
-                                    Kapasite: <?= $training['capacity'] ?>
-                                </p>
-                                <a href="training-register.php?id=<?= $training['id'] ?>" 
-                                   class="btn btn-primary btn-sm w-100">
-                                    <i class="bi bi-pencil-square me-1"></i>Kayıt Ol
-                                </a>
+                                
+                                <div class="small mb-3">
+                                    <div class="mb-2">
+                                        <i class="bi bi-calendar3 me-2 text-primary"></i>
+                                        <?= date('d.m.Y', strtotime($training['start_date'])) ?> - 
+                                        <?= date('d.m.Y', strtotime($training['end_date'])) ?>
+                                    </div>
+                                    <div class="mb-2">
+                                        <i class="bi bi-clock me-2 text-primary"></i>
+                                        Son Başvuru: <?= date('d.m.Y', strtotime($training['deadline_date'])) ?>
+                                    </div>
+                                    <div class="d-flex align-items-center">
+                                        <i class="bi bi-people me-2 text-primary"></i>
+                                        <div class="progress flex-grow-1" style="height: 6px;">
+                                            <div class="progress-bar" role="progressbar" 
+                                                 style="width: <?= ($training['registered']/$training['capacity'])*100 ?>%"></div>
+                                        </div>
+                                        <span class="ms-2"><?= $training['registered'] ?>/<?= $training['capacity'] ?></span>
+                                    </div>
+                                </div>
+
+                                <?php if (!isLoggedIn()): ?>
+                                    <a href="register.php" class="btn btn-primary btn-sm w-100 rounded-pill">
+                                        <i class="bi bi-person-plus me-1"></i>Kayıt Ol ve Başvur
+                                    </a>
+                                <?php elseif (in_array($training['id'], $user_applications)): ?>
+                                    <button class="btn btn-success btn-sm w-100 rounded-pill" disabled>
+                                        <i class="bi bi-check-circle me-1"></i>Başvuru Yaptınız
+                                    </button>
+                                <?php elseif (!isProfileComplete($_SESSION['user_id'])): ?>
+                                    <a href="profile.php" class="btn btn-warning btn-sm w-100 rounded-pill">
+                                        <i class="bi bi-person-gear me-1"></i>Profili Tamamla
+                                    </a>
+                                <?php elseif ($training['registered'] >= $training['capacity']): ?>
+                                    <button class="btn btn-secondary btn-sm w-100 rounded-pill" disabled>
+                                        <i class="bi bi-x-circle me-1"></i>Kontenjan Dolu
+                                    </button>
+                                <?php else: ?>
+                                    <form action="training_actions.php" method="POST">
+                                        <input type="hidden" name="action" value="apply">
+                                        <input type="hidden" name="training_id" value="<?= $training['id'] ?>">
+                                        <button type="submit" class="btn btn-primary btn-sm w-100 rounded-pill">
+                                            <i class="bi bi-send me-1"></i>Başvur
+                                        </button>
+                                    </form>
+                                <?php endif; ?>
                             </div>
                         </div>
-                        <?php endforeach; ?>
-                    <?php else: ?>
-                        <p class="text-muted text-center mb-0">
+                    <?php endforeach; else: ?>
+                        <div class="text-center text-muted">
                             <i class="bi bi-info-circle me-1"></i>
                             Aktif eğitim bulunmuyor.
-                        </p>
+                        </div>
                     <?php endif; ?>
                 </div>
             </div>

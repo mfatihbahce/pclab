@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Anamakine: localhost:3306
--- Üretim Zamanı: 15 Oca 2025, 19:51:38
+-- Üretim Zamanı: 16 Oca 2025, 09:00:42
 -- Sunucu sürümü: 5.5.68-MariaDB-cll-lve
 -- PHP Sürümü: 8.3.14
 
@@ -200,10 +200,54 @@ CREATE TABLE `news` (
 --
 
 INSERT INTO `news` (`id`, `title`, `content`, `image_path`, `created_at`, `updated_at`) VALUES
-(2, 'Teknolojiye İlk Adım: Robotik Kodlama ve Yazılım Eğitimleri!', 'Geleceğin dili kodlama ve robotik sistemleri öğrenmek isteyenler için eşsiz bir fırsat! Robotik kodlama ve yazılım eğitim programımız başlıyor. Hem başlangıç seviyesi katılımcılar hem de bu alanda kendini geliştirmek isteyenler için özel olarak hazırlanan eğitimler, teorik bilgiyi pratik uygulamalarla birleştiriyor.\r\n\r\nNeler Öğreneceksiniz?\r\n\r\nRobot tasarımı ve mekanik sistemlerin temel prensipleri,\r\nYazılım dillerine giriş ve algoritma geliştirme,\r\nProje tabanlı öğrenme ile gerçek hayata yönelik çözümler.\r\nKimler Katılabilir?\r\nTeknolojiye ilgi duyan, hayal gücünü ve problem çözme yeteneklerini geliştirmek isteyen herkes başvuru yapabilir.\r\n\r\nBaşvuru Nasıl Yapılır?\r\nEğitim programına başvurularınızı www.kodlayogren.com adresinden online olarak yapabilirsiniz. Son başvuru tarihi: 25 Şubat 2025.\r\n\r\nDetaylı Bilgi ve İletişim:\r\nE-posta: info@kodlayogren.com\r\nTelefon: 0 530 123 45 67\r\n\r\nBu fırsatı kaçırmayın, siz de geleceğin teknolojilerine yön veren bireyler arasında yer alın!', NULL, '2025-01-06 20:13:03', '2025-01-10 06:42:47'),
-(3, 'Robotik Kodlama ve Yazılım Eğitimleri Başladı!', 'Teknoloji ve inovasyona meraklı herkesi heyecanlandıracak bir haber! Robotik kodlama ve yazılım eğitimlerimize başvurular başladı. Bu eğitimlerle teknoloji dünyasında güçlü bir adım atabilirsiniz.\r\n\r\nEğitimler kapsamında, katılımcılar robot tasarımı, programlama temelleri ve yazılım geliştirme süreçleri hakkında bilgi sahibi olacak. Alanında uzman eğitmenler tarafından yürütülecek program, hem teorik dersleri hem de uygulamalı projeleri içeriyor.\r\n\r\nEğitim İçeriği:\r\n\r\nRobotik sistemlerin temel prensipleri,\r\nAlgoritma geliştirme ve problem çözme teknikleri,\r\nPopüler yazılım dilleri ile projeler oluşturma.\r\nKimler Katılabilir?\r\nHer yaştan teknolojiye ilgi duyan bireyler eğitime katılabilir. Daha önce deneyim şartı aranmamaktadır.\r\n\r\nBaşvuru ve Detaylar:\r\nEğitimlere katılmak için www.teknolojibasvuru.com adresini ziyaret ederek başvuru formunu doldurabilirsiniz. Son başvuru tarihi: 10 Mart 2025.\r\n\r\nİletişim:\r\nDetaylı bilgi için iletisim@teknolojibasvuru.com adresine e-posta gönderebilir veya 0 312 456 78 90 numaralı telefondan bize ulaşabilirsiniz.\r\n\r\nGeleceği inşa etmek ve teknoloji dünyasında fark yaratmak için bu fırsatı kaçırmayın!', NULL, '2025-01-06 20:19:11', '2025-01-10 06:42:28'),
-(4, 'Robotik ve Yazılım Eğitimleriyle Geleceğe Hazır Olun!', 'Teknoloji dünyasına ilgi duyanlar için heyecan verici bir fırsat! Robotik kodlama ve yazılım eğitimlerine başvurular başladı. Bu eğitimlerle, katılımcılar hem teknolojik bilgi birikimlerini artıracak hem de geleceğin mesleklerine ilk adımı atacaklar.\r\n\r\nEğitim programı, başlangıç seviyesinden ileri düzeye kadar geniş bir yelpazede hazırlanmıştır. Katılımcılar, algoritma geliştirme, robotik tasarım ve yazılım dillerine giriş gibi konularda uzman eğitmenlerden destek alacaklar. Ayrıca, uygulamalı projelerle öğrendiklerini pekiştirme fırsatı bulacaklar.\r\n\r\nKazanımlarınız Neler Olacak?\r\n\r\nTemel ve ileri düzey robotik kodlama becerileri,\r\nUygulamalı projelerle problem çözme yeteneği,\r\nYazılım dillerine dair başlangıç bilgileri ve projeler üretme deneyimi.\r\nBaşvuru Bilgileri:\r\nEğitimlere katılmak için www.egitimbasvuru.com adresinden başvurunuzu gerçekleştirebilirsiniz. Son başvuru tarihi: 15 Şubat 2025. Kontenjanlar sınırlıdır, bu yüzden acele edin!\r\n\r\nDaha Fazla Bilgi:\r\nDetaylı bilgi için destek@egitimbasvuru.com adresine mail atabilir veya 0 850 123 45 67 numarasını arayabilirsiniz.\r\n\r\nGeleceğin teknolojilerini öğrenmek ve bu alanda bir adım önde olmak için şimdi harekete geçin! Unutmayın, her başarı bir adımla başlar!', NULL, '2025-01-06 20:19:44', '2025-01-10 06:42:00'),
-(5, 'Robotik Kodlama ve Yazılım Eğitimlerine Başvurular Başladı!', 'Teknolojiye ilgi duyan gençler ve yetişkinler için büyük fırsat! Robotik kodlama ve yazılım alanında kendini geliştirmek isteyenler için düzenlenen eğitimlere başvurular başladı.\r\n\r\nEğitimler, katılımcılara robot tasarımı, algoritma geliştirme ve yazılım dillerine giriş gibi temel ve ileri düzey beceriler kazandırmayı hedefliyor. Uzman eğitmenler eşliğinde gerçekleşecek program, teorik derslerin yanı sıra uygulamalı projelerle zenginleştirilecek.\r\n\r\nKimler Katılabilir?\r\nHer yaştan teknoloji tutkununa açık olan eğitimler, hem yeni başlayanlar hem de bu alanda kendini daha da geliştirmek isteyenler için tasarlandı.\r\n\r\nBaşvuru Nasıl Yapılır?\r\nEğitimlere katılmak isteyenler, websiteadı.com adresinden online başvuru yapabilir. Kontenjanlar sınırlı, bu yüzden hemen başvurarak yerinizi ayırtmayı unutmayın!\r\n\r\nSon Başvuru Tarihi:\r\nSon başvuru tarihi 20 Ocak 2025. Geleceğin teknolojilerini öğrenmek ve yeni beceriler kazanmak için bu fırsatı kaçırmayın.', NULL, '2025-01-06 20:21:45', '2025-01-10 06:42:05');
+(2, 'Teknolojiye İlk Adım: Robotik Kodlama ve Yazılım Eğitimleri!', 'Geleceğin dili kodlama ve robotik sistemleri öğrenmek isteyenler için eşsiz bir fırsat! Robotik kodlama ve yazılım eğitim programımız başlıyor. Hem başlangıç seviyesi katılımcılar hem de bu alanda kendini geliştirmek isteyenler için özel olarak hazırlanan eğitimler, teorik bilgiyi pratik uygulamalarla birleştiriyor.\r\n\r\nNeler Öğreneceksiniz?\r\n\r\nRobot tasarımı ve mekanik sistemlerin temel prensipleri,\r\nYazılım dillerine giriş ve algoritma geliştirme,\r\nProje tabanlı öğrenme ile gerçek hayata yönelik çözümler.\r\nKimler Katılabilir?\r\nTeknolojiye ilgi duyan, hayal gücünü ve problem çözme yeteneklerini geliştirmek isteyen herkes başvuru yapabilir.\r\n\r\nBaşvuru Nasıl Yapılır?\r\nEğitim programına başvurularınızı www.kodlayogren.com adresinden online olarak yapabilirsiniz. Son başvuru tarihi: 25 Şubat 2025.\r\n\r\nDetaylı Bilgi ve İletişim:\r\nE-posta: info@kodlayogren.com\r\nTelefon: 0 530 123 45 67\r\n\r\nBu fırsatı kaçırmayın, siz de geleceğin teknolojilerine yön veren bireyler arasında yer alın!', NULL, '2025-01-16 08:26:49', '2025-01-16 08:26:49'),
+(3, 'Robotik Kodlama ve Yazılım Eğitimleri Başladı!', 'Teknoloji ve inovasyona meraklı herkesi heyecanlandıracak bir haber! Robotik kodlama ve yazılım eğitimlerimize başvurular başladı. Bu eğitimlerle teknoloji dünyasında güçlü bir adım atabilirsiniz.\r\n\r\nEğitimler kapsamında, katılımcılar robot tasarımı, programlama temelleri ve yazılım geliştirme süreçleri hakkında bilgi sahibi olacak. Alanında uzman eğitmenler tarafından yürütülecek program, hem teorik dersleri hem de uygulamalı projeleri içeriyor.\r\n\r\nEğitim İçeriği:\r\n\r\nRobotik sistemlerin temel prensipleri,\r\nAlgoritma geliştirme ve problem çözme teknikleri,\r\nPopüler yazılım dilleri ile projeler oluşturma.\r\nKimler Katılabilir?\r\nHer yaştan teknolojiye ilgi duyan bireyler eğitime katılabilir. Daha önce deneyim şartı aranmamaktadır.\r\n\r\nBaşvuru ve Detaylar:\r\nEğitimlere katılmak için www.teknolojibasvuru.com adresini ziyaret ederek başvuru formunu doldurabilirsiniz. Son başvuru tarihi: 10 Mart 2025.\r\n\r\nİletişim:\r\nDetaylı bilgi için iletisim@teknolojibasvuru.com adresine e-posta gönderebilir veya 0 312 456 78 90 numaralı telefondan bize ulaşabilirsiniz.\r\n\r\nGeleceği inşa etmek ve teknoloji dünyasında fark yaratmak için bu fırsatı kaçırmayın!', NULL, '2025-01-16 08:26:49', '2025-01-16 08:26:49'),
+(4, 'Robotik ve Yazılım Eğitimleriyle Geleceğe Hazır Olun!', 'Teknoloji dünyasına ilgi duyanlar için heyecan verici bir fırsat! Robotik kodlama ve yazılım eğitimlerine başvurular başladı. Bu eğitimlerle, katılımcılar hem teknolojik bilgi birikimlerini artıracak hem de geleceğin mesleklerine ilk adımı atacaklar.\r\n\r\nEğitim programı, başlangıç seviyesinden ileri düzeye kadar geniş bir yelpazede hazırlanmıştır. Katılımcılar, algoritma geliştirme, robotik tasarım ve yazılım dillerine giriş gibi konularda uzman eğitmenlerden destek alacaklar. Ayrıca, uygulamalı projelerle öğrendiklerini pekiştirme fırsatı bulacaklar.\r\n\r\nKazanımlarınız Neler Olacak?\r\n\r\nTemel ve ileri düzey robotik kodlama becerileri,\r\nUygulamalı projelerle problem çözme yeteneği,\r\nYazılım dillerine dair başlangıç bilgileri ve projeler üretme deneyimi.\r\nBaşvuru Bilgileri:\r\nEğitimlere katılmak için www.egitimbasvuru.com adresinden başvurunuzu gerçekleştirebilirsiniz. Son başvuru tarihi: 15 Şubat 2025. Kontenjanlar sınırlıdır, bu yüzden acele edin!\r\n\r\nDaha Fazla Bilgi:\r\nDetaylı bilgi için destek@egitimbasvuru.com adresine mail atabilir veya 0 850 123 45 67 numarasını arayabilirsiniz.\r\n\r\nGeleceğin teknolojilerini öğrenmek ve bu alanda bir adım önde olmak için şimdi harekete geçin! Unutmayın, her başarı bir adımla başlar!', NULL, '2025-01-16 08:26:49', '2025-01-16 08:26:49'),
+(5, 'Robotik Kodlama ve Yazılım Eğitimlerine Başvurular Başladı!', 'Teknolojiye ilgi duyan gençler ve yetişkinler için büyük fırsat! Robotik kodlama ve yazılım alanında kendini geliştirmek isteyenler için düzenlenen eğitimlere başvurular başladı.\r\n\r\nEğitimler, katılımcılara robot tasarımı, algoritma geliştirme ve yazılım dillerine giriş gibi temel ve ileri düzey beceriler kazandırmayı hedefliyor. Uzman eğitmenler eşliğinde gerçekleşecek program, teorik derslerin yanı sıra uygulamalı projelerle zenginleştirilecek.\r\n\r\nKimler Katılabilir?\r\nHer yaştan teknoloji tutkununa açık olan eğitimler, hem yeni başlayanlar hem de bu alanda kendini daha da geliştirmek isteyenler için tasarlandı.\r\n\r\nBaşvuru Nasıl Yapılır?\r\nEğitimlere katılmak isteyenler, websiteadı.com adresinden online başvuru yapabilir. Kontenjanlar sınırlı, bu yüzden hemen başvurarak yerinizi ayırtmayı unutmayın!\r\n\r\nSon Başvuru Tarihi:\r\nSon başvuru tarihi 20 Ocak 2025. Geleceğin teknolojilerini öğrenmek ve yeni beceriler kazanmak için bu fırsatı kaçırmayın.', NULL, '2025-01-16 08:26:49', '2025-01-16 08:26:49');
+
+--
+-- Tetikleyiciler `news`
+--
+DELIMITER $$
+CREATE TRIGGER `news_before_insert` BEFORE INSERT ON `news` FOR EACH ROW BEGIN
+    SET NEW.created_at = NOW();
+    SET NEW.updated_at = NOW();
+END
+$$
+DELIMITER ;
+DELIMITER $$
+CREATE TRIGGER `news_before_update` BEFORE UPDATE ON `news` FOR EACH ROW BEGIN
+    SET NEW.updated_at = NOW();
+END
+$$
+DELIMITER ;
+
+-- --------------------------------------------------------
+
+--
+-- Tablo için tablo yapısı `news_backup`
+--
+
+CREATE TABLE `news_backup` (
+  `id` int(11) NOT NULL DEFAULT '0',
+  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `content` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `image_path` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Tablo döküm verisi `news_backup`
+--
+
+INSERT INTO `news_backup` (`id`, `title`, `content`, `image_path`, `created_at`, `updated_at`) VALUES
+(1, 'Teknolojiye İlk Adım: Robotik Kodlama ve Yazılım Eğitimleri!', 'Geleceğin dili kodlama ve robotik sistemleri öğrenmek isteyenler için eşsiz bir fırsat! Robotik kodlama ve yazılım eğitim programımız başlıyor. Hem başlangıç seviyesi katılımcılar hem de bu alanda kendini geliştirmek isteyenler için özel olarak hazırlanan eğitimler, teorik bilgiyi pratik uygulamalarla birleştiriyor.\r\n\r\nNeler Öğreneceksiniz?\r\n\r\nRobot tasarımı ve mekanik sistemlerin temel prensipleri,\r\nYazılım dillerine giriş ve algoritma geliştirme,\r\nProje tabanlı öğrenme ile gerçek hayata yönelik çözümler.\r\nKimler Katılabilir?\r\nTeknolojiye ilgi duyan, hayal gücünü ve problem çözme yeteneklerini geliştirmek isteyen herkes başvuru yapabilir.\r\n\r\nBaşvuru Nasıl Yapılır?\r\nEğitim programına başvurularınızı www.kodlayogren.com adresinden online olarak yapabilirsiniz. Son başvuru tarihi: 25 Şubat 2025.\r\n\r\nDetaylı Bilgi ve İletişim:\r\nE-posta: info@kodlayogren.com\r\nTelefon: 0 530 123 45 67\r\n\r\nBu fırsatı kaçırmayın, siz de geleceğin teknolojilerine yön veren bireyler arasında yer alın!', NULL, '2025-01-06 20:13:03', '2025-01-10 06:42:47'),
+(2, 'Robotik Kodlama ve Yazılım Eğitimleri Başladı!', 'Teknoloji ve inovasyona meraklı herkesi heyecanlandıracak bir haber! Robotik kodlama ve yazılım eğitimlerimize başvurular başladı. Bu eğitimlerle teknoloji dünyasında güçlü bir adım atabilirsiniz.\r\n\r\nEğitimler kapsamında, katılımcılar robot tasarımı, programlama temelleri ve yazılım geliştirme süreçleri hakkında bilgi sahibi olacak. Alanında uzman eğitmenler tarafından yürütülecek program, hem teorik dersleri hem de uygulamalı projeleri içeriyor.\r\n\r\nEğitim İçeriği:\r\n\r\nRobotik sistemlerin temel prensipleri,\r\nAlgoritma geliştirme ve problem çözme teknikleri,\r\nPopüler yazılım dilleri ile projeler oluşturma.\r\nKimler Katılabilir?\r\nHer yaştan teknolojiye ilgi duyan bireyler eğitime katılabilir. Daha önce deneyim şartı aranmamaktadır.\r\n\r\nBaşvuru ve Detaylar:\r\nEğitimlere katılmak için www.teknolojibasvuru.com adresini ziyaret ederek başvuru formunu doldurabilirsiniz. Son başvuru tarihi: 10 Mart 2025.\r\n\r\nİletişim:\r\nDetaylı bilgi için iletisim@teknolojibasvuru.com adresine e-posta gönderebilir veya 0 312 456 78 90 numaralı telefondan bize ulaşabilirsiniz.\r\n\r\nGeleceği inşa etmek ve teknoloji dünyasında fark yaratmak için bu fırsatı kaçırmayın!', NULL, '2025-01-06 20:19:11', '2025-01-10 06:42:28'),
+(3, 'Robotik ve Yazılım Eğitimleriyle Geleceğe Hazır Olun!', 'Teknoloji dünyasına ilgi duyanlar için heyecan verici bir fırsat! Robotik kodlama ve yazılım eğitimlerine başvurular başladı. Bu eğitimlerle, katılımcılar hem teknolojik bilgi birikimlerini artıracak hem de geleceğin mesleklerine ilk adımı atacaklar.\r\n\r\nEğitim programı, başlangıç seviyesinden ileri düzeye kadar geniş bir yelpazede hazırlanmıştır. Katılımcılar, algoritma geliştirme, robotik tasarım ve yazılım dillerine giriş gibi konularda uzman eğitmenlerden destek alacaklar. Ayrıca, uygulamalı projelerle öğrendiklerini pekiştirme fırsatı bulacaklar.\r\n\r\nKazanımlarınız Neler Olacak?\r\n\r\nTemel ve ileri düzey robotik kodlama becerileri,\r\nUygulamalı projelerle problem çözme yeteneği,\r\nYazılım dillerine dair başlangıç bilgileri ve projeler üretme deneyimi.\r\nBaşvuru Bilgileri:\r\nEğitimlere katılmak için www.egitimbasvuru.com adresinden başvurunuzu gerçekleştirebilirsiniz. Son başvuru tarihi: 15 Şubat 2025. Kontenjanlar sınırlıdır, bu yüzden acele edin!\r\n\r\nDaha Fazla Bilgi:\r\nDetaylı bilgi için destek@egitimbasvuru.com adresine mail atabilir veya 0 850 123 45 67 numarasını arayabilirsiniz.\r\n\r\nGeleceğin teknolojilerini öğrenmek ve bu alanda bir adım önde olmak için şimdi harekete geçin! Unutmayın, her başarı bir adımla başlar!', NULL, '2025-01-06 20:19:44', '2025-01-10 06:42:00'),
+(4, 'Robotik Kodlama ve Yazılım Eğitimlerine Başvurular Başladı!', 'Teknolojiye ilgi duyan gençler ve yetişkinler için büyük fırsat! Robotik kodlama ve yazılım alanında kendini geliştirmek isteyenler için düzenlenen eğitimlere başvurular başladı.\r\n\r\nEğitimler, katılımcılara robot tasarımı, algoritma geliştirme ve yazılım dillerine giriş gibi temel ve ileri düzey beceriler kazandırmayı hedefliyor. Uzman eğitmenler eşliğinde gerçekleşecek program, teorik derslerin yanı sıra uygulamalı projelerle zenginleştirilecek.\r\n\r\nKimler Katılabilir?\r\nHer yaştan teknoloji tutkununa açık olan eğitimler, hem yeni başlayanlar hem de bu alanda kendini daha da geliştirmek isteyenler için tasarlandı.\r\n\r\nBaşvuru Nasıl Yapılır?\r\nEğitimlere katılmak isteyenler, websiteadı.com adresinden online başvuru yapabilir. Kontenjanlar sınırlı, bu yüzden hemen başvurarak yerinizi ayırtmayı unutmayın!\r\n\r\nSon Başvuru Tarihi:\r\nSon başvuru tarihi 20 Ocak 2025. Geleceğin teknolojilerini öğrenmek ve yeni beceriler kazanmak için bu fırsatı kaçırmayın.', NULL, '2025-01-06 20:21:45', '2025-01-10 06:42:05'),
+(5, 'tes', 'dassd', NULL, NULL, NULL),
+(6, 'dsa', 'da', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -233,10 +277,75 @@ INSERT INTO `projects` (`id`, `title`, `description`, `url`, `image_path`, `crea
 -- --------------------------------------------------------
 
 --
+-- Tablo için tablo yapısı `seo_settings`
+--
+
+CREATE TABLE `seo_settings` (
+  `id` int(11) NOT NULL,
+  `page_identifier` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `title` varchar(70) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` varchar(160) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `keywords` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `canonical_url` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `robots` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT 'index, follow',
+  `og_title` varchar(70) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `og_description` varchar(200) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `og_image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `twitter_card` varchar(15) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `schema_type` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Tablo döküm verisi `seo_settings`
+--
+
+INSERT INTO `seo_settings` (`id`, `page_identifier`, `title`, `description`, `keywords`, `canonical_url`, `robots`, `og_title`, `og_description`, `og_image`, `twitter_card`, `schema_type`, `created_at`, `updated_at`) VALUES
+(1, 'home', 'Genç Şanlıurfa | Gençlik ve Kültürün Merkezi - Resmi Web Sitesi', 'Genç Şanlıurfa, gençlere yönelik robotik kodlama, yazılım geliştirme, web tasarım ve teknoloji eğitimleri sunan bir oluşumdur. Ücretsiz eğitimler, mode', 'genç şanlıurfa, şanlıurfa gençlik merkezi, gençlik aktiviteleri, ücretsiz eğitimler, şanlıurfa etkinlikler', 'https://gencsanliurfa.com/', 'index, follow', 'Genç Şanlıurfa - Geleceğin Gençleri Burada Yetişiyor', 'Şanlıurfa\'nın en kapsamlı gençlik ve kültür merkezi. Eğitim, kültür, sanat ve teknoloji alanlarında ücretsiz imkanlar sunuyoruz.', 'https://gencsanliurfa.com/assets/img/og-image.jpg', NULL, 'Organization', '2025-01-15 17:43:42', NULL),
+(2, 'about', 'Hakkımızda | Genç Şanlıurfa - Gençlik ve Kültürün Merkezi', 'Genç Şanlıurfa, 2024\'ten bu yana gençlere ücretsiz eğitim ve gelişim fırsatları sunan sosyal sorumluluk projesidir. Misyonumuz ve vizyonumuz.', 'genç şanlıurfa hakkında, şanlıurfa gençlik merkezi, kültür merkezi, eğitim merkezi', 'https://gencsanliurfa.com/about', 'index, follow', 'Genç Şanlıurfa Hakkında - Gençlik ve Kültür Merkezi', 'Genç Şanlıurfa\'nın kuruluş hikayesi, misyonu ve vizyonu. Şanlıurfa gençliğine hizmet eden sosyal sorumluluk projemiz.', 'https://gencsanliurfa.com/assets/img/about-og.jpg', NULL, 'Organization', '2025-01-15 17:43:42', NULL),
+(3, 'trainings', 'Eğitimler | Genç Şanlıurfa - Ücretsiz Gençlik Eğitimleri', 'Genç Şanlıurfa\'da sunulan ücretsiz eğitimler: Teknoloji, Sanat, Spor, Kişisel Gelişim ve daha fazlası. Geleceğinizi şekillendirin!', 'ücretsiz eğitimler, gençlik eğitimleri, şanlıurfa kurslar, kişisel gelişim, teknoloji eğitimi', 'https://gencsanliurfa.com/trainings', 'index, follow', 'Genç Şanlıurfa Eğitimleri - Ücretsiz Gençlik Kursları', 'Teknoloji, sanat, spor ve kişisel gelişim alanlarında ücretsiz eğitimler. Geleceğinizi Genç Şanlıurfa ile inşa edin.', 'https://gencsanliurfa.com/assets/img/trainings-og.jpg', NULL, 'Course', '2025-01-15 17:43:42', NULL),
+(4, 'contact', 'İletişim | Genç Şanlıurfa - Gençlik ve Kültürün Merkezi', 'Genç Şanlıurfa ile iletişime geçin. Adres: Şanlıurfa Merkez. Telefon ve e-posta bilgilerimiz için tıklayın. Eğitimlerimiz hakkında bilgi alın.', 'genç şanlıurfa iletişim, gençlik merkezi iletişim, şanlıurfa gençlik merkezi adres', 'https://gencsanliurfa.com/contact', 'index, follow', 'Genç Şanlıurfa İletişim - Bize Ulaşın', 'Genç Şanlıurfa iletişim bilgileri. Adres, telefon ve e-posta bilgilerimiz. Eğitim ve etkinliklerimiz hakkında bilgi için bize ulaşın.', 'https://gencsanliurfa.com/assets/img/contact-og.jpg', NULL, 'ContactPage', '2025-01-15 17:43:42', NULL),
+(5, 'news', 'Haberler ve Duyurular | Genç Şanlıurfa', 'Genç Şanlıurfa\'dan en güncel haberler, duyurular ve etkinlikler. Yeni eğitimler, gençlik projeleri ve şehrimizden güncel gelişmeler.', 'genç şanlıurfa haberler, gençlik haberleri, şanlıurfa etkinlikler, gençlik duyuruları', 'https://gencsanliurfa.com/news', 'index, follow', 'Genç Şanlıurfa Haberler ve Duyurular', 'Genç Şanlıurfa\'dan güncel haberler ve duyurular. Yeni eğitimler, etkinlikler ve gençlik projeleri hakkında bilgi alın.', 'https://gencsanliurfa.com/assets/img/news-og.jpg', NULL, 'NewsArticle', '2025-01-15 17:43:42', NULL),
+(6, 'gallery', 'Galeri | Genç Şanlıurfa Etkinlikleri ve Faaliyetleri', 'Genç Şanlıurfa etkinliklerinden kareler, eğitim görüntüleri ve gençlik faaliyetleri. Şanlıurfa\'nın en aktif gençlik merkezinden görüntüler.', 'genç şanlıurfa galeri, etkinlik fotoğrafları, gençlik merkezi galeri, şanlıurfa gençlik', 'https://gencsanliurfa.com/gallery', 'index, follow', 'Genç Şanlıurfa Fotoğraf Galerisi', 'Genç Şanlıurfa etkinlikleri ve faaliyetlerinden özel anlar. Görüntülerle gençlik merkezimizin dinamik atmosferi.', 'https://gencsanliurfa.com/assets/img/gallery-og.jpg', NULL, 'ImageGallery', '2025-01-15 17:43:42', NULL),
+(7, 'projects', 'Projeler | Genç Şanlıurfa Gençlik Projeleri ve Başarıları', 'Genç Şanlıurfa gençlerinin geliştirdiği projeler ve başarı hikayeleri. Sosyal, kültürel ve teknolojik alanlarda örnek projeler.', 'gençlik projeleri, şanlıurfa projeler, genç projeler, başarı hikayeleri', 'https://gencsanliurfa.com/projects', 'index, follow', 'Genç Şanlıurfa Gençlik Projeleri', 'Genç Şanlıurfa üyelerinin geliştirdiği yenilikçi projeler ve başarı hikayeleri. Geleceğin liderleri Genç Şanlıurfa\'da yetişiyor.', 'https://gencsanliurfa.com/assets/img/projects-og.jpg', NULL, 'Project', '2025-01-15 17:43:42', NULL),
+(8, 'units', 'Birimler | Genç Şanlıurfa Faaliyet Birimleri', 'Genç Şanlıurfa faaliyet birimleri: Eğitim, Kültür-Sanat, Spor, Teknoloji ve diğer gençlik birimleri hakkında detaylı bilgi.', 'gençlik birimleri, faaliyet alanları, genç şanlıurfa birimler, gençlik faaliyetleri', 'https://gencsanliurfa.com/units', 'index, follow', 'Genç Şanlıurfa Faaliyet Birimleri', 'Genç Şanlıurfa\'nın çeşitli faaliyet birimleri. Her birim gençlerin farklı ilgi alanlarına hitap eden özel programlar sunuyor.', 'https://gencsanliurfa.com/assets/img/units-og.jpg', NULL, 'Organization', '2025-01-15 17:43:42', NULL);
+
+-- --------------------------------------------------------
+
+--
 -- Tablo için tablo yapısı `students`
 --
 
 CREATE TABLE `students` (
+  `id` int(11) NOT NULL,
+  `first_name` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `last_name` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tc_no` varchar(11) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `birth_date` date DEFAULT NULL,
+  `nationality` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `district_id` int(11) DEFAULT NULL,
+  `phone` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `unit_id` int(11) NOT NULL,
+  `training_id` int(11) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Tablo döküm verisi `students`
+--
+
+INSERT INTO `students` (`id`, `first_name`, `last_name`, `tc_no`, `birth_date`, `nationality`, `district_id`, `phone`, `unit_id`, `training_id`, `created_at`) VALUES
+(1, 'fatih', 'bahce', '61223232323', '2025-01-01', 'Suriyeli', 12, '(533) 317-8198', 1, 3, '2025-01-15 21:13:55'),
+(2, 'fatih', 'bahce', '61223232323', '2025-01-01', 'Suriyeli', 12, '(533) 317-8198', 1, 5, '2025-01-15 21:14:13');
+
+-- --------------------------------------------------------
+
+--
+-- Tablo için tablo yapısı `students_backup`
+--
+
+CREATE TABLE `students_backup` (
   `id` int(11) NOT NULL,
   `first_name` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   `last_name` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -249,16 +358,15 @@ CREATE TABLE `students` (
   `unit_id` int(11) NOT NULL,
   `training_id` int(11) NOT NULL,
   `status` enum('active','inactive') COLLATE utf8mb4_unicode_ci DEFAULT 'active',
-  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `created_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Tablo döküm verisi `students`
+-- Tablo döküm verisi `students_backup`
 --
 
-INSERT INTO `students` (`id`, `first_name`, `last_name`, `tc_no`, `birth_date`, `nationality`, `district_id`, `neighborhood`, `phone`, `unit_id`, `training_id`, `status`, `created_at`) VALUES
-(3, 'Muhammed', 'bahçe', '61223232323', '2025-01-01', 'Türk', 4, 'ahmet yesevi', '(533) 317-8198', 1, 4, 'active', '2025-01-12 21:38:53'),
-(0, 'Muhammed', 'bah&ccedil;e', '12345553422', '2025-01-01', 'T&uuml;rk', 7, 'ahmet yesevi', '(533) 317-8198', 1, 4, 'active', '2025-01-14 13:46:17');
+INSERT INTO `students_backup` (`id`, `first_name`, `last_name`, `tc_no`, `birth_date`, `nationality`, `district_id`, `neighborhood`, `phone`, `unit_id`, `training_id`, `status`, `created_at`) VALUES
+(0, 'fatih', 'bahce', '61223232323', '2025-01-01', 'Suriyeli', 12, '', '(533) 317-8198', 1, 5, 'active', '2025-01-15 21:09:39');
 
 -- --------------------------------------------------------
 
@@ -284,10 +392,35 @@ CREATE TABLE `trainings` (
 --
 
 INSERT INTO `trainings` (`id`, `unit_id`, `title`, `description`, `start_date`, `end_date`, `capacity`, `is_active`, `created_at`, `deadline_date`) VALUES
-(3, 1, 'Girişimcilik ve İş Kurma: Kadınlar İçin Adım Adım Başarı', 'Kadınların girişimcilik dünyasında daha fazla yer almasını desteklemek amacıyla hazırlanan bu eğitim, iş kurma sürecini baştan sona kadar ele alacaktır. Katılımcılar, iş fikri oluşturma, planlama, pazarlama ve yönetim gibi temel konularda bilgi sahibi olacak ve girişimcilik dünyasına adım atmaya hazır hale gelecekler.\r\n\r\nEğitim Modülleri:\r\n\r\nGirişimcilik Nedir?\r\n\r\nGirişimcilik kavramı ve önemi\r\nKadın girişimcilerin toplumsal rolü ve fırsatlar\r\nGirişimcilikte karşılaşılan zorluklar ve bu zorlukların üstesinden gelme yolları\r\nİş Fikri Geliştirme:\r\n\r\nİş fikri oluşturma süreci\r\nPazar araştırması yapma ve doğru hedef kitleyi belirleme\r\nYenilikçi ve sürdürülebilir iş fikirleri geliştirme\r\nİş Planı Hazırlama:\r\n\r\nİş planının önemi\r\nİş planında bulunması gereken temel unsurlar (misyon, vizyon, hedefler, finansal plan)\r\nGerçekçi ve ulaşılabilir hedefler koyma\r\nPazarlama Stratejileri:\r\n\r\nDijital pazarlama ve sosyal medya kullanımı\r\nMarka oluşturma ve müşteri kitlesiyle etkileşim\r\nİyi bir pazarlama stratejisinin adımları\r\nFinansal Yönetim ve Bütçeleme:\r\n\r\nGirişimciler için temel finansal bilgiler\r\nİşletme bütçesi oluşturma\r\nYatırımcı arama ve fon sağlama yöntemleri\r\nİşinizi Yönetme ve Büyütme:\r\n\r\nİşletme yönetimi ve liderlik becerileri\r\nEkibinizi oluşturma ve verimli çalışma yöntemleri\r\nİşinizi büyütme ve geliştirme stratejileri\r\nEğitim Süresi: 6 Hafta (Haftada 2 gün, toplamda 12 saat)\r\nEğitim Yeri: TOKİ Kadın Destek Merkezi\r\nEğitim Ücreti: Ücretsiz\r\nKatılım Şartları: Kadın girişimcilik konusunda meraklı olan, iş kurma fikri olan veya girişimcilik alanında kendini geliştirmek isteyen herkes katılabilir.\r\n\r\nBu eğitim, kadınların kendi işlerini kurmalarına ve girişimcilik dünyasında daha güçlü adımlarla yer almalarına yardımcı olmayı hedeflemektedir. Katılımcılar, işlerini kurma sürecinde gerekli tüm bilgi ve becerileri kazanarak, iş dünyasında başarılı bir girişimci olma yolunda emin adımlarla ilerleyecekler.', '2025-01-10', '2025-01-30', 12, 1, '2025-01-10 10:15:08', '2025-01-01'),
+(3, 1, 'Girişimcilik ve İş Kurma: Kadınlar İçin Adım Adım Başarı', 'Kadınların girişimcilik dünyasında daha fazla yer almasını desteklemek amacıyla hazırlanan bu eğitim, iş kurma sürecini baştan sona kadar ele alacaktır. Katılımcılar, iş fikri oluşturma, planlama, pazarlama ve yönetim gibi temel konularda bilgi sahibi olacak ve girişimcilik dünyasına adım atmaya hazır hale gelecekler.\r\n\r\nEğitim Modülleri:\r\n\r\nGirişimcilik Nedir?\r\n\r\nGirişimcilik kavramı ve önemi\r\nKadın girişimcilerin toplumsal rolü ve fırsatlar\r\nGirişimcilikte karşılaşılan zorluklar ve bu zorlukların üstesinden gelme yolları\r\nİş Fikri Geliştirme:\r\n\r\nİş fikri oluşturma süreci\r\nPazar araştırması yapma ve doğru hedef kitleyi belirleme\r\nYenilikçi ve sürdürülebilir iş fikirleri geliştirme\r\nİş Planı Hazırlama:\r\n\r\nİş planının önemi\r\nİş planında bulunması gereken temel unsurlar (misyon, vizyon, hedefler, finansal plan)\r\nGerçekçi ve ulaşılabilir hedefler koyma\r\nPazarlama Stratejileri:\r\n\r\nDijital pazarlama ve sosyal medya kullanımı\r\nMarka oluşturma ve müşteri kitlesiyle etkileşim\r\nİyi bir pazarlama stratejisinin adımları\r\nFinansal Yönetim ve Bütçeleme:\r\n\r\nGirişimciler için temel finansal bilgiler\r\nİşletme bütçesi oluşturma\r\nYatırımcı arama ve fon sağlama yöntemleri\r\nİşinizi Yönetme ve Büyütme:\r\n\r\nİşletme yönetimi ve liderlik becerileri\r\nEkibinizi oluşturma ve verimli çalışma yöntemleri\r\nİşinizi büyütme ve geliştirme stratejileri\r\nEğitim Süresi: 6 Hafta (Haftada 2 gün, toplamda 12 saat)\r\nEğitim Yeri: TOKİ Kadın Destek Merkezi\r\nEğitim Ücreti: Ücretsiz\r\nKatılım Şartları: Kadın girişimcilik konusunda meraklı olan, iş kurma fikri olan veya girişimcilik alanında kendini geliştirmek isteyen herkes katılabilir.\r\n\r\nBu eğitim, kadınların kendi işlerini kurmalarına ve girişimcilik dünyasında daha güçlü adımlarla yer almalarına yardımcı olmayı hedeflemektedir. Katılımcılar, işlerini kurma sürecinde gerekli tüm bilgi ve becerileri kazanarak, iş dünyasında başarılı bir girişimci olma yolunda emin adımlarla ilerleyecekler.', '2025-01-10', '2025-01-30', 12, 1, '2025-01-10 10:15:08', '2025-01-10'),
 (2, 1, 'Dijital Dünyada Kadın: Web Tasarımı ve Bootstrap Eğitimi', 'Bu eğitim, kadınların dijital dünyada daha etkin rol almalarını sağlamak amacıyla web tasarımına giriş yapmaktadır. Katılımcılar, modern web siteleri oluşturabilmek için gerekli temel bilgi ve becerileri kazanacaklar. Eğitimde Bootstrap gibi popüler araçlarla mobil uyumlu web tasarımlarının nasıl yapılacağı adım adım anlatılacaktır.\r\n\r\nEğitim Modülleri:\r\n\r\nWeb Tasarımına Giriş:\r\n\r\nWeb tasarımı nedir ve neden önemlidir?\r\nWeb tasarımının temel prensipleri\r\nWeb tasarımı için gerekli araçlar ve yazılımlar\r\nBootstrap Nedir?\r\n\r\nBootstrap&#39;in temelleri\r\nBootstrap framework’ünün avantajları\r\nBootstrap ile hızlı ve mobil uyumlu tasarımlar yapma\r\nHTML ve CSS Temelleri:\r\n\r\nHTML ile temel sayfa yapısının oluşturulması\r\nCSS ile sayfa tasarımını özelleştirme\r\nBootstrap sınıfları kullanarak stil ve düzen oluşturma\r\nResponsive (Mobil Uyumlu) Tasarım:\r\n\r\nMobil uyumluluk neden önemlidir?\r\nBootstrap ile responsive tasarımlar oluşturma\r\nFarklı cihazlarda uyumlu görseller ve metin düzenlemeleri\r\nPratik Proje - Kendi Web Sitenizi Oluşturun:\r\n\r\nÖğrenciler, öğrendikleri bilgileri kullanarak kişisel veya ticari bir web sitesi tasarlarlar.\r\nAdım adım rehberlikle pratik yapma\r\nEğitim Süresi: 4 Hafta (Haftada 2 gün, toplamda 8 saat)\r\nEğitim Yeri: TOKİ Kadın Destek Merkezi\r\nEğitim Ücreti: Ücretsiz\r\nKatılım Şartları: Kadın katılımcılar, tüm seviyelerden katılabilir.\r\n\r\nBu eğitim, kadınların dijital dünyada yer edinmelerini sağlayarak, onlara kariyerlerinde ve kişisel gelişimlerinde güçlü bir temel oluşturmayı hedeflemektedir.', '2025-01-10', '2025-02-28', 12, 1, '2025-01-10 10:11:42', '2025-01-01'),
 (4, 1, 'Robotik Kodlama: Geleceğin Teknolojisine İlk Adım', 'Bu eğitim, katılımcıların robotik teknolojileri ve kodlamayı öğrenerek dijital dünyanın önemli bir parçası olmalarını sağlayacak. Eğitimde, robotların nasıl çalıştığı ve nasıl programlandığı temel düzeyde anlatılacak, katılımcılar kendi robot projelerini geliştirebilecek bilgi ve beceriye sahip olacaklar.\r\n\r\nEğitim Modülleri:\r\n\r\nRobotik Teknolojiye Giriş:\r\n\r\nRobotik nedir ve robotlar hangi alanlarda kullanılır?\r\nRobotik sistemlerin temel bileşenleri (sensörler, aktüatörler, motorlar)\r\nRobot teknolojisinin günlük yaşamda nasıl yer aldığı\r\nTemel Kodlama ve Programlama Dillerine Giriş:\r\n\r\nKodlamaya dair temel kavramlar\r\nRobotik projelerde kullanılan diller (Scratch, Python)\r\nTemel algoritmalar ve mantık yapıları\r\nArduino ile Robot Yapımı:\r\n\r\nArduino nedir ve nasıl çalışır?\r\nArduino ile basit robot projeleri oluşturma\r\nMotorlar ve sensörler ile robot hareketliliği sağlama\r\nRobotları Programlama:\r\n\r\nRobotlara görev atama ve basit hareketler programlama\r\nRobot sensörlerini kullanarak çevreyi algılayan robotlar oluşturma\r\nKendi robot projelerinizi geliştirme\r\nPratik Uygulama - Kendi Robot Projenizi Tasarlayın:\r\n\r\nKatılımcılar, öğrendikleri bilgileri kullanarak kendi robot projelerini tasarlayacaklar.\r\nÇeşitli görevler için robotlar programlanacak, projenin son haliyle bir robot demosu yapılacaktır.\r\nEğitim Süresi: 5 Hafta (Haftada 2 gün, toplamda 10 saat)\r\nEğitim Yeri: TOKİ Kadın Destek Merkezi\r\nEğitim Ücreti: Ücretsiz\r\nKatılım Şartları: Kadın katılımcılar, teknolojiye ilgi duyan herkes katılabilir. Robotik ve kodlama konusunda herhangi bir ön bilgi gerekmemektedir.\r\n\r\nBu eğitim, katılımcıların robotik dünyasına adım atmalarını ve geleceğin teknolojilerine dair temel beceriler kazanmalarını sağlamak amacıyla düzenlenmiştir. Robotik ve kodlama becerileri, günümüz iş dünyasında önemli bir yer tutmakta ve bu eğitim, kadınların teknoloji alanındaki yetkinliklerini artırmaya yardımcı olacaktır.', '2025-01-03', '2025-02-12', 12, 1, '2025-01-10 10:15:33', '2025-01-01'),
 (5, 1, 'Uzay Bilimleri ve Keşif: Evreni Anlamak İçin Temel Bir Bakış', 'Bu eğitim, katılımcılara uzay bilimleri ve evren hakkında temel bilgiler sunarak, uzaya olan ilgiyi artırmayı amaçlamaktadır. Katılımcılar, astronomi, gezegen bilimi ve uzay keşfi gibi konularda temel bilgi edinecek ve modern uzay araştırmalarının nasıl yapıldığını öğrenecekler.\r\n\r\nEğitim Modülleri:\r\n\r\nUzay Bilimlerine Giriş:\r\n\r\nUzay bilimi nedir ve nasıl gelişmiştir?\r\nEvrenin oluşumu ve temel yapıları\r\nAstronomi ve uzay bilimlerinin önemi\r\nGök Cisimleri ve Uzay Keşifleri:\r\n\r\nGezegenler, yıldızlar ve galaksiler\r\nUzaydaki temel cisimler: Asteroitler, kuyruklu yıldızlar, kara delikler\r\nUzay teleskopları ve uzay keşif araçları (Hubble, James Webb Teleskobu)\r\nUzay Keşifinde Kullanılan Teknolojiler:\r\n\r\nUzay araçları ve roketler nasıl çalışır?\r\nUzayda yaşam arayışları ve Mars misyonları\r\nİnsanlı uzay uçuşlarının geleceği\r\nAstronomi ve Uzay Haritaları:\r\n\r\nGökyüzü haritaları nasıl okunur?\r\nYıldız kümeleri, gezegenler ve takımyıldızları\r\nGözlem araçlarıyla gökyüzü gözlemi yapma teknikleri\r\nEvrenin Geleceği ve İnsanlığın Rolü:\r\n\r\nEvrenin sonu hakkında teoriler (Big Crunch, Big Freeze)\r\nİnsanlık uzaya nasıl yerleşebilir?\r\nUzayda yaşam ve sürdürülebilirlik\r\nPratik Uygulama - Uzay Gözlemi:\r\n\r\nKatılımcılar, gözleme cihazlarıyla temel astronomik gözlemler yapacaklar.\r\nAstronomi haritalarını kullanarak takımyıldızlarını tanıma ve inceleme\r\nEğitim Süresi: 6 Hafta (Haftada 2 gün, toplamda 12 saat)\r\nEğitim Yeri: TOKİ Kadın Destek Merkezi\r\nEğitim Ücreti: Ücretsiz\r\nKatılım Şartları: Kadın katılımcılar, uzay bilimlerine ilgi duyan herkes katılabilir. Önceden herhangi bir bilimsel bilgi gerekmemektedir.\r\n\r\nBu eğitim, uzay bilimlerine ve evrenin sırlarına olan merakı artırmayı hedeflemektedir. Katılımcılar, uzay hakkında daha derin bir anlayış geliştirecek ve bilimsel düşünme becerilerini güçlendirecekler. Eğitim, kadınları bilim ve keşif alanında daha fazla yer almaya teşvik etmek amacıyla tasarlanmıştır.', '2025-01-10', '2025-03-06', 12, 1, '2025-01-10 10:16:01', '2025-01-01');
+
+-- --------------------------------------------------------
+
+--
+-- Tablo için tablo yapısı `training_applications`
+--
+
+CREATE TABLE `training_applications` (
+  `id` int(11) NOT NULL,
+  `training_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `status` enum('pending','approved','rejected') COLLATE utf8mb4_unicode_ci DEFAULT 'pending',
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Tablo döküm verisi `training_applications`
+--
+
+INSERT INTO `training_applications` (`id`, `training_id`, `user_id`, `status`, `created_at`) VALUES
+(1, 5, 2, 'pending', '2025-01-15 18:58:34'),
+(2, 4, 2, 'approved', '2025-01-15 18:58:56'),
+(3, 3, 2, 'approved', '2025-01-15 19:02:56'),
+(4, 3, 8, 'pending', '2025-01-16 05:47:41'),
+(5, 2, 8, 'pending', '2025-01-16 05:47:56');
 
 -- --------------------------------------------------------
 
@@ -310,15 +443,6 @@ CREATE TABLE `training_registrations` (
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
 
---
--- Tablo döküm verisi `training_registrations`
---
-
-INSERT INTO `training_registrations` (`id`, `training_id`, `registration_type`, `first_name`, `last_name`, `tc_no`, `birth_date`, `nationality`, `district_id`, `neighborhood`, `phone`, `created_at`) VALUES
-(7, 4, 'online', 'Muhammed', 'bah&ccedil;e', '12345553422', '2025-01-01', 'T&uuml;rk', 7, 'ahmet yesevi', '(533) 317-8198', '2025-01-13 10:53:27'),
-(5, 4, 'online', 'Muhammed', 'bahçe', '61223232323', '2025-01-01', 'Türk', 4, 'ahmet yesevi', '(533) 317-8198', '2025-01-12 21:38:24'),
-(0, 3, 'online', 'Muhammed', 'bah&ccedil;e', '61223232323', '2025-01-02', 'Suriyeli', 7, 'ahmet yesevi', '(533) 317-8198', '2025-01-15 05:48:05');
-
 -- --------------------------------------------------------
 
 --
@@ -338,6 +462,13 @@ CREATE TABLE `training_requests` (
   `notes` text COLLATE utf8mb4_unicode_ci,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Tablo döküm verisi `training_requests`
+--
+
+INSERT INTO `training_requests` (`id`, `school_name`, `training_type_id`, `requested_date`, `contact_person`, `phone`, `address`, `student_count`, `status`, `notes`, `created_at`) VALUES
+(12, 'ibrahim tatlıses i.ö.o', 2, '2025-01-24', '15', '(531) 380-3063', 'Ahmet yesevi mah. Şehit Piyade Ercuma Uçar sokak 84 Şanlıurfa/ Merkez', 20, 'pending', NULL, '2025-01-16 05:45:01');
 
 -- --------------------------------------------------------
 
@@ -383,13 +514,13 @@ CREATE TABLE `units` (
 
 INSERT INTO `units` (`id`, `name`, `address`, `working_hours`, `latitude`, `longitude`, `description`, `created_at`, `updated_at`) VALUES
 (1, 'Toki Kadın Destek Merkezi', 'Topdağı, 2708. Sk. No:17, 63200 Şanlıurfa Merkez/Şanlıurfa', '08:00 - 17:00', 37.14281680, 38.77904350, 'TOKİ Kadın Destek Merkezi, kadınların yaşamlarını daha güçlü, bağımsız ve sağlıklı bir şekilde sürdürebilmeleri için çeşitli hizmetler sunan bir kuruluştur. Şanlıurfa&#39;da, TOKİ konutlarında yaşayan kadınlara özel olarak tasarlanmış olan bu merkez, kadınların eğitim, psikolojik destek, sosyal hizmetler ve hukuki yardım gibi pek çok alanda destek alabilecekleri bir ortam yaratmaktadır.\r\n\r\nMerkezimiz, kadınların potansiyellerini en üst düzeye çıkarmalarını sağlamak için çeşitli eğitimler düzenlemektedir. Eğitimlerimiz arasında kişisel gelişim, dijital okuryazarlık, girişimcilik, mesleki beceri kazandırma, aile içi ilişkiler ve psikolojik destek gibi konular yer almaktadır. Kadınların, toplumsal yaşamda daha aktif ve güçlü bireyler olmalarına yardımcı olmak için sürekli olarak programlarımızı güncel tutmaktayız.\r\n\r\nAyrıca, kadınların sosyal hayatta karşılaştığı zorlukları aşabilmeleri için hukuki danışmanlık hizmetleri sunulmakta, psikolojik destek ve sosyal hizmetlerle de yaşam kalitelerinin artırılması hedeflenmektedir. TOKİ Kadın Destek Merkezi, kadınların ihtiyaç duyduğu her türlü desteği sağlayarak, onları hem ailelerinde hem de toplumsal yaşamda daha güçlü bir konuma getirmeyi amaçlamaktadır.\r\n\r\nKadınların toplumsal hayata daha aktif katılımlarını sağlamak ve onları güçlendirmek amacıyla yapılan tüm çalışmalar, merkezimizin vizyonuna uygun olarak sürekli olarak geliştirilmekte ve genişletilmektedir.', '2025-01-09 21:35:42', '2025-01-10 10:10:41'),
-(0, 'Hayati Harrani Kadın Destek Merkezi', 'Hayati Harrani Kadın Destek Merkezi', '08:00 - 17:00', 37.12154100, 38.81203000, 'Hayati Harrani Kadın Destek Merkezi', NULL, NULL),
-(0, 'Sırrın Kadın Destek Merkezi', 'Sırrın Kadın Destek Merkezi', '08:00 - 17:00', 37.16458300, 38.83472000, 'Sırrın Kadın Destek Merkez', NULL, NULL),
-(0, 'Karakoyunlu Kadın Destek Merkezi', 'Karakoyunlu Kadın Destek Merkezi', '08:00 - 17:00', 37.16087600, 38.78169000, 'Karakoyunlu Kadın Destek Merkezi', NULL, NULL),
-(0, 'Bozova Kadın Destek Merkezi', 'Bozova Kadın Destek Merkezi', '08:00 - 17:00', 37.36174500, 38.52708500, '', NULL, NULL),
-(0, 'Birecik Kadın Destek Merkezi ', 'Birecik Kadın Destek Merkezi ', '08:00 - 17:00', 37.01261700, 37.97272200, 'Birecik Kadın Destek Merkezi ', NULL, NULL),
-(0, 'Ahmet Yesevi Kadın Destek Merkezi', 'Ahmet Yesevi Kadın Destek Merkezi', '08:00 - 17:00', 37.17780900, 38.77844400, '', NULL, NULL),
-(0, 'Yenice Aile Destek Merkezi', 'Yenice Aile Destek Merkezi', '08:00 - 17:00', 37.10720200, 38.81651500, 'Yenice Aile Destek Merkezi', NULL, NULL);
+(2, 'Hayati Harrani Kadın Destek Merkezi', 'Hayati Harrani Kadın Destek Merkezi', '08:00 - 17:00', 37.12154100, 38.81203000, 'Hayati Harrani Kadın Destek Merkezi', NULL, NULL),
+(3, 'Sırrın Kadın Destek Merkezi', 'Sırrın Kadın Destek Merkezi', '08:00 - 17:00', 37.16458300, 38.83472000, 'Sırrın Kadın Destek Merkez', NULL, NULL),
+(4, 'Karakoyunlu Kadın Destek Merkezi', 'Karakoyunlu Kadın Destek Merkezi', '08:00 - 17:00', 37.16087600, 38.78169000, 'Karakoyunlu Kadın Destek Merkezi', NULL, NULL),
+(5, 'Bozova Kadın Destek Merkezi', 'Bozova Kadın Destek Merkezi', '08:00 - 17:00', 37.36174500, 38.52708500, '', NULL, NULL),
+(6, 'Birecik Kadın Destek Merkezi ', 'Birecik Kadın Destek Merkezi ', '08:00 - 17:00', 37.01261700, 37.97272200, 'Birecik Kadın Destek Merkezi ', NULL, NULL),
+(7, 'Ahmet Yesevi Kadın Destek Merkezi', 'Ahmet Yesevi Kadın Destek Merkezi', '08:00 - 17:00', 37.17780900, 38.77844400, '', NULL, NULL),
+(8, 'Yenice Aile Destek Merkezi', 'Yenice Aile Destek Merkezi', '08:00 - 17:00', 37.10720200, 38.81651500, 'Yenice Aile Destek Merkezi', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -434,43 +565,11 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `email`, `first_name`, `last_name`, `tc_no`, `birth_date`, `nationality`, `district_id`, `neighborhood`, `phone`, `password`, `role`, `created_at`) VALUES
-(1, 'fathbahce', 'fathbahce@gmail.com', 'Fatih', 'Bahce', '12345553422', '2025-01-01', 'T&uuml;rk', 8, 'test', '(533) 317-8198', '$2y$10$QMyUDqTrwXeuvukVQW9cAes2YeZUGHtdGLxYD3WKnWw.awvQik3XO', 'admin', '2025-01-06 19:12:54'),
-(2, 'deneme', 'test@gmail.com', 'Muhammed', 'bah&ccedil;e', '61223232323', '2025-01-01', 'Suriyeli', 12, 'das', '(533) 317-8198', '$2y$10$fGPKAg581219GZPKYYHqAuQ9Euoi98dAOd7fVf4.fsQ7VY14eyUIy', 'user', '2025-01-06 21:51:58'),
-(3, 'Oap', 'osmanali6363@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '$2y$10$VupH9RMoPolOA1NCDR/ZHegqq8raS1fyzXlIvxbF0k3bjC5bAHH.S', 'user', '2025-01-06 21:56:02'),
-(4, 'oap_123', 'firatbyrm7@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '$2y$10$p/3LMulhoClh9AFVaOf4reWfgdk2ta6eL9eiv8V5t4cXzPWDM4FiW', 'user', '2025-01-07 13:28:36'),
-(5, 'oap_123456', 'osmnaliplt@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '$2y$10$GU0Mi9aN86S2EqtPNkrfR.kHjZtTsMABl3QPLRwr9uG6T2sxmnHbK', 'user', '2025-01-07 13:29:21'),
-(6, 'test deneme', 'staff@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '$2y$10$mBCrJ5c4hfeP.NsjQtPEBO3QWmJuHW699hyQsDRfA25NwnpVqhG0O', 'user', '2025-01-14 07:23:54');
-
--- --------------------------------------------------------
-
---
--- Tablo için tablo yapısı `user_details`
---
-
-CREATE TABLE `user_details` (
-  `id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `first_name` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `last_name` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `tc_no` varchar(11) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `birth_date` date DEFAULT NULL,
-  `nationality` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `district_id` int(11) DEFAULT NULL,
-  `neighborhood` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `phone` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Tablo döküm verisi `user_details`
---
-
-INSERT INTO `user_details` (`id`, `user_id`, `first_name`, `last_name`, `tc_no`, `birth_date`, `nationality`, `district_id`, `neighborhood`, `phone`) VALUES
-(1, 2, 'Muhammed', 'bah&ccedil;e', '61223232323', '2025-01-01', 'T&uuml;rk', 5, 'ahmet yesevi', '(533) 317-8198'),
-(2, 2, 'Muhammed', 'bah&ccedil;e', '61223232323', '2025-01-01', 'T&uuml;rk', 5, 'ahmet yesevi', '(533) 317-8198'),
-(3, 2, 'Muhammed', 'bah&ccedil;e', '61223232323', '2025-01-01', 'Suriyeli', 5, 'ahmet yesevi', '(533) 317-8198'),
-(4, 2, 'Muhammed', 'bah&ccedil;e', '61223232323', '2025-01-01', 'T&uuml;rk', 5, 'ahmet yesevi', '(533) 317-8198'),
-(5, 2, 'Muhammed', 'bah&ccedil;e', '61223232323', '2025-01-01', 'T&uuml;rk', 5, 'ahmet yesevi', '(533) 317-8198'),
-(6, 2, 'Muhammed', 'bah&ccedil;e', '61223232323', '2025-01-01', 'Suriyeli', 5, 'ahmet yesevi', '(533) 317-8198');
+(1, 'fathbahce', 'fathbahce@gmail.com', 'Fatih', 'Bahce', '12345553422', '2025-01-01', 'Turk', 8, 'test', '(533) 317-8198', '$2y$10$QMyUDqTrwXeuvukVQW9cAes2YeZUGHtdGLxYD3WKnWw.awvQik3XO', 'admin', '2025-01-06 19:12:54'),
+(2, 'Fatih', 'test@gmail.com', 'fatih', 'bahce', '61223232323', '2025-01-01', 'Suriyeli', 12, 'das', '(533) 317-8198', '$2y$10$fGPKAg581219GZPKYYHqAuQ9Euoi98dAOd7fVf4.fsQ7VY14eyUIy', 'user', '2025-01-06 21:51:58'),
+(9, 'admindas', 'customer@archielite.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '$2y$10$3e3KdJoVA534C04wstN9UezsxALefkWesp5nvXywnfK4tf9VAaN6u', 'user', '2025-01-16 05:51:22'),
+(8, 'berfin tokmak', 'brfn.tkmk@gmail.com', 'berfin', 'tokmak', '38681128614', '1998-12-01', 'Suriyeli', 13, 'HAMİDİYE', '5313803063', '$2y$10$OYDj2A5qnRYA1pgWsH8f..SvlUlQo/AFA9H1UADfvuoV1VRrVOYCu', 'user', '2025-01-16 05:45:25'),
+(7, 'test-ogrenci', 'testogrenci@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '$2y$10$MSK0dM1vxejDX5Z593.97eErCdsaw2gELVYxJvU6VeIPCsahfZkAq', 'user', '2025-01-15 20:17:55');
 
 --
 -- Dökümü yapılmış tablolar için indeksler
@@ -515,19 +614,30 @@ ALTER TABLE `messages`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Tablo için indeksler `news`
+--
+ALTER TABLE `news`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Tablo için indeksler `projects`
 --
 ALTER TABLE `projects`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Tablo için indeksler `seo_settings`
+--
+ALTER TABLE `seo_settings`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `page_identifier` (`page_identifier`);
+
+--
 -- Tablo için indeksler `students`
 --
 ALTER TABLE `students`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `district_id` (`district_id`),
-  ADD KEY `unit_id` (`unit_id`),
-  ADD KEY `training_id` (`training_id`);
+  ADD UNIQUE KEY `unique_student` (`tc_no`,`training_id`);
 
 --
 -- Tablo için indeksler `trainings`
@@ -535,6 +645,15 @@ ALTER TABLE `students`
 ALTER TABLE `trainings`
   ADD PRIMARY KEY (`id`),
   ADD KEY `unit_id` (`unit_id`);
+
+--
+-- Tablo için indeksler `training_applications`
+--
+ALTER TABLE `training_applications`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `unique_application` (`training_id`,`user_id`),
+  ADD KEY `training_id` (`training_id`),
+  ADD KEY `user_id` (`user_id`);
 
 --
 -- Tablo için indeksler `training_registrations`
@@ -558,6 +677,12 @@ ALTER TABLE `training_types`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Tablo için indeksler `units`
+--
+ALTER TABLE `units`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Tablo için indeksler `unit_gallery`
 --
 ALTER TABLE `unit_gallery`
@@ -572,14 +697,6 @@ ALTER TABLE `users`
   ADD UNIQUE KEY `username` (`username`),
   ADD UNIQUE KEY `email` (`email`),
   ADD KEY `fk_users_district` (`district_id`);
-
---
--- Tablo için indeksler `user_details`
---
-ALTER TABLE `user_details`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `idx_user_id` (`user_id`),
-  ADD KEY `idx_district_id` (`district_id`);
 
 --
 -- Dökümü yapılmış tablolar için AUTO_INCREMENT değeri
@@ -598,10 +715,34 @@ ALTER TABLE `contact_messages`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
+-- Tablo için AUTO_INCREMENT değeri `news`
+--
+ALTER TABLE `news`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- Tablo için AUTO_INCREMENT değeri `seo_settings`
+--
+ALTER TABLE `seo_settings`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+
+--
+-- Tablo için AUTO_INCREMENT değeri `students`
+--
+ALTER TABLE `students`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- Tablo için AUTO_INCREMENT değeri `training_applications`
+--
+ALTER TABLE `training_applications`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
 -- Tablo için AUTO_INCREMENT değeri `training_requests`
 --
 ALTER TABLE `training_requests`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `training_types`
@@ -610,16 +751,16 @@ ALTER TABLE `training_types`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- Tablo için AUTO_INCREMENT değeri `units`
+--
+ALTER TABLE `units`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
 -- Tablo için AUTO_INCREMENT değeri `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
---
--- Tablo için AUTO_INCREMENT değeri `user_details`
---
-ALTER TABLE `user_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- Dökümü yapılmış tablolar için kısıtlamalar

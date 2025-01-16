@@ -11,7 +11,8 @@ $units = $db->query("SELECT * FROM units ORDER BY name")->fetchAll();
 
 // Eğitimleri getir
 $trainings = $db->query(
-    "SELECT t.*, u.name as unit_name 
+    "SELECT t.*, u.name as unit_name,
+            (SELECT COUNT(*) FROM training_applications WHERE training_id = t.id) as application_count
      FROM trainings t 
      JOIN units u ON t.unit_id = u.id 
      ORDER BY t.start_date DESC"
@@ -150,7 +151,7 @@ function editTraining(id) {
 }
 
 function viewRegistrations(id) {
-    window.location.href = 'training-registrations.php?id=' + id;
+    window.location.href = 'training-applications.php?id=' + id;
 }
 
 function deleteTraining(id) {
