@@ -119,7 +119,7 @@ include 'includes/header.php';
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="save-project.php" method="POST" enctype="multipart/form-data">
+                    <form action="save-project.php" method="POST" enctype="multipart/form-data" >
                         <div class="mb-3">
                             <label class="form-label">Proje Başlığı</label>
                             <input type="text" name="title" class="form-control" required>

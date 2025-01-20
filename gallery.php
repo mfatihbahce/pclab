@@ -12,12 +12,14 @@ include 'includes/header.php';
 ?>
 
 <!-- Hero Section -->
-<div class="container-fluid bg-light py-5 mb-5">
-    <div class="container">
-        <h1 class="text-center mb-4">Galeri</h1>
-        <p class="text-center text-muted">Projelerimizden ve etkinliklerimizden görüntüler</p>
+
+
+<br><br>
+    <div class="section-header text-center mb-5" data-aos="fade-up">
+        <h6 class="text-primary fw-bold text-uppercase">Galeri</h6>
+        <h2 class="display-5 fw-bold">Etkinliklerimizden Görüntüler</h2>
+        <div class="divider mx-auto"></div>
     </div>
-</div>
 
 <!-- Galeri Grid -->
 <div class="container py-4">

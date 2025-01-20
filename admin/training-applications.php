@@ -24,8 +24,10 @@ if (!$training) {
 
 // Başvuruları getir
 $registrations = $db->query(
-    "SELECT ta.*, u.email, u.first_name, u.last_name, u.phone, u.tc_no, u.birth_date,
-            u.nationality, u.district_id, d.name as district_name,
+    "SELECT ta.*, u.email, u.first_name, u.last_name, u.phone, u.tc_no, 
+            COALESCE(u.gender, '') as gender,  -- NULL değerleri boş string ile değiştir
+            u.birth_date, u.nationality, u.district_id, 
+            d.name as district_name,
             (SELECT COUNT(*) FROM students WHERE tc_no = u.tc_no AND training_id = ta.training_id) as is_student
      FROM training_applications ta
      JOIN users u ON ta.user_id = u.id
@@ -89,6 +91,7 @@ include 'includes/header.php';
                             <tr>
                                 <th>Ad Soyad</th>
                                 <th>TC No</th>
+								<th>Cinsiyet</th>
                                 <th>Doğum Tarihi</th>
                                 <th>İlçe</th>
                                 <th>Telefon</th>
@@ -105,6 +108,7 @@ include 'includes/header.php';
                                     <?= htmlspecialchars($reg['last_name']) ?>
                                 </td>
                                 <td><?= htmlspecialchars($reg['tc_no']) ?></td>
+								<td><?= htmlspecialchars($reg['gender'] ?: '') ?></td>
                                 <td><?= date('d.m.Y', strtotime($reg['birth_date'])) ?></td>
                                 <td><?= htmlspecialchars($reg['district_name']) ?></td>
                                 <td><?= htmlspecialchars($reg['phone']) ?></td>

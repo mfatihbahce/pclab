@@ -2,7 +2,7 @@
 require_once '../includes/config.php';
 require_once '../includes/db.php';
 require_once '../includes/functions.php';
-require_once 'includes/auth_check.php'; // Yetki kontrolü
+require_once 'includes/auth_check.php';
 checkAdmin();
 
 $db = Database::getInstance();
@@ -14,11 +14,16 @@ $nationality = isset($_GET['nationality']) ? htmlspecialchars($_GET['nationality
 $search = isset($_GET['search']) ? htmlspecialchars($_GET['search']) : '';
 
 // Sorgu oluştur
-$query = "SELECT s.*, u.name as unit_name, t.title as training_name, d.name as district_name 
+$query = "SELECT s.*, 
+          COALESCE(s.gender, '') as gender,
+          COALESCE(s.status, 'inactive') as status,
+          u.name as unit_name, 
+          t.title as training_name, 
+          COALESCE(d.name, '') as district_name 
           FROM students s 
           JOIN units u ON s.unit_id = u.id 
           JOIN trainings t ON s.training_id = t.id 
-          JOIN districts d ON s.district_id = d.id 
+          LEFT JOIN districts d ON s.district_id = d.id 
           WHERE 1=1";
 $params = [];
 
@@ -54,7 +59,7 @@ $query .= " ORDER BY s.created_at DESC";
 // Öğrencileri getir
 $students = $db->query($query, $params)->fetchAll();
 
-// Birimleri getir (filtre için)
+// Birimleri getir
 $units = $db->query("SELECT id, name FROM units ORDER BY name")->fetchAll();
 
 $page_title = "Öğrenci Listesi";
@@ -138,6 +143,7 @@ include 'includes/header.php';
                             <tr>
                                 <th>Ad Soyad</th>
                                 <th>TC No</th>
+								<th>Cinsiyet</th>
                                 <th>Uyruk</th>
                                 <th>Birim</th>
                                 <th>Eğitim</th>
@@ -147,47 +153,47 @@ include 'includes/header.php';
                                 <th>Kayıt Tarihi</th>
                                 <th>İşlemler</th>
                             </tr>
-                        </thead>
-                        <tbody>
-                            <?php foreach ($students as $student): ?>
-                            <tr>
-                                <td>
-                                    <?= htmlspecialchars($student['first_name']) ?> 
-                                    <?= htmlspecialchars($student['last_name']) ?>
-                                </td>
-                                <td><?= htmlspecialchars($student['tc_no']) ?></td>
-                                <td><?= htmlspecialchars($student['nationality']) ?></td>
-                                <td><?= htmlspecialchars($student['unit_name']) ?></td>
-                                <td><?= htmlspecialchars($student['training_name']) ?></td>
-                                <td><?= htmlspecialchars($student['district_name']) ?></td>
-                                <td><?= htmlspecialchars($student['phone']) ?></td>
-                                <td>
-                                    <?php if ($student['status'] == 'active'): ?>
-                                        <span class="badge bg-success">Aktif</span>
-                                    <?php else: ?>
-                                        <span class="badge bg-danger">Pasif</span>
-                                    <?php endif; ?>
-                                </td>
-                                <td><?= date('d.m.Y', strtotime($student['created_at'])) ?></td>
-                                <td>
-                                    <div class="btn-group btn-group-sm">
-                                        <button type="button" class="btn btn-info" 
-                                                onclick="viewStudent(<?= $student['id'] ?>)">
-                                            <i class="bi bi-eye"></i>
-                                        </button>
-                                        <button type="button" class="btn btn-warning" 
-                                                onclick="toggleStatus(<?= $student['id'] ?>)">
-                                            <i class="bi bi-toggle-on"></i>
-                                        </button>
-                                        <button type="button" class="btn btn-danger" 
-                                                onclick="deleteStudent(<?= $student['id'] ?>)">
-                                            <i class="bi bi-trash"></i>
-                                        </button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <?php endforeach; ?>
-                        </tbody>
+<tbody>
+    <?php foreach ($students as $student): ?>
+    <tr>
+        <td>
+            <?= htmlspecialchars($student['first_name'] ?? '') ?> 
+            <?= htmlspecialchars($student['last_name'] ?? '') ?>
+        </td>
+        <td><?= htmlspecialchars($student['tc_no'] ?? '') ?></td>
+        <td><?= htmlspecialchars($student['gender'] ?? '') ?></td>
+        <td><?= htmlspecialchars($student['nationality'] ?? '') ?></td>
+        <td><?= htmlspecialchars($student['unit_name'] ?? '') ?></td>
+        <td><?= htmlspecialchars($student['training_name'] ?? '') ?></td>
+        <td><?= htmlspecialchars($student['district_name'] ?? '') ?></td>
+        <td><?= htmlspecialchars($student['phone'] ?? '') ?></td>
+        <td>
+            <?php if (isset($student['status']) && $student['status'] == 'active'): ?>
+                <span class="badge bg-success">Aktif</span>
+            <?php else: ?>
+                <span class="badge bg-danger">Pasif</span>
+            <?php endif; ?>
+        </td>
+        <td><?= isset($student['created_at']) ? date('d.m.Y', strtotime($student['created_at'])) : '' ?></td>
+        <td>
+            <div class="btn-group btn-group-sm">
+                <button type="button" class="btn btn-info" 
+                        onclick="viewStudent(<?= $student['id'] ?>)">
+                    <i class="bi bi-eye"></i>
+                </button>
+                <button type="button" class="btn btn-warning" 
+                        onclick="toggleStatus(<?= $student['id'] ?>)">
+                    <i class="bi bi-toggle-on"></i>
+                </button>
+                <button type="button" class="btn btn-danger" 
+                        onclick="deleteStudent(<?= $student['id'] ?>)">
+                    <i class="bi bi-trash"></i>
+                </button>
+            </div>
+        </td>
+    </tr>
+    <?php endforeach; ?>
+</tbody>
                     </table>
                 </div>
             <?php else: ?>

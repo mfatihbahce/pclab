@@ -12,10 +12,10 @@ if ($registration_id && $training_id && $unit_id) {
     $db = Database::getInstance();
     
     try {
-        // Başvuru bilgilerini al
+        // Başvuru bilgilerini al (gender alanını ekledik)
         $registration = $db->query(
             "SELECT ta.*, u.first_name, u.last_name, u.tc_no, u.birth_date, 
-                    u.nationality, u.district_id, u.phone
+                    u.nationality, u.district_id, u.phone, u.gender
              FROM training_applications ta
              JOIN users u ON ta.user_id = u.id
              WHERE ta.id = ?",
@@ -33,12 +33,13 @@ if ($registration_id && $training_id && $unit_id) {
             if ($existingStudent) {
                 setError('Bu öğrenci zaten bu eğitime kayıtlı.');
             } else {
-                // Öğrenci listesine ekle
+                // Öğrenci listesine ekle (gender alanını ekledik)
                 $db->query(
                     "INSERT INTO students SET 
                         first_name = ?,
                         last_name = ?,
                         tc_no = ?,
+                        gender = ?,
                         birth_date = ?,
                         nationality = ?,
                         district_id = ?,
@@ -50,6 +51,7 @@ if ($registration_id && $training_id && $unit_id) {
                         $registration['first_name'],
                         $registration['last_name'],
                         $registration['tc_no'],
+                        $registration['gender'],
                         $registration['birth_date'],
                         $registration['nationality'],
                         $registration['district_id'],

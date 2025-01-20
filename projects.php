@@ -11,13 +11,14 @@ $projects = $db->query("SELECT * FROM projects ORDER BY created_at DESC")->fetch
 include 'includes/header.php';
 ?>
 
-<!-- Hero Section -->
-<div class="container-fluid bg-light py-5 mb-5">
-    <div class="container">
-        <h1 class="text-center mb-4">Duyurularımız</h1>
-        <p class="text-center text-muted">Tamamlanan ve devam eden duyurular</p>
+<br><br>
+    <div class="section-header text-center mb-5" data-aos="fade-up">
+        <h6 class="text-primary fw-bold text-uppercase">Duyurularımız</h6>
+        <h2 class="display-5 fw-bold">Bizden Duyurular</h2>
+        <div class="divider mx-auto"></div>
     </div>
-</div>
+
+
 
 <!-- Projeler Grid -->
 <div class="container py-4">

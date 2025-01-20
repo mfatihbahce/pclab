@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Anamakine: localhost:3306
--- Üretim Zamanı: 16 Oca 2025, 09:00:42
+-- Üretim Zamanı: 20 Oca 2025, 12:10:07
 -- Sunucu sürümü: 5.5.68-MariaDB-cll-lve
 -- PHP Sürümü: 8.3.14
 
@@ -67,7 +67,10 @@ INSERT INTO `contact_messages` (`id`, `name`, `email`, `subject`, `message`, `cr
 (2, 'DENEME2', 'manager@gmail.com', 'ds', 'sads', '2025-01-06 19:36:09'),
 (3, 'sadsfd', 'a@a.com', 'sad', 'ads', '2025-01-06 23:04:41'),
 (4, 'sadsfd', 'a@a.com', 'sad', 'ads', '2025-01-06 23:05:04'),
-(5, 'sadsfd', 'a@a.com', 'sad', 'ads', '2025-01-06 23:05:15');
+(5, 'sadsfd', 'a@a.com', 'sad', 'ads', '2025-01-06 23:05:15'),
+(6, 'Allen', 'seo-xperts@proton.me', 'Google traffic for gencsanliurfa.com', 'Let&#039;s get your website ranked on Google. If interested reply to this email.', '2025-01-16 08:47:46'),
+(7, 'Ranking', 'ranking.marina70@googlemail.com', 'Dear gencsanliurfa.com Webmaster!', 'Want millions of people to explore your video affordably? Visit: http://gmxwlk.contactblastingworks.my', '2025-01-17 19:29:28'),
+(8, 'zeynep doğan', 'berfin.tokmak@sanliurfa.bel.tr', 'bilgisayar kursu talebi', 'Ben hilvanda oturuyorum. bilgisayara ilgim var. duydum ki merkezlerde bilgisayar kursunuz varmış, hilvanda da talep ediyorum.', '2025-01-20 08:18:11');
 
 -- --------------------------------------------------------
 
@@ -272,7 +275,8 @@ INSERT INTO `projects` (`id`, `title`, `description`, `url`, `image_path`, `crea
 (8, '💡 Robotik ve Yazılım Eğitimleri için Kayıtlar Başladı!', 'Teknolojiyle geleceği inşa etmek isteyen herkesi eğitimlerimize bekliyoruz! Robotik kodlama ve yazılım temellerini öğrenerek, yenilikçi projelere imza atabilirsiniz.\r\n\r\nEğitimde Neler Var?\r\n\r\nRobotik sistemlerin tasarımı ve kullanımı,\r\nAlgoritma mantığı ve programlama dillerine giriş,\r\nUygulamalı projelerle deneyim kazanma.\r\n📌 Kimler Katılabilir?\r\nHer seviyeden katılımcı için uygun eğitimler. Deneyim şartı aranmamaktadır.\r\n\r\n📅 Son Başvuru Tarihi: 15 Mart 2025\r\n🌐 Kayıt için Tıklayın: www.robotikegitim.com\r\n📞 Detaylı Bilgi: 0 850 123 45 67\r\n\r\nGeleceğin teknolojileriyle tanışmak ve fark yaratmak için bu fırsatı kaçırmayın!', '', '6780e5f6f02a3.jpg', '2025-01-10 09:18:46'),
 (7, '🎓 Robotik Kodlama ve Yazılım Eğitimleri Başlıyor!', 'Teknoloji dünyasına adım atmak isteyenler için harika bir fırsat! Robotik kodlama ve yazılım alanında düzenlenen eğitim programımıza başvurular başladı.\r\n\r\nEğitim İçeriği:\r\n\r\nRobot tasarımı ve temel prensipler,\r\nAlgoritma geliştirme ve yazılım dillerine giriş,\r\nUygulamalı projelerle öğrenim.\r\nKimler Katılabilir?\r\nEğitimlerimize her yaştan ve seviyeden teknoloji meraklısı katılabilir.\r\n\r\n📅 Son Başvuru Tarihi: 20 Şubat 2025\r\n🌐 Başvuru Adresi: www.teknolojibasvuru.com\r\n📞 İletişim: 0 312 456 78 90\r\n\r\nKontenjan sınırlı! Hemen başvurun, geleceğin teknolojilerini öğrenme fırsatını kaçırmayın!', '', '6780e5bb3c203.jpg', '2025-01-10 09:17:47'),
 (9, '🎓 Bootstrap Eğitimi ile Modern Web Tasarımlarına İlk Adım!', 'Web tasarımına ilgi duyanlar için mükemmel bir fırsat! Bootstrap eğitimine katılarak, modern, mobil uyumlu ve estetik web siteleri oluşturmayı öğrenebilirsiniz.\r\n\r\nEğitim İçeriği:\r\n\r\nBootstrap kütüphanesi kullanımı,\r\nMobil uyumlu tasarım teknikleri,\r\nPratik projelerle web tasarım becerileri geliştirme.\r\n📌 Kimler Katılabilir?\r\nWeb tasarımı öğrenmek isteyen her seviyeden katılımcıya uygundur.\r\n\r\n📅 Son Başvuru Tarihi: 10 Mart 2025\r\n🌐 Kayıt için Tıklayın: www.webegitimi.com\r\n📞 Detaylı Bilgi: 0 532 123 45 67\r\n\r\nWeb tasarımında bir adım öne geçmek ve profesyonel projeler oluşturmak için bu fırsatı kaçırmayın!', '', '6780e643ad897.jpg', '2025-01-10 09:20:03'),
-(10, '🌐 Web Tasarımı ve Bootstrap Eğitimi Başlıyor!', 'Web tasarımına başlamak ya da becerilerinizi geliştirmek isteyenler için mükemmel bir fırsat! Bootstrap eğitimiyle modern web siteleri oluşturmayı ve mobil uyumlu tasarımlar yapmayı öğrenin.\r\n\r\nEğitim İçeriği:\r\n\r\nBootstrap Temelleri: Web sayfalarını hızla oluşturma,\r\nResponsive Tasarım: Her cihazda mükemmel görünüm,\r\nPratik Uygulamalar: Gerçek projelerle deneyim kazanma.\r\nKimler Katılabilir?\r\nWeb tasarımına ilgi duyan, sıfırdan başlamak isteyen ya da bilgi ve becerilerini geliştirmek isteyen herkes katılabilir.\r\n\r\n📅 Son Başvuru Tarihi: 20 Mart 2025\r\n🌐 Başvuru İçin: www.webtasarimkursu.com\r\n📞 Bilgi ve İletişim: 0 536 234 56 78\r\n\r\nTeknolojiye adım atın, web tasarım dünyasında kendinizi geliştirin ve yaratıcı projeler üretmeye başlayın!', '', '6780e6cff3af4.jpg', '2025-01-10 09:22:23');
+(10, '🌐 Web Tasarımı ve Bootstrap Eğitimi Başlıyor!', 'Web tasarımına başlamak ya da becerilerinizi geliştirmek isteyenler için mükemmel bir fırsat! Bootstrap eğitimiyle modern web siteleri oluşturmayı ve mobil uyumlu tasarımlar yapmayı öğrenin.\r\n\r\nEğitim İçeriği:\r\n\r\nBootstrap Temelleri: Web sayfalarını hızla oluşturma,\r\nResponsive Tasarım: Her cihazda mükemmel görünüm,\r\nPratik Uygulamalar: Gerçek projelerle deneyim kazanma.\r\nKimler Katılabilir?\r\nWeb tasarımına ilgi duyan, sıfırdan başlamak isteyen ya da bilgi ve becerilerini geliştirmek isteyen herkes katılabilir.\r\n\r\n📅 Son Başvuru Tarihi: 20 Mart 2025\r\n🌐 Başvuru İçin: www.webtasarimkursu.com\r\n📞 Bilgi ve İletişim: 0 536 234 56 78\r\n\r\nTeknolojiye adım atın, web tasarım dünyasında kendinizi geliştirin ve yaratıcı projeler üretmeye başlayın!', '', '6780e6cff3af4.jpg', '2025-01-10 09:22:23'),
+(0, 'Google Araçları Eğitimi', '\"15-24 yaş aralığındaki Türk ve yabancı uyruklu gençlerin Google Araçları hakkında yetkinliğini arttırmayı hedefleyen akran eğitim modeline dayalı farkındalık eğitimidir. Eğitim içeriği 6 alt başlıktan oluşmaktadır:\r\n\r\nGoogle Drive \r\nGoogle Analytics \r\nGoogle Slides \r\nGoogle Forms  \r\nGoogle Sites \r\nGoogle Ads \"', 'https://gencsanliurfa.com/training-request', '6789eea87100e.jpg', '2025-01-17 05:46:16');
 
 -- --------------------------------------------------------
 
@@ -322,6 +326,8 @@ CREATE TABLE `students` (
   `first_name` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `last_name` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `tc_no` varchar(11) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `gender` enum('Kadın','Erkek') COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status` enum('active','inactive') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'active',
   `birth_date` date DEFAULT NULL,
   `nationality` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `district_id` int(11) DEFAULT NULL,
@@ -335,9 +341,10 @@ CREATE TABLE `students` (
 -- Tablo döküm verisi `students`
 --
 
-INSERT INTO `students` (`id`, `first_name`, `last_name`, `tc_no`, `birth_date`, `nationality`, `district_id`, `phone`, `unit_id`, `training_id`, `created_at`) VALUES
-(1, 'fatih', 'bahce', '61223232323', '2025-01-01', 'Suriyeli', 12, '(533) 317-8198', 1, 3, '2025-01-15 21:13:55'),
-(2, 'fatih', 'bahce', '61223232323', '2025-01-01', 'Suriyeli', 12, '(533) 317-8198', 1, 5, '2025-01-15 21:14:13');
+INSERT INTO `students` (`id`, `first_name`, `last_name`, `tc_no`, `gender`, `status`, `birth_date`, `nationality`, `district_id`, `phone`, `unit_id`, `training_id`, `created_at`) VALUES
+(6, 'berfin', 'tokmak', '38681128614', 'Kadın', 'active', '1998-12-01', 'Suriyeli', 13, '5313803063', 1, 3, '2025-01-16 06:54:04'),
+(7, 'fatih', 'bahce', '61223232323', 'Erkek', 'active', '2025-01-01', 'Suriyeli', 12, '(533) 317-8198', 1, 3, '2025-01-16 06:54:27'),
+(8, 'berfin', 'tokmak', '38681128614', 'Kadın', 'active', '1998-12-01', 'Suriyeli', 13, '5313803063', 1, 2, '2025-01-16 06:54:31');
 
 -- --------------------------------------------------------
 
@@ -419,8 +426,9 @@ INSERT INTO `training_applications` (`id`, `training_id`, `user_id`, `status`, `
 (1, 5, 2, 'pending', '2025-01-15 18:58:34'),
 (2, 4, 2, 'approved', '2025-01-15 18:58:56'),
 (3, 3, 2, 'approved', '2025-01-15 19:02:56'),
-(4, 3, 8, 'pending', '2025-01-16 05:47:41'),
-(5, 2, 8, 'pending', '2025-01-16 05:47:56');
+(4, 3, 8, 'approved', '2025-01-16 05:47:41'),
+(5, 2, 8, 'approved', '2025-01-16 05:47:56'),
+(6, 4, 9, 'pending', '2025-01-16 06:27:47');
 
 -- --------------------------------------------------------
 
@@ -453,6 +461,7 @@ CREATE TABLE `training_requests` (
   `id` int(11) NOT NULL,
   `school_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `training_type_id` int(11) NOT NULL,
+  `category` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `requested_date` date NOT NULL,
   `contact_person` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   `phone` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -467,8 +476,14 @@ CREATE TABLE `training_requests` (
 -- Tablo döküm verisi `training_requests`
 --
 
-INSERT INTO `training_requests` (`id`, `school_name`, `training_type_id`, `requested_date`, `contact_person`, `phone`, `address`, `student_count`, `status`, `notes`, `created_at`) VALUES
-(12, 'ibrahim tatlıses i.ö.o', 2, '2025-01-24', '15', '(531) 380-3063', 'Ahmet yesevi mah. Şehit Piyade Ercuma Uçar sokak 84 Şanlıurfa/ Merkez', 20, 'pending', NULL, '2025-01-16 05:45:01');
+INSERT INTO `training_requests` (`id`, `school_name`, `training_type_id`, `category`, `requested_date`, `contact_person`, `phone`, `address`, `student_count`, `status`, `notes`, `created_at`) VALUES
+(12, 'ibrahim tatlıses i.ö.o', 2, NULL, '2025-01-24', '15', '(531) 380-3063', 'Ahmet yesevi mah. Şehit Piyade Ercuma Uçar sokak 84 Şanlıurfa/ Merkez', 20, 'approved', '', '2025-01-16 05:45:01'),
+(13, 'Test', 5, NULL, '2025-01-01', 'Muhammed fatih bahçe', '(505) 785-1087', 'şanlıurfa', 64, 'rejected', '', '2025-01-17 05:53:55'),
+(14, 'Test', 5, NULL, '2025-01-17', 'Muhammed fatih bahçe', '(533) 317-8198', 'şanlıurfa', 15, 'pending', NULL, '2025-01-17 09:34:07'),
+(15, 'dsada', 5, NULL, '2025-01-31', 'Muhammed fatih bahçe', '(505) 785-1087', 'şanlıurfa', 15, 'pending', NULL, '2025-01-17 11:20:16'),
+(16, 'Testdsad', 31, 'Çocuk (7 - 14 Yaş)', '2025-01-18', 'Muhammed fatih bahçe', '(505) 785-1087', 'şanlıurfa', 15, 'pending', NULL, '2025-01-17 11:45:38'),
+(17, 'Test6', 31, 'Çocuk (7 - 14 Yaş)', '2025-02-01', 'Muhammed fatih bahçe', '(533) 317-8198', 'şanlıurfa', 40, 'approved', '', '2025-01-17 11:52:52'),
+(18, 'ibrahim tatlıses i.ö.o', 29, 'Çocuk (7 - 14 Yaş)', '2025-01-30', 'Berfin TOKMAK', '(505) 785-1087', 'hamidiye mah. 258. sokak', 16, 'pending', NULL, '2025-01-20 08:21:52');
 
 -- --------------------------------------------------------
 
@@ -480,6 +495,9 @@ CREATE TABLE `training_types` (
   `id` int(11) NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `description` text COLLATE utf8mb4_unicode_ci,
+  `category` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `target_audience` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `duration` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -487,8 +505,31 @@ CREATE TABLE `training_types` (
 -- Tablo döküm verisi `training_types`
 --
 
-INSERT INTO `training_types` (`id`, `name`, `description`, `created_at`) VALUES
-(2, 'Pre - Botcamp (Girişimcilik 101) Eğitimi', '', '2025-01-14 10:52:25');
+INSERT INTO `training_types` (`id`, `name`, `description`, `category`, `target_audience`, `duration`, `created_at`) VALUES
+(2, 'Pre - Botcamp (Girişimcilik 101) Eğitimi', '15-24 yaş aralığındaki Türk ve yabancı uyruklu gençlerin girişimcilik becerilerini ve inovatif düşünme yetkinliklerini arttırmayı hedefleyen akran eğitim modeline dayalı farkındalık eğitimidir. Eğitim içeriği aşağıdaki başlıklara dayanmaktadır: Girişimciliğin tanımı, Girişimcilerin temel özellikleri, Sosyal Girişimciliğin Temelleri, Pazar Araştırması, İş Planı Oluşturma, Temel Finansal Kavramlar, Hedef Pazar ve Kitle Belirleme ve analizi, Risk Yönetimi, Dünyaca ünlü girişimcilerin başarı hikayeleri', 'Genç - \"Geleceği Eşitle\"', '15-24 yaş', '2- 3 saat\n', '2025-01-14 10:52:25'),
+(5, 'Dijital Medya Okuryazarlığı Eğitimi', '15-24 yaş aralığındaki Türk ve yabancı uyruklu gençlerin dijital medya yetkinlikleri konusunda becerilerini arttırmayı hedefleyen akran eğitim modeline dayalı farkındalık eğitimidir. Eğitim içeriği aşağıdaki başlıklara dayanmaktadır: Dijital Medyanın Tanımı ve Önemi, Dijital Medya Türleri ve Özellikleri, Dijital Medya İçeriği ve Kaynak Değerlendirmesi, Dijital Medya Güvenliği, Dijital Medya Reklamcılığı ve Pazarlama, Dijital Medya Bağımlılığı ve Bilinçli Kullanım, Dijital Medya İçerik Üretimi', 'Genç - \"Geleceği Eşitle\"', '15-24 yaş', '2- 3 saat\n', '2025-01-17 05:52:28'),
+(6, 'Yapay Zeka Eğitimi', '15-24 yaş aralığındaki Türk ve yabancı uyruklu gençlerin Yapay Zeka hakkında yetkinliğini arttırmayı hedefleyen akran eğitim modeline dayalı farkındalık eğitimidir. Eğitim içeriği aşağıdaki başlıklara dayanmaktadır: Yapay zeka nedir? Nasıl çalışır?  Yapay zekanın toplum üzerindeki dönüştürücü etkisi, Yapay zeka ve gelecek vizyonu, Üretken yapay zeka araçları (Generative AI), Yapay zeka ve robotik uygulamaları, Yapay zeka kullanım alanları', 'Genç - \"Geleceği Eşitle\"', '15-24 yaş', '3- 4 saat\n', '2025-01-17 05:52:36'),
+(7, 'Sosyal Becerileri Geliştirme Eğitimi', '15-24 yaş aralığındaki Türk ve yabancı uyruklu gençlerin Sosyal Becerileri Geliştirme noktasında yetkinliğini arttırmayı hedefleyen akran eğitim modeline dayalı farkındalık eğitimidir. Eğitim içeriği aşağıdaki başlıklara dayanmaktadır: Sosyal Becerilerin Önemi ve Tanımı, Grup Çalışmaları ve İşbirliği Becerileri, Empati ve Kültürel Farkındalık, Problem Çözme ve Çatışma Yönetimi, Özgüven ve İş İlişkileri ', 'Genç - \"Geleceği Eşitle\"', '15-24 yaş', '2- 3 saat\n', '2025-01-17 05:52:40'),
+(12, 'Google Araçları Eğitimi', '15-24 yaş aralığındaki Türk ve yabancı uyruklu gençlerin Google Araçları hakkında yetkinliğini arttırmayı hedefleyen akran eğitim modeline dayalı farkındalık eğitimidir. Eğitim içeriği 6 alt başlıktan oluşmaktadır: Google Drive, Google Analytics, Google Slides, Google Forms, Google Sites, Google Ads', 'Genç - \"Geleceği Eşitle\"', '15-24 yaş', '3 saat\n', '2025-01-17 08:38:35'),
+(13, 'Tasarım Odaklı Düşünme Eğitimi', '15-24 yaş aralığındaki Türk ve yabancı uyruklu gençlerin Tasarım Odaklı Düşünme metodolojisi hakkında yetkinliğini arttırmayı hedefleyen akran eğitim modeline dayalı farkındalık eğitimidir. Eğitim içeriği aşağıdaki başlıklara dayanmaktadır: Tasarım Düşüncesi, Tasarım Düşüncesinin Aşamaları, Tasarım Düşüncesi Örnekleri, Tasarım Düşüncesinde Bilim ve Akılcılık ', 'Genç - \"Geleceği Eşitle\"', '15-24 yaş', '2- 3 saat\n', '2025-01-17 08:38:53'),
+(15, 'Ebeveyn ve Öğretmen Buluşmaları', 'Dijital okuryazarlık ve dijital ebeveynlik anlayışının toplum geneline yayılmasını ve genç nesillere bilinçli içerik tüketim alışkanlıkları kazandırılmasını hedefliyor.', 'KADIN', 'Öğretmen & Ebeveyn', '2 gün (4 saat) - Çevrim İçi', '2025-01-17 09:52:48'),
+(17, 'Çevrim İçi Güvenlik Eğitimi (Ebeveyn)', 'Meta güvenlik kurallarını öğrenmesi ve çevrim içi ortamda kişisel bilgi güvenliklerini en doğru şekilde sağlamaları konusunda gerekli bilgilerin aktarılması sağlanmaktadır. Kişisel bilgilerin ve sosyal medya hesabının güvenliği konusunda sürekli olumsuz durumlarla karşılaşan bireylerin bu olumsuz durumlar meydana gelmeden alınabilecek önlemler konusunda farkındalık sağlanması hedeflenmektedir.', 'KADIN', 'Ebeveyn', '2 saat', '2025-01-17 09:57:51'),
+(18, 'Teknoloji Okuryazarlığı', 'Temel teknoloji eğitimi, e-hizmetler, sosyal medya kullanımı ve dijital okuryazarlık konularında bilgi verirken internet güvenliği, pazarlama, dijital içerik üretimi, veri gizliliği ve siber zorbalık gibi konulara da değinmektedir. Ayrıca, katılımcıların dijital araçları etkin kullanma becerilerini geliştirmek için uygulamalı eğitimler ve interaktif yöntemler sunarak bireylerin hem kişisel hem de profesyonel hayatlarında dijital dönüşüme uyum sağlamalarını desteklemektedir.', 'KADIN', '18 yaş ve üzeri kadınlar', '3 saat', '2025-01-17 09:57:51'),
+(19, 'Tasarım ve Mobil Fotoğrafçılık Atölyesi', 'Tasarım Atölyesi, özellikle Canva platformunun etkin kullanımıyla sosyal medya paylaşımları, afiş ve el ilanı gibi görsel materyallerin hazırlanmasına odaklanmaktadır. Atölye, katılımcıların yaratıcı tasarım becerilerini geliştirmelerine olanak sağlarken temel grafik tasarım prensiplerini öğretmeyi de hedeflemektedir. Bunun yanı sıra, görsel hikaye anlatımı, renk uyumu ve dijital platformlara uygun içerik oluşturma gibi konulara da değinilerek katılımcıların hem kişisel hem de profesyonel projelerinde fark yaratacak tasarımlar üretmeleri desteklenmektedir.', 'KADIN', '18 yaş ve üzeri kadınlar', '3 saat', '2025-01-17 09:57:51'),
+(20, 'Kariyer Planlama', 'Katılımcıların güçlü yönlerini keşfederek kişisel ve profesyonel hedeflerini belirlemelerine yardımcı olmayı amaçlamaktadır. Özgeçmiş hazırlama, LinkedIn profili oluşturma, iş görüşme teknikleri ve profesyonel iletişim becerileri gibi konular ele alınarak, katılımcıların iş dünyasının dinamiklerine uyum sağlamaları hedeflenmektedir.', 'KADIN', '18 yaş ve üzeri kadınlar', '3 saat', '2025-01-17 09:57:51'),
+(21, 'Finansal Okuryazarlık', 'Bu program, katılımcıların temel finansal kavramları öğrenmelerine, gelir ve giderlerini etkili bir şekilde yöneterek bütçe yapma alışkanlıkları kazanmalarına, tasarruf ve yatırım bilincini geliştirmelerine odaklanmaktadır. Aynı zamanda, dijital finansal sistemlerin güvenli bir şekilde kullanımı konusunda katılımcılara rehberlik ederek kazanımcı ödeme sistemleri, mobil bankacılık ve dijital cüzdan gibi araçları bilinçli şekilde kullanmalarını sağlamayı amaçlamaktadır.', 'KADIN', '15-40 yaş', '1.5 -2 saat', '2025-01-17 09:57:51'),
+(22, 'Dijital Okuryazarlık', 'Katılımcılara dijital dünyada ihtiyaç duyacakları temel bilgi ve becerileri kazandırmayı hedefleyen bu program, onların dijital teknolojiyi etkili, bilinçli ve güvenli bir şekilde kullanmalarını sağlamayı amaçlamaktadır. Eğitimler, dijital araçların işleyişini anlamaktan çöğe bilgiye erişime, çevrimiçi işbirliği yapmaktan dijital güvenlik ve gizlilik konularına kadar geniş bir yelpazeyı kapsayarak bireylerin hem kişisel hem de profesyonel yaşamlarında dijital becerilerini güçlendirmelerine yardımcı olacaktır.', 'KADIN', '15-40 yaş', '1.5 -2 saat', '2025-01-17 09:57:51'),
+(23, 'Dijital Pazarlama Eğitimi', 'Kadınların pazarlama, dijital pazarlama/online satış, e-ticaret gibi konularda yetkinliklerini artırmak ve ekonomiye katılımlarını teşvik etmek amacıyla aşağıdaki eğitim modülleri gerçekleştirilecektir. 1. Pazar ve Müşteri Analizi: Pazar analizi, müşteri analizi, pazarlama araçları ve pazarlama stratejileri geliştirme gibi konulara odaklanılacaktır. 2. Sosyal Medya Pazarlaması: Sosyal medya platformları, sosyal medya reklamcılığı ve etkili sosyal medya içeriği üretimi gibi konulara odaklanılacaktır. 3. E-Ticaret: E-ticarete nasıl başlanacağı, dijital pazar yerleri, e-ticaret sitesi açma gibi konulara odaklanılacaktır.', 'KADIN', 'Kadınlar', '4 saat', '2025-01-17 09:57:51'),
+(24, 'Sosyal Medya Fotoğrafçılığı Atölyesi', 'Eğitim içeriğinde yer alan başlıklar: Sosyal Medya Fotoğrafçılığı, Işık ve Zamanlama, Kompozisyon, Düzenleme Uygulamaları, Hikaye Anlatımı, İçerik Planlaması, E-Ticaret Fotoğrafçılığı', 'KADIN', 'Kadınlar', '2 saat', '2025-01-17 09:57:51'),
+(25, 'Tasarım Odaklı Düşünme Atölyesi', 'Tasarım Odaklı Düşünme Atölyesi ile üretici kadınlar, kullanıcıları merkeze alarak tasarım odaklı düşünme yöntemini öğrenecek, iyi örneklerden ilham alacak ve ürünlerini nasıl geliştirebileceklerini derinlemesine çözümleme fırsatı yakalayacaktır. Katılımcılar, uygulamalı vaka çalışması ile hedef kitlelerini tanırken, deneyim haritası kanvası ile potansiyel müşterilerinin tüm etkileşimlerini, kullanıcının gözüyle deneyimleyecektir.', 'KADIN', 'Girişimci Kadınlar', '3 saat', '2025-01-17 09:57:51'),
+(26, 'Tasarım Odaklı Düşünme ve Dijital Pazarlama', 'Kadınların dijital pazarlama, dijital araç kullanımı, tasarım odaklı düşünme ve girişimcilik becerilerinin geliştirilmesini, kooperatif kurma adımları ile ilgili bilgi ve deneyimlerin artırılması ve girişimlerin desteklenmesi amaçlanmaktadır. Bu amaç doğrultusunda katılımcılara aday ve girişimci kadınlara özgre kaslama ile teorik ve pratik eğitimlerin verilmesi hedeflenmektedir.', 'KADIN', 'Kadınlar', '1.5 - 2 (Her bir başlık 1.5 - 2 saat sürmektedir. ', '2025-01-17 09:57:51'),
+(27, 'Çevrim İçi Güvenlik Eğitimi', 'Meta güvenlik kurallarını öğrenmesi ve çevrim içi ortamda kişisel bilgi güvenliklerini en doğru şekilde sağlamaları konusunda gerekli bilginin aktarılması sağlanmaktadır. Kişisel bilgilerin ve sosyal medya hesabının güvenliği konusunda sürekli olumsuz durumlarla karşılaşan bireylerin bu olumsuz durumlar meydana gelmeden alınabilecek önlemler konusunda farkındalık sağlanması hedeflenmektedir.', 'Çocuk (7 - 14 Yaş)', '13-17 Yaş', '2 saat', '2025-01-17 10:23:55'),
+(28, 'Tasarım Odaklı Düşünme', 'Tasarım Odaklı Düşünme yaklaşımının 5 aşamasını deneyimleyerek öğrenmeye yönelik interaktif bir eğitim akışı bulunmaktadır.', 'Çocuk (7 - 14 Yaş)', '8-12 sınıf', '3-4 saat', '2025-01-17 10:23:55'),
+(29, 'Çocuklar için Scratch Eğitimi', 'Minik Eller Kod Yazıyor Projesi 8-12 yaş aralığındaki çocukların temel bilgisayar programcılığı tanıtıp kod okuryazarlığı bilincinin öğretilmesini amaçlamaktadır.', 'Çocuk (7 - 14 Yaş)', '8-12 yaş', 'Eğitim saati 4-8 saat arası', '2025-01-17 10:23:55'),
+(30, 'Yapay Zeka Eğitimi', 'Öğrencileri yapay zeka tanıştırma ve farklı projeler gerçekleştirmeyi amaçlayan bir eğitimdir.', 'Çocuk (7 - 14 Yaş)', '11-14 yaş', '6 saat', '2025-01-17 10:23:55'),
+(31, 'Çevre Bilinci Geliştirme ve Afet Farkındalığı Eğitimi 1', 'Çevre, sürdürülebilirlik ve afet farkındalığı konuları hakkında bilinç gelişimi sağlayan ve ileri dönüşüm atölyesiyle atıklardan üretim sağlama eğitimidir.', 'Çocuk (7 - 14 Yaş)', '7-14 yaş', '2 saat', '2025-01-17 10:23:55'),
+(32, 'Çocuklar İçin Su Bilinci', 'ÇNB\'nin UNDP ve Habitat Derneği iş birliği ile hayata geçirdiği \"Su ile Hayata Projesi\", su kaynakları ve su tüketiminin gelecekteki önemi ve küresel düzeyde devam eden su gündemini dikkate alarak 7-14 yaş arası çocukların su tüketimi, su tasarrufu ve su kullanımının çevresel etkilerini anlaması ve farkındalık kazanmasını sağlama amacı taşımaktadır.', 'Çocuk (7 - 14 Yaş)', '7-14 Yaş', '1.5 - 2 saat', '2025-01-17 10:23:55'),
+(33, 'Çevre Bilinci Geliştirme ve Afet Farkındalığı Eğitimi 2', 'Habitat Derneği ve TikTak iş birliği ile hayata geçirilen \"Bilim Yolu Projesi\", kırsal alanlar başta olmak üzere afet bölgesindeki illerde paylaşım ekonomisi bilincini çocuklara aktarmak ve eğlenceli bilim aktiviteleri yaparak çocukların eğlenerek öğrenmesini amaçlamaktadır.', 'Çocuk (7 - 14 Yaş)', '7-14 yaş', '3 saat', '2025-01-17 10:23:55');
 
 -- --------------------------------------------------------
 
@@ -555,6 +596,7 @@ CREATE TABLE `users` (
   `district_id` int(11) DEFAULT NULL,
   `neighborhood` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `phone` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `gender` enum('Kadın','Erkek') COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `role` enum('admin','user') COLLATE utf8mb4_unicode_ci DEFAULT 'user',
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP
@@ -564,12 +606,12 @@ CREATE TABLE `users` (
 -- Tablo döküm verisi `users`
 --
 
-INSERT INTO `users` (`id`, `username`, `email`, `first_name`, `last_name`, `tc_no`, `birth_date`, `nationality`, `district_id`, `neighborhood`, `phone`, `password`, `role`, `created_at`) VALUES
-(1, 'fathbahce', 'fathbahce@gmail.com', 'Fatih', 'Bahce', '12345553422', '2025-01-01', 'Turk', 8, 'test', '(533) 317-8198', '$2y$10$QMyUDqTrwXeuvukVQW9cAes2YeZUGHtdGLxYD3WKnWw.awvQik3XO', 'admin', '2025-01-06 19:12:54'),
-(2, 'Fatih', 'test@gmail.com', 'fatih', 'bahce', '61223232323', '2025-01-01', 'Suriyeli', 12, 'das', '(533) 317-8198', '$2y$10$fGPKAg581219GZPKYYHqAuQ9Euoi98dAOd7fVf4.fsQ7VY14eyUIy', 'user', '2025-01-06 21:51:58'),
-(9, 'admindas', 'customer@archielite.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '$2y$10$3e3KdJoVA534C04wstN9UezsxALefkWesp5nvXywnfK4tf9VAaN6u', 'user', '2025-01-16 05:51:22'),
-(8, 'berfin tokmak', 'brfn.tkmk@gmail.com', 'berfin', 'tokmak', '38681128614', '1998-12-01', 'Suriyeli', 13, 'HAMİDİYE', '5313803063', '$2y$10$OYDj2A5qnRYA1pgWsH8f..SvlUlQo/AFA9H1UADfvuoV1VRrVOYCu', 'user', '2025-01-16 05:45:25'),
-(7, 'test-ogrenci', 'testogrenci@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '$2y$10$MSK0dM1vxejDX5Z593.97eErCdsaw2gELVYxJvU6VeIPCsahfZkAq', 'user', '2025-01-15 20:17:55');
+INSERT INTO `users` (`id`, `username`, `email`, `first_name`, `last_name`, `tc_no`, `birth_date`, `nationality`, `district_id`, `neighborhood`, `phone`, `gender`, `password`, `role`, `created_at`) VALUES
+(1, 'fathbahce', 'fathbahce@gmail.com', 'Fatih', 'Bahce', '12345553422', '2025-01-01', 'Turk', 8, 'test', '(533) 317-8198', 'Kadın', '$2y$10$QMyUDqTrwXeuvukVQW9cAes2YeZUGHtdGLxYD3WKnWw.awvQik3XO', 'admin', '2025-01-06 19:12:54'),
+(2, 'Fatih', 'test@gmail.com', 'fatih', 'bahce', '61223232323', '2025-01-01', 'Suriyeli', 12, 'das', '(533) 317-8198', 'Erkek', '$2y$10$fGPKAg581219GZPKYYHqAuQ9Euoi98dAOd7fVf4.fsQ7VY14eyUIy', 'user', '2025-01-06 21:51:58'),
+(9, 'admindas', 'customer@archielite.com', 'Zeynep', 'doğan', '12345678911', '2025-01-08', 'Turk', 11, 'ahmet yesevi', '(505) 785-1087', NULL, '$2y$10$3e3KdJoVA534C04wstN9UezsxALefkWesp5nvXywnfK4tf9VAaN6u', 'user', '2025-01-16 05:51:22'),
+(8, 'berfin tokmak', 'brfn.tkmk@gmail.com', 'berfin', 'tokmak', '38681128614', '1998-12-01', 'Suriyeli', 13, 'HAMİDİYE', '5313803063', 'Kadın', '$2y$10$OYDj2A5qnRYA1pgWsH8f..SvlUlQo/AFA9H1UADfvuoV1VRrVOYCu', 'user', '2025-01-16 05:45:25'),
+(7, 'test-ogrenci', 'testogrenci@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '$2y$10$MSK0dM1vxejDX5Z593.97eErCdsaw2gELVYxJvU6VeIPCsahfZkAq', 'user', '2025-01-15 20:17:55');
 
 --
 -- Dökümü yapılmış tablolar için indeksler
@@ -712,7 +754,7 @@ ALTER TABLE `about`
 -- Tablo için AUTO_INCREMENT değeri `contact_messages`
 --
 ALTER TABLE `contact_messages`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `news`
@@ -730,25 +772,25 @@ ALTER TABLE `seo_settings`
 -- Tablo için AUTO_INCREMENT değeri `students`
 --
 ALTER TABLE `students`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `training_applications`
 --
 ALTER TABLE `training_applications`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `training_requests`
 --
 ALTER TABLE `training_requests`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `training_types`
 --
 ALTER TABLE `training_types`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `units`

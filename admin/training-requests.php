@@ -30,8 +30,12 @@ if (isset($_POST['update_status'])) {
     exit();
 }
 
+// Kategorileri getir
+$categories = $db->query("SELECT DISTINCT category FROM training_types WHERE category IS NOT NULL ORDER BY category")->fetchAll(PDO::FETCH_COLUMN);
+
 // Filtreleme
 $status_filter = filter_input(INPUT_GET, 'status', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+$category_filter = filter_input(INPUT_GET, 'category', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 $where_clause = "";
 $params = [];
 
@@ -40,9 +44,14 @@ if ($status_filter && in_array($status_filter, ['pending', 'approved', 'rejected
     $params[] = $status_filter;
 }
 
+if ($category_filter) {
+    $where_clause .= $where_clause ? " AND t.category = ?" : " WHERE t.category = ?";
+    $params[] = $category_filter;
+}
+
 // Eğitim taleplerini getir
 $requests = $db->query(
-    "SELECT r.*, t.name as training_name 
+    "SELECT r.*, t.name as training_name, t.category 
      FROM training_requests r 
      JOIN training_types t ON r.training_type_id = t.id"
      . $where_clause .
@@ -75,36 +84,47 @@ include 'includes/header.php';
         <div class="card-body">
             <!-- Filtre butonları -->
             <div class="mb-4">
-                <div class="btn-group">
+                <!-- Durum Filtreleri -->
+                <div class="btn-group mb-2">
                     <a href="training-requests.php" 
                        class="btn btn-outline-secondary <?= !$status_filter ? 'active' : '' ?>">
                         Tümü (<?= $counts['total'] ?>)
                     </a>
-                    <a href="?status=pending" 
+                    <a href="?status=pending<?= $category_filter ? '&category='.$category_filter : '' ?>" 
                        class="btn btn-outline-warning <?= $status_filter === 'pending' ? 'active' : '' ?>">
                         Bekleyenler (<?= $counts['pending'] ?>)
                     </a>
-                    <a href="?status=approved" 
+                    <a href="?status=approved<?= $category_filter ? '&category='.$category_filter : '' ?>" 
                        class="btn btn-outline-success <?= $status_filter === 'approved' ? 'active' : '' ?>">
                         Onaylananlar (<?= $counts['approved'] ?>)
                     </a>
-                    <a href="?status=rejected" 
+                    <a href="?status=rejected<?= $category_filter ? '&category='.$category_filter : '' ?>" 
                        class="btn btn-outline-danger <?= $status_filter === 'rejected' ? 'active' : '' ?>">
                         Reddedilenler (<?= $counts['rejected'] ?>)
                     </a>
                 </div>
+
+                <!-- Kategori Filtreleri -->
+
             </div>
 
             <?php if (empty($requests)): ?>
                 <div class="alert alert-info">
                     <?php 
-                    if ($status_filter) {
-                        $status_text = [
-                            'pending' => 'bekleyen',
-                            'approved' => 'onaylanmış',
-                            'rejected' => 'reddedilmiş'
-                        ][$status_filter];
-                        echo "Hiç {$status_text} eğitim talebi bulunmuyor.";
+                    if ($status_filter || $category_filter) {
+                        $message = "Seçilen ";
+                        if ($category_filter) {
+                            $message .= "kategoride ";
+                        }
+                        if ($status_filter) {
+                            $status_text = [
+                                'pending' => 'bekleyen',
+                                'approved' => 'onaylanmış',
+                                'rejected' => 'reddedilmiş'
+                            ][$status_filter];
+                            $message .= $status_text;
+                        }
+                        echo $message . " eğitim talebi bulunmuyor.";
                     } else {
                         echo "Henüz eğitim talebi bulunmuyor.";
                     }
@@ -117,6 +137,7 @@ include 'includes/header.php';
                             <tr>
                                 <th>ID</th>
                                 <th>Okul Adı</th>
+                                <th>Kategori</th>
                                 <th>Eğitim</th>
                                 <th>Talep Tarihi</th>
                                 <th>Öğrenci Sayısı</th>
@@ -131,6 +152,7 @@ include 'includes/header.php';
                                 <tr>
                                     <td><?= $request['id'] ?></td>
                                     <td><?= htmlspecialchars($request['school_name']) ?></td>
+                                    <td><?= htmlspecialchars($request['category']) ?></td>
                                     <td><?= htmlspecialchars($request['training_name']) ?></td>
                                     <td><?= date('d.m.Y', strtotime($request['requested_date'])) ?></td>
                                     <td><?= number_format($request['student_count']) ?></td>
@@ -175,6 +197,18 @@ include 'includes/header.php';
                                                     <input type="hidden" name="request_id" value="<?= $request['id'] ?>">
                                                     
                                                     <div class="mb-3">
+                                                        <label class="form-label">Kategori</label>
+                                                        <input type="text" class="form-control" 
+                                                               value="<?= htmlspecialchars($request['category']) ?>" readonly>
+                                                    </div>
+
+                                                    <div class="mb-3">
+                                                        <label class="form-label">Eğitim</label>
+                                                        <input type="text" class="form-control" 
+                                                               value="<?= htmlspecialchars($request['training_name']) ?>" readonly>
+                                                    </div>
+
+                                                    <div class="mb-3">
                                                         <label class="form-label">Durum</label>
                                                         <select name="status" class="form-select" required>
                                                             <option value="pending" <?= $request['status'] == 'pending' ? 'selected' : '' ?>>
@@ -212,5 +246,27 @@ include 'includes/header.php';
         </div>
     </div>
 </div>
+
+<style>
+.btn-group {
+    flex-wrap: wrap;
+    gap: 0.25rem;
+}
+
+.table th {
+    white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+    .btn-group {
+        width: 100%;
+    }
+    
+    .btn-group .btn {
+        flex: 1;
+        white-space: nowrap;
+    }
+}
+</style>
 
 <?php include 'includes/footer.php'; ?>

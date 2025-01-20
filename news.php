@@ -25,15 +25,16 @@ include 'includes/header.php';
 ?>
 
 <!-- Hero Section -->
-<div class="container-fluid bg-light py-5 mb-5">
-    <div class="container">
-        <h1 class="text-center mb-4">Haberler</h1>
-        <p class="text-center text-muted">Çalışmalarımızdan ve etkinliklerimizden haberler</p>
+
+<br><br>
+    <div class="section-header text-center mb-5" data-aos="fade-up">
+        <h6 class="text-primary fw-bold text-uppercase">Son Gelişmeler</h6>
+        <h2 class="display-5 fw-bold">Bizden Haberler</h2>
+        <div class="divider mx-auto"></div>
     </div>
-</div>
 
 <div class="container py-5">
-    <h1 class="mb-4">Haberler</h1>
+    
     
     <div class="row g-4">
         <?php foreach ($news as $item): ?>

@@ -84,7 +84,7 @@ include 'includes/header.php';
                                 <i class="bi bi-check-circle me-1"></i>Başvuru Yaptınız
                             </button>
                         <?php elseif (!isProfileComplete($_SESSION['user_id'])): ?>
-                            <a href="profile.php" class="btn btn-warning w-100 rounded-pill">
+                            <a href="admin/profile.php" class="btn btn-warning w-100 rounded-pill">
                                 <i class="bi bi-person-gear me-1"></i>Profili Tamamla
                             </a>
                         <?php elseif ($training['registered'] >= $training['capacity']): ?>

@@ -187,7 +187,7 @@ $seo = $db->query("SELECT * FROM seo_settings WHERE page_identifier = ?", [$curr
         <div class="container">
             <div class="d-flex justify-content-between align-items-center">
                 <div>
-                    <a href="tel:+905555555555"><i class="bi bi-telephone me-1"></i>+90 555 555 5555</a>
+                    <a href="tel:+905555555555"><i class="bi bi-telephone me-1"></i>+90 533 317 8197</a>
                     <a href="mailto:info@gencsanliurfa.com"><i class="bi bi-envelope me-1"></i>info@gencsanliurfa.com</a>
                 </div>
                 <div>

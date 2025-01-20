@@ -212,7 +212,7 @@ include 'includes/header.php';
                                         <i class="bi bi-check-circle me-1"></i>Başvuru Yaptınız
                                     </button>
                                 <?php elseif (!isProfileComplete($_SESSION['user_id'])): ?>
-                                    <a href="profile.php" class="btn btn-warning btn-sm w-100 rounded-pill">
+                                    <a href="admin/profile.php" class="btn btn-warning btn-sm w-100 rounded-pill">
                                         <i class="bi bi-person-gear me-1"></i>Profili Tamamla
                                     </a>
                                 <?php elseif ($training['registered'] >= $training['capacity']): ?>
@@ -289,7 +289,7 @@ function initMap() {
             <h6 class="mb-2"><?= htmlspecialchars($unit['name']) ?></h6>
             <p class="small mb-2"><?= htmlspecialchars($unit['address']) ?></p>
             <a href="https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}" 
-               target="_blank" class="btn btn-primary btn-sm">
+               target="_blank" class="btn btn-sm btn-dark">
                 <i class="bi bi-map"></i> Yol Tarifi Al
             </a>
         </div>

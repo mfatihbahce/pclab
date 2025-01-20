@@ -26,6 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $first_name = filter_input(INPUT_POST, 'first_name', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
     $last_name = filter_input(INPUT_POST, 'last_name', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
     $tc_no = filter_input(INPUT_POST, 'tc_no', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+	$gender = filter_input(INPUT_POST, 'gender', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
     $birth_date = filter_input(INPUT_POST, 'birth_date', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
     $nationality = filter_input(INPUT_POST, 'nationality', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
     $district_id = filter_input(INPUT_POST, 'district_id', FILTER_SANITIZE_NUMBER_INT);
@@ -86,6 +87,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     first_name = ?,
                     last_name = ?,
                     tc_no = ?,
+					gender = ?,
                     birth_date = ?,
                     nationality = ?,
                     district_id = ?,
@@ -94,7 +96,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     WHERE id = ?",
                     [
                         $username, $email, $hashed_password,
-                        $first_name, $last_name, $tc_no,
+                        $first_name, $last_name, $tc_no, $gender,
                         $birth_date, $nationality, $district_id,
                         $neighborhood, $phone, $user_id
                     ]
@@ -107,6 +109,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     first_name = ?,
                     last_name = ?,
                     tc_no = ?,
+					gender = ?,
                     birth_date = ?,
                     nationality = ?,
                     district_id = ?,
@@ -115,7 +118,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     WHERE id = ?",
                     [
                         $username, $email,
-                        $first_name, $last_name, $tc_no,
+                        $first_name, $last_name, $tc_no, $gender,
                         $birth_date, $nationality, $district_id,
                         $neighborhood, $phone, $user_id
                     ]
@@ -174,13 +177,23 @@ include 'includes/header.php';
                                        value="<?php echo htmlspecialchars($user['last_name'] ?? ''); ?>" required>
                             </div>
                         </div>
-
-                        <div class="mb-3">
+					 <div class="row">
+                        <div class="col-md-6 mb-3">
                             <label class="form-label">TC Kimlik No</label>
                             <input type="text" name="tc_no" class="form-control" 
                                    pattern="[0-9]{11}" maxlength="11" 
                                    value="<?php echo htmlspecialchars($user['tc_no'] ?? ''); ?>" required>
-                        </div>
+                        </div>					
+						
+						<div class="col-md-6 mb-3">
+						    <label>Cinsiyet</label>
+						    <select name="gender" class="form-control">
+						        <option value="">Seçiniz</option>
+						        <option value="Kadın" <?php echo ($user['gender'] == 'Kadın') ? 'selected' : ''; ?>>Kadın</option>
+						        <option value="Erkek" <?php echo ($user['gender'] == 'Erkek') ? 'selected' : ''; ?>>Erkek</option>
+						    </select>
+						</div>
+ 					</div>
 
                         <div class="row">
                             <div class="col-md-6 mb-3">

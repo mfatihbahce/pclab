@@ -35,12 +35,12 @@ include 'includes/header.php';
 ?>
 
 <!-- Hero Section -->
-<div class="container-fluid bg-light py-5 mb-5">
-    <div class="container">
-        <h1 class="text-center mb-4">İletişime Geçin</h1>
-        <p class="text-center text-muted">Sorularınız ve önerileriniz için bize ulaşabilirsiniz. En kısa sürede size dönüş yapacağız.</p>
+<br><br>
+    <div class="section-header text-center mb-5" data-aos="fade-up">
+        <h6 class="text-primary fw-bold text-uppercase">İletişim</h6>
+        <h2 class="display-5 fw-bold">Bizimle İletişime Geçin</h2>
+        <div class="divider mx-auto"></div>
     </div>
-</div>
 
 <div class="container py-5">
     <div class="row justify-content-center">
@@ -85,9 +85,9 @@ include 'includes/header.php';
                     <h4 class="mb-0">İletişim Bilgileri</h4>
                 </div>
                 <div class="card-body">
-                    <p><i class="bi bi-geo-alt"></i> Adres: Örnek Mahallesi, Örnek Sokak No:1</p>
-                    <p><i class="bi bi-telephone"></i> Telefon: +90 123 456 7890</p>
-                    <p><i class="bi bi-envelope"></i> E-posta: info@example.com</p>
+                    <p><i class="bi bi-geo-alt"></i> Adres: Bamyasuyu Mahallesi 154. Sokak No:2 Haliliye / Şanlıurfa</p>
+                    <p><i class="bi bi-telephone"></i> Telefon: +90 533 317 8197</p>
+                    <p><i class="bi bi-envelope"></i> E-posta: info@gencsanliurfa.com</p>
                     <div class="mt-4">
                         <h5>Sosyal Medya</h5>
                         <div class="social-links">

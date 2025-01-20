@@ -11,7 +11,7 @@
                 <!-- Logo ve Açıklama -->
                 <div class="col-lg-4">
                     <div class="footer-brand mb-4">
-                        <h3 class="text-white">UNILAB</h3>
+                        <h3 class="text-white">GENÇ ŞANLIURFA</h3>
                         <div class="brand-divider"></div>
                     </div>
                     <p class="footer-description">
@@ -35,8 +35,6 @@
                                 <li><a href="<?= SITE_URL ?>/about.php">Hakkımızda</a></li>
                                 <li><a href="<?= SITE_URL ?>/news.php">Haberler</a></li>
                             </ul>
-                        </div>
-                        <div class="col-6">
                             <ul class="footer-links">
                             <li><a href="<?= SITE_URL ?>/trainings.php">Eğitimler</a></li>
                             <li><a href="<?= SITE_URL ?>/contact.php">İletişim</a></li>
@@ -53,14 +51,14 @@
                             <i class="bi bi-geo-alt-fill"></i>
                             <div>
                                 <strong>Adres:</strong>
-                                <p class="mb-0">Üniversite Mah. Teknoloji Cad. No:123 İstanbul, Türkiye</p>
+                                <p class="mb-0">Bamyasuyu Mahallesi 154. Sokak No:2 Haliliye / Şanlıurfa</p>
                             </div>
                         </li>
                         <li>
                             <i class="bi bi-clock-fill"></i>
                             <div>
                                 <strong>Çalışma Saatleri:</strong>
-                                <p class="mb-0">Pazartesi - Cuma: 09:00 - 18:00</p>
+                                <p class="mb-0">Pazartesi - Cuma: 08:00 - 17:00</p>
                             </div>
                         </li>
                     </ul>
@@ -74,7 +72,7 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-md-6 text-center text-md-start">
-                    <p class="mb-0">© <?= date('Y') ?> UNILAB. Tüm hakları saklıdır.</p>
+                    <p class="mb-0">© <?= date('Y') ?> GENÇ ŞANLIURFA. Tüm hakları saklıdır.</p>
                 </div>
             </div>
         </div>

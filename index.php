@@ -119,7 +119,7 @@ include 'includes/header.php';
                                 <i class="bi bi-check-circle me-1"></i>Başvuru Yaptınız
                             </button>
                         <?php elseif (!isProfileComplete($_SESSION['user_id'])): ?>
-                            <a href="profile.php" class="btn btn-warning w-100 rounded-pill">
+                            <a href="admin/profile.php" class="btn btn-warning w-100 rounded-pill">
                                 <i class="bi bi-person-gear me-1"></i>Profili Tamamla
                             </a>
                         <?php elseif ($training['registered'] >= $training['capacity']): ?>
@@ -152,13 +152,129 @@ include 'includes/header.php';
 
         <?php if (count($trainings) > 0): ?>
             <div class="col-12 text-center mt-4">
-                <a href="trainings.php" class="btn btn-outline-primary btn-lg rounded-pill hover-scale">
+                <a href="trainings" class="btn btn-outline-primary btn-lg rounded-pill hover-scale">
                     <i class="bi bi-grid me-2"></i>Tüm Eğitimleri Gör
                 </a>
             </div>
         <?php endif; ?>
     </div>
 </div>
+
+<!-- Eğitimler Section -->
+<div class="container py-5">
+    <div class="section-header text-center mb-5" data-aos="fade-up">
+        <h6 class="text-primary fw-bold text-uppercase">Okullar için Eğitimlerimiz</h6>
+        <h2 class="display-5 fw-bold">Okullar için Ücretsiz Eğitimler</h2>
+        <div class="divider mx-auto"></div>
+    </div>
+    
+    <div class="row g-4">
+        <?php
+        // Son 4 eğitim türünü getir
+        $training_types = $db->query("
+            SELECT * FROM training_types 
+            ORDER BY id DESC 
+            LIMIT 4
+        ")->fetchAll();
+
+        foreach ($training_types as $type): 
+        ?>
+            <div class="col-md-3" data-aos="fade-up">
+                <div class="card h-100 training-card">
+                    <div class="card-img-top tech-pattern p-4 text-center">
+                        <i class="bi bi-mortarboard display-4 text-primary"></i>
+                    </div>
+                    
+                    <div class="card-body">
+                        <h5 class="card-title fw-bold"><?= htmlspecialchars($type['name']) ?></h5>
+                        
+                        <p class="card-text mb-3">
+                            <?= mb_substr(htmlspecialchars($type['description']), 0, 100) ?>...
+                        </p>
+                        
+                        <ul class="list-unstyled mb-3">
+                            <li class="mb-2 d-flex align-items-center">
+                                <i class="bi bi-people me-2 text-primary"></i>
+                                <span>Hedef Kitle: <?= htmlspecialchars($type['target_audience']) ?></span>
+                            </li>
+                            <li class="d-flex align-items-center">
+                                <i class="bi bi-clock me-2 text-primary"></i>
+                                <span>Süre: <?= htmlspecialchars($type['duration']) ?></span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="card-footer bg-transparent border-0 p-4">
+                        <a href="training-contents.php" class="btn btn-primary w-100 rounded-pill hover-scale">
+                            <i class="bi bi-arrow-right me-1"></i>Detayları Gör
+                        </a>
+                    </div>
+                </div>
+            </div>
+        <?php endforeach; ?>
+
+        <div class="col-12 text-center mt-4">
+            <a href="training-contents" class="btn btn-outline-primary btn-lg rounded-pill hover-scale">
+                <i class="bi bi-grid me-2"></i>Tüm Eğitimleri Gör
+            </a>
+        </div>
+    </div>
+</div>
+
+
+<!-- Birimlerimiz Section -->
+<div class="container py-5">
+    <div class="section-header text-center mb-5" data-aos="fade-up">
+        <h6 class="text-primary fw-bold text-uppercase">Birimlerimiz</h6>
+        <h2 class="display-5 fw-bold">Eğitim Merkezlerimiz</h2>
+        <div class="divider mx-auto"></div>
+    </div>
+    
+    <div class="row g-4">
+        <?php
+        // Son 4 birimi getir
+        $units = $db->query("SELECT * FROM units ORDER BY id DESC LIMIT 4")->fetchAll();
+
+        foreach ($units as $unit): 
+        ?>
+            <div class="col-md-3" data-aos="fade-up">
+                <div class="card h-100 unit-card">
+                    <div class="card-img-top tech-pattern p-4 text-center">
+                        <i class="bi bi-building display-4 text-primary"></i>
+                    </div>
+                    
+                    <div class="card-body">
+                        <h5 class="card-title fw-bold"><?= htmlspecialchars($unit['name']) ?></h5>
+                        
+                        <ul class="list-unstyled mb-3">
+                            <li class="mb-2 d-flex align-items-center">
+                                <i class="bi bi-geo-alt me-2 text-primary"></i>
+                                <span><?= mb_substr(htmlspecialchars($unit['address']), 0, 50) ?>...</span>
+                            </li>
+                            <li class="d-flex align-items-center">
+                                <i class="bi bi-clock me-2 text-primary"></i>
+                                <span>Çalışma Saatleri: <?= htmlspecialchars($unit['working_hours']) ?></span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="card-footer bg-transparent border-0 p-4">
+                        <a href="unit-detail.php?id=<?= $unit['id'] ?>" class="btn btn-primary w-100 rounded-pill hover-scale">
+                            <i class="bi bi-arrow-right me-1"></i>Detayları Gör
+                        </a>
+                    </div>
+                </div>
+            </div>
+        <?php endforeach; ?>
+
+        <div class="col-12 text-center mt-4">
+            <a href="units" class="btn btn-outline-primary btn-lg rounded-pill hover-scale">
+                <i class="bi bi-grid me-2"></i>Tüm Merkezleri Gör
+            </a>
+        </div>
+    </div>
+</div>
+
 
 <!-- Haberler Section -->
 <div class="container py-5">
@@ -223,6 +339,11 @@ include 'includes/header.php';
                 </div>
             </div>
         <?php endforeach; ?>
+		 <div class="col-12 text-center mt-4">
+            <a href="news" class="btn btn-outline-primary btn-lg rounded-pill hover-scale">
+                <i class="bi bi-grid me-2"></i>Tüm Son Gelişmeleri Gör
+            </a>
+        </div>
     </div>
 </div>
 
@@ -253,6 +374,11 @@ include 'includes/header.php';
                 </div>
             </div>
         <?php endforeach; ?>
+		<div class="col-12 text-center mt-4">
+            <a href="projects" class="btn btn-outline-primary btn-lg rounded-pill hover-scale">
+                <i class="bi bi-grid me-2"></i>Tüm Duyuruları Gör
+            </a>
+        </div>
     </div>
 </div>
 
@@ -316,6 +442,11 @@ include 'includes/header.php';
                 </div>
             </div>
         <?php endforeach; ?>
+		<div class="col-12 text-center mt-4">
+            <a href="gallery" class="btn btn-outline-primary btn-lg rounded-pill hover-scale">
+                <i class="bi bi-grid me-2"></i>Tüm Galeri Gör
+            </a>
+        </div>
     </div>
 </div>
 

@@ -188,8 +188,12 @@ include 'includes/header.php';
     <!-- Devam Eden Eğitimler -->
     <div class="col-xl-6 mb-4">
         <div class="card shadow h-100">
-            <div class="card-header bg-primary text-white">
-                <h6 class="m-0 font-weight-bold">Devam Eden Eğitimlerim</h6>
+            <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+                <h6 class="m-0 font-weight-bold">Duyurular</h6>
+                <a href="<?= SITE_URL ?>/trainings" class="btn btn-light btn-sm">
+                    Tümünü Gör
+                    <i class="fas fa-arrow-right ms-1"></i>
+                </a>
             </div>
             <div class="card-body">
                 <?php if (!empty($ongoing_trainings)): ?>
@@ -225,7 +229,7 @@ include 'includes/header.php';
         <div class="card shadow h-100">
             <div class="card-header bg-success text-white d-flex justify-content-between align-items-center">
                 <h6 class="m-0 font-weight-bold">Duyurular</h6>
-                <a href="<?= SITE_URL ?>/admin/projects.php" class="btn btn-light btn-sm">
+                <a href="<?= SITE_URL ?>/projects" class="btn btn-light btn-sm">
                     Tümünü Gör
                     <i class="fas fa-arrow-right ms-1"></i>
                 </a>
