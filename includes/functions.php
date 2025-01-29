@@ -15,11 +15,79 @@ function checkLogin() {
     }
 }
 
-function checkAdmin() {
+
+// Mevcut showMessages() fonksiyonunu showMessage() olarak güncelleyelim veya yeni bir fonksiyon ekleyelim
+function showMessage() {
+    $output = '';
+    
+    if (isset($_SESSION['success'])) {
+        $output .= '<div class="alert alert-success alert-dismissible fade show" role="alert">
+            ' . $_SESSION['success'] . '
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>';
+        unset($_SESSION['success']);
+    }
+    
+    if (isset($_SESSION['error'])) {
+        $output .= '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+            ' . $_SESSION['error'] . '
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>';
+        unset($_SESSION['error']);
+    }
+    
+    echo $output;
+}
+
+/**
+ * Admin yetkisi kontrolü - yönlendirme yapar
+ */
+function requireAdmin() {
     if (!isset($_SESSION['user_id'])) {
         header('Location: ' . SITE_URL . '/login.php');
-        exit();
+        exit;
     }
+
+    $db = Database::getInstance();
+    $user = $db->query(
+        "SELECT role FROM users WHERE id = ? LIMIT 1", 
+        [$_SESSION['user_id']]
+    )->fetch();
+
+    if (!$user || $user['role'] !== 'admin') {
+        setError("Bu sayfaya erişim yetkiniz bulunmamaktadır.");
+        header('Location: ' . SITE_URL . '/index.php');
+        exit;
+    }
+}
+
+/**
+ * Admin kontrolü - yönlendirme yapar
+ */
+function checkAdmin() {
+    if (!isAdmin()) {
+        setError("Bu sayfaya erişim yetkiniz bulunmamaktadır.");
+        header('Location: ' . SITE_URL . '/index.php');
+        exit;
+    }
+}
+
+/**
+ * Kullanıcının admin olup olmadığını kontrol eder
+ * @return bool
+ */
+function isAdmin() {
+    if (!isset($_SESSION['user_id'])) {
+        return false;
+    }
+
+    $db = Database::getInstance();
+    $user = $db->query(
+        "SELECT role FROM users WHERE id = ? LIMIT 1", 
+        [$_SESSION['user_id']]
+    )->fetch();
+
+    return ($user && $user['role'] === 'admin');
 }
 
 /**

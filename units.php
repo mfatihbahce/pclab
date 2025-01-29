@@ -12,21 +12,9 @@ $page_title = "Eğitim Birimleri";
 include 'includes/header.php';
 ?>
 
-<!DOCTYPE html>
-<html lang="tr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?= $page_title ?></title>
-    
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Bootstrap Icons -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
-    <!-- Leaflet CSS -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-    
-    <style>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+<style>
     /* Ana container için stil */
     .main-container {
         height: calc(100vh - 180px);
@@ -175,6 +163,8 @@ include 'includes/header.php';
     @media (max-width: 768px) {
         .main-container {
             padding: 10px;
+            height: auto;
+            margin-bottom: 30px;
         }
         
         .units-list {
@@ -194,11 +184,10 @@ include 'includes/header.php';
             height: 400px;
             position: relative;
             top: 0;
+            margin-bottom: 30px;
         }
     }
-    </style>
-</head>
-<body>
+</style>
 
 <div class="container-fluid main-container">
     <div class="row h-100">
@@ -265,10 +254,8 @@ include 'includes/header.php';
         </div>
     </div>
 </div>
-	
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script>
 // Harita için global değişkenler
 let map;
@@ -339,7 +326,7 @@ function initMap() {
                                 <i class="bi bi-map"></i> Yol Tarifi
                             </a>
                             <a href="unit-detail.php?id=${unit.id}" class="btn btn-sm btn-info">
-                                <i class="bi bi-info-warning"></i> Detay
+                                <i class="bi bi-info-circle"></i> Detay
                             </a>
                         </div>
                     </div>
@@ -451,7 +438,5 @@ window.addEventListener('resize', () => {
 });
 </script>
 
-</body>
-</html>
 <br><br>
 <?php include 'includes/footer.php'; ?>

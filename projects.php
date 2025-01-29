@@ -5,99 +5,127 @@ require_once 'includes/functions.php';
 
 $db = Database::getInstance();
 
-// Projeleri getir
-$projects = $db->query("SELECT * FROM projects ORDER BY created_at DESC")->fetchAll();
+// Onaylı projeleri getir
+$projects = $db->query(
+    "SELECT p.*, u.first_name, u.last_name 
+     FROM projects p 
+     LEFT JOIN users u ON p.user_id = u.id 
+     WHERE p.status = 'approved' 
+     ORDER BY p.created_at DESC"
+)->fetchAll();
 
 include 'includes/header.php';
 ?>
 
 <br><br>
-    <div class="section-header text-center mb-5" data-aos="fade-up">
-        <h6 class="text-primary fw-bold text-uppercase">Duyurularımız</h6>
-        <h2 class="display-5 fw-bold">Bizden Duyurular</h2>
-        <div class="divider mx-auto"></div>
-    </div>
-
-
+<div class="section-header text-center mb-5" data-aos="fade-up">
+    <h6 class="text-primary fw-bold text-uppercase">Duyurularımız</h6>
+    <h2 class="display-5 fw-bold">Bizden Duyurular</h2>
+    <div class="divider mx-auto"></div>
+</div>
 
 <!-- Projeler Grid -->
 <div class="container py-4">
-    <div class="row g-4">
-        <?php foreach ($projects as $project): ?>
-            <div class="col-md-6 col-lg-3">
-                <div class="card h-100 project-card">
-                    <div class="project-image-container">
-                        <img src="<?= SITE_URL ?>/uploads/projects/<?= $project['image_path'] ?>" 
-                             class="card-img-top project-image" 
-                             alt="<?= clean($project['title']) ?>">
-                        
-                        <!-- Hover Overlay -->
-                        <div class="project-overlay">
-                            <button type="button" class="btn btn-light" 
-                                    data-bs-toggle="modal" 
-                                    data-bs-target="#projectModal<?= $project['id'] ?>">
-                                <i class="bi bi-eye"></i> Detayları Gör
-                            </button>
-                        </div>
-                    </div>
-                    <div class="card-body d-flex flex-column">
-                        <h5 class="card-title"><?= clean($project['title']) ?></h5>
-                        <p class="card-text flex-grow-1">
-                            <?= mb_substr(clean($project['description']), 0, 100) ?>...
-                        </p>
-                        <div class="mt-auto">
-                            <?php if (!empty($project['url'])): ?>
-                                <a href="<?= clean($project['url']) ?>" class="btn btn-outline-primary btn-sm" 
-                                   target="_blank">
-                                    <i class="bi bi-link-45deg"></i> Duyuruları Gör
-                                </a>
+    <?php if (empty($projects)): ?>
+        <div class="alert alert-info text-center">
+            <i class="fas fa-info-circle"></i> Henüz duyuru bulunmuyor.
+        </div>
+    <?php else: ?>
+        <div class="row g-4">
+            <?php foreach ($projects as $project): ?>
+                <div class="col-md-6 col-lg-3">
+                    <div class="card h-100 project-card">
+                        <div class="project-image-container">
+                            <?php if (!empty($project['image_path']) && file_exists('uploads/projects/' . $project['image_path'])): ?>
+                                <img src="<?= SITE_URL ?>/uploads/projects/<?= htmlspecialchars($project['image_path']) ?>" 
+                                     class="project-image" 
+                                     alt="<?= htmlspecialchars($project['title']) ?>">
+                            <?php else: ?>
+                                <img src="<?= SITE_URL ?>/assets/img/default-project.jpg" 
+                                     class="project-image" 
+                                     alt="Varsayılan duyuru görseli">
                             <?php endif; ?>
-                            <button type="button" class="btn btn-primary btn-sm float-end" 
-                                    data-bs-toggle="modal" 
-                                    data-bs-target="#projectModal<?= $project['id'] ?>">
-                                Detayları Gör
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Proje Modal -->
-            <div class="modal fade" id="projectModal<?= $project['id'] ?>" tabindex="-1">
-                <div class="modal-dialog modal-lg">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title"><?= clean($project['title']) ?></h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                        </div>
-                        <div class="modal-body">
-                            <img src="<?= SITE_URL ?>/uploads/projects/<?= $project['image_path'] ?>" 
-                                 class="img-fluid rounded mb-4" alt="<?= clean($project['title']) ?>">
                             
-                            <h6 class="fw-bold mb-3">Duyuru Detayları</h6>
-                            <p class="text-muted">
-                                <?= nl2br(clean($project['description'])) ?>
+                            <!-- Hover Overlay -->
+                            <div class="project-overlay">
+                                <button type="button" class="btn btn-light" 
+                                        data-bs-toggle="modal" 
+                                        data-bs-target="#projectModal<?= $project['id'] ?>">
+                                    <i class="fas fa-eye"></i> Detayları Gör
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title text-truncate">
+                                <?= htmlspecialchars($project['title']) ?>
+                            </h5>
+                            <p class="card-text flex-grow-1">
+                                <?= mb_substr(strip_tags($project['description']), 0, 100) ?>...
                             </p>
-                            
-                            <div class="d-flex justify-content-between align-items-center mt-4">
+                            <div class="mt-auto">
                                 <small class="text-muted">
-                                    Eklenme Tarihi: <?= date('d.m.Y', strtotime($project['created_at'])) ?>
+                                    <i class="fas fa-calendar"></i> 
+                                    <?= date('d.m.Y', strtotime($project['created_at'])) ?>
                                 </small>
-                                <?php if (!empty($project['url'])): ?>
-                                    <a href="<?= clean($project['url']) ?>" class="btn btn-primary" target="_blank">
-                                        <i class="bi bi-link-45deg"></i> Projeyi Ziyaret Et
-                                    </a>
-                                <?php endif; ?>
+                                <button type="button" class="btn btn-primary btn-sm float-end" 
+                                        data-bs-toggle="modal" 
+                                        data-bs-target="#projectModal<?= $project['id'] ?>">
+                                    <i class="fas fa-eye"></i> Detayları Gör
+                                </button>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        <?php endforeach; ?>
-    </div>
+
+                <!-- Proje Modal -->
+                <div class="modal fade" id="projectModal<?= $project['id'] ?>" tabindex="-1">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">
+                                    <?= htmlspecialchars($project['title']) ?>
+                                </h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                            </div>
+                            <div class="modal-body">
+                                <?php if (!empty($project['image_path']) && file_exists('uploads/projects/' . $project['image_path'])): ?>
+                                    <img src="<?= SITE_URL ?>/uploads/projects/<?= htmlspecialchars($project['image_path']) ?>" 
+                                         class="img-fluid rounded mb-4" 
+                                         alt="<?= htmlspecialchars($project['title']) ?>">
+                                <?php endif; ?>
+                                
+                                <h6 class="fw-bold mb-3">Duyuru Detayları</h6>
+                                <div class="text-muted">
+                                    <?= nl2br(htmlspecialchars($project['description'])) ?>
+                                </div>
+                                
+                                <div class="d-flex justify-content-between align-items-center mt-4">
+                                    <div class="text-muted small">
+                                        <i class="fas fa-calendar"></i> 
+                                        Eklenme: <?= date('d.m.Y H:i', strtotime($project['created_at'])) ?>
+                                        <?php if ($project['first_name'] && $project['last_name']): ?>
+                                            <br>
+                                            <i class="fas fa-user"></i> 
+                                            Ekleyen: <?= htmlspecialchars($project['first_name'] . ' ' . $project['last_name']) ?>
+                                        <?php endif; ?>
+                                    </div>
+                                    <?php if (!empty($project['url'])): ?>
+                                        <a href="<?= htmlspecialchars($project['url']) ?>" 
+                                           class="btn btn-primary" 
+                                           target="_blank">
+                                            <i class="fas fa-external-link-alt"></i> Bağlantıya Git
+                                        </a>
+                                    <?php endif; ?>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+        </div>
+    <?php endif; ?>
 </div>
 
-<!-- Stil -->
 <style>
 .project-card {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -112,7 +140,7 @@ include 'includes/header.php';
 
 .project-image-container {
     position: relative;
-    height: 250px;
+    height: 200px;
     overflow: hidden;
 }
 
@@ -145,70 +173,24 @@ include 'includes/header.php';
     transform: scale(1.1);
 }
 
-.card-title {
-    font-size: 1.25rem;
-    font-weight: 600;
-    margin-bottom: 1rem;
-}
-
-.card-text {
-    font-size: 0.95rem;
-    color: #6c757d;
-    line-height: 1.5;
-}
-
-/* Modal Stilleri */
-.modal-content {
-    border: none;
-    border-radius: 10px;
-    overflow: hidden;
-}
-
-.modal-header {
-    background: #f8f9fa;
-    border-bottom: 1px solid #eee;
-}
-
-.modal-body img {
-    width: 100%;
-    border-radius: 8px;
+.divider {
+    width: 50px;
+    height: 3px;
+    background-color: var(--bs-primary);
+    margin-top: 1rem;
 }
 
 /* Responsive */
 @media (max-width: 992px) {
-    .col-lg-4 {
-        width: 50%;
+    .project-image-container {
+        height: 180px;
     }
 }
 
 @media (max-width: 768px) {
-    .col-lg-4 {
-        width: 100%;
-    }
-    
     .project-image-container {
-        height: 300px;
+        height: 200px;
     }
-}
-
-/* Animasyonlar */
-.btn {
-    transition: all 0.3s ease;
-}
-
-.btn:hover {
-    transform: translateY(-2px);
-}
-
-/* Özel Bootstrap button renk ayarları */
-.btn-outline-primary {
-    border-color: #0d6efd;
-    color: #0d6efd;
-}
-
-.btn-outline-primary:hover {
-    background-color: #0d6efd;
-    color: white;
 }
 </style>
 

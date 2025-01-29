@@ -3,20 +3,54 @@ require_once 'includes/config.php';
 require_once 'includes/db.php';
 require_once 'includes/functions.php';
 
-$db = Database::getInstance();
 
+
+$db = Database::getInstance();
+// Kodun en başına ekleyin
+function e($value) {
+    if (is_null($value)) {
+        return '';
+    }
+    return htmlspecialchars($value, ENT_QUOTES, 'UTF-8');
+}
 // SEO için sayfa tanımlayıcısını belirle
 $page_identifier = 'home';
 $page_title = 'Ana Sayfa';
 
-// Son 4 haberi getir
-$news = $db->query("SELECT * FROM news ORDER BY created_at DESC LIMIT 4")->fetchAll();
+// Son 4 onaylı haberi getir (13. satır güncelleniyor)
+$news = $db->query(
+    "SELECT n.*, u.first_name, u.last_name 
+     FROM news n 
+     LEFT JOIN users u ON n.user_id = u.id 
+     WHERE n.status = 'approved' 
+     ORDER BY n.created_at DESC 
+     LIMIT 4"
+)->fetchAll();
 
-// Son 4 projeyi getir
-$projects = $db->query("SELECT * FROM projects ORDER BY created_at DESC LIMIT 4")->fetchAll();
+// Son 4 onaylı projeyi getir (16. satır güncelleniyor)
+$projects = $db->query(
+    "SELECT p.*, u.first_name, u.last_name 
+     FROM projects p 
+     LEFT JOIN users u ON p.user_id = u.id 
+     WHERE p.status = 'approved' 
+     ORDER BY p.created_at DESC 
+     LIMIT 4"
+)->fetchAll();
+
+// Son 4 onaylı gezilecek yeri getir
+$places = $db->query(
+    "SELECT p.*, d.name as district_name 
+     FROM places p 
+     LEFT JOIN districts d ON p.district_id = d.id 
+     WHERE p.status = 'approved' 
+     ORDER BY p.created_at DESC 
+     LIMIT 4"
+)->fetchAll();
 
 // Galeri görsellerini getir
 $gallery_images = $db->query("SELECT * FROM gallery ORDER BY created_at DESC LIMIT 6")->fetchAll();
+
+
 
 $page_title = 'Ana Sayfa';
 include 'includes/header.php';
@@ -45,14 +79,16 @@ include 'includes/header.php';
 <!-- Eğitimler Section -->
 <div class="container py-5">
     <div class="section-header text-center mb-5" data-aos="fade-up">
-        <h6 class="text-primary fw-bold text-uppercase">Eğitimlerimiz</h6>
-        <h2 class="display-5 fw-bold">Aktif Eğitim Programları</h2>
-        <div class="divider mx-auto"></div>
+        <span class="badge bg-primary-subtle text-primary mb-2 px-3 py-2 rounded-pill">
+            <i class="bi bi-mortarboard me-1"></i>Eğitimlerimiz
+        </span>
+        <h2 class="display-5 fw-bold bg-gradient-text">Aktif Eğitim Programları</h2>
+        <p class="text-muted">Geleceğini şekillendirmek için hemen başvur!</p>
     </div>
     
     <div class="row g-4">
         <?php
-        // Aktif eğitimleri getir (son 4 eğitim)
+        // Aktif eğitimleri getir
         $trainings = $db->query(
             "SELECT t.*, u.name as unit_name, u.address,
                     (SELECT COUNT(*) FROM training_applications WHERE training_id = t.id) as registered
@@ -63,78 +99,78 @@ include 'includes/header.php';
              LIMIT 4"
         )->fetchAll();
 
-        // Kullanıcının başvurduğu eğitimleri getir
-        $user_applications = [];
-        if (isLoggedIn()) {
-            $user_applications = $db->query("
-                SELECT training_id 
-                FROM training_applications 
-                WHERE user_id = ?
-            ", [$_SESSION['user_id']])->fetchAll(PDO::FETCH_COLUMN);
-        }
-
         if ($trainings): foreach ($trainings as $training): 
+            // Kontenjan durumu hesapla
+            $capacity_percentage = ($training['registered']/$training['capacity'])*100;
+            $days_left = (strtotime($training['deadline_date']) - time()) / (60 * 60 * 24);
         ?>
-            <div class="col-md-3" data-aos="fade-up">
+            <div class="col-md-6 col-lg-3" data-aos="fade-up">
                 <div class="card h-100 training-card">
-                    <div class="card-img-top tech-pattern p-4 text-center">
-                        <i class="bi bi-robot display-4 text-primary"></i>
+                    <!-- Eğitim Tipi Badge -->
+                    <div class="card-badge">
+                        <?php if (stripos($training['title'], 'Robotik') !== false): ?>
+                            <span class="badge bg-dark-subtle text-dark">
+                                <i class="bi bi-robot me-2"></i>Robotik
+                            </span>
+                        <?php elseif (stripos($training['title'], 'girişim') !== false): ?>
+                            <span class="badge bg-success-subtle text-success">
+                                <i class="bi bi-graph-up-arrow me-1"></i>Girişimcilik
+                            </span>
+                        <?php elseif (stripos($training['title'], 'web') !== false): ?>
+                            <span class="badge bg-info-subtle text-info">
+                                <i class="bi bi-code-slash me-1"></i>Web Geliştirme
+                            </span>
+                        <?php else: ?>
+                            <span class="badge bg-primary-subtle text-primary">
+                                <i class="bi bi-stars me-1"></i>Yeni
+                            </span>
+                        <?php endif; ?>
                     </div>
                     
                     <div class="card-body">
-                        <h5 class="card-title fw-bold"><?= htmlspecialchars($training['title']) ?></h5>
+                        <h5 class="card-title fw-bold mb-3">
+                            <?= htmlspecialchars($training['title']) ?>
+                        </h5>
                         
-                        <ul class="list-unstyled mb-3">
-                            <li class="mb-2 d-flex align-items-center">
-                                <i class="bi bi-building me-2 text-primary"></i>
+                        <div class="info-list">
+                            <div class="info-item">
+                                <i class="bi bi-building text-primary"></i>
                                 <span><?= htmlspecialchars($training['unit_name']) ?></span>
-                            </li>
-                            <li class="mb-2 d-flex align-items-center">
-                                <i class="bi bi-clock me-2 text-primary"></i>
-                                <span><?= date('d.m.Y', strtotime($training['start_date'])) ?></span> - 
-                                <span><?= date('d.m.Y', strtotime($training['end_date'])) ?></span>
-                            </li>
-                            <li class="mb-2 d-flex align-items-center">
-                                <i class="bi bi-calendar3 me-2 text-primary"></i>
-                                <span>Son Başvuru: <?= date('d.m.Y', strtotime($training['deadline_date'])) ?></span>
-                            </li>
-                            <li class="d-flex align-items-center">
-                                <i class="bi bi-people me-2 text-primary"></i>
-                                <div class="progress flex-grow-1" style="height: 8px;">
-                                    <div class="progress-bar" role="progressbar" 
-                                         style="width: <?= ($training['registered']/$training['capacity'])*100 ?>%"></div>
+                            </div>
+                            
+                            <div class="info-item">
+                                <i class="bi bi-calendar-event text-primary"></i>
+                                <span><?= date('d.m.Y', strtotime($training['start_date'])) ?></span>
+                            </div>
+                            
+                            <div class="info-item">
+                                <i class="bi bi-clock text-primary"></i>
+                                <span><?= ceil($days_left) ?> gün kaldı</span>
+                            </div>
+                        </div>
+
+                        <!-- Kontenjan Progress -->
+                        <div class="capacity-info mt-3">
+                            <div class="d-flex justify-content-between align-items-center mb-1">
+                                <small class="text-muted">Kontenjan Durumu</small>
+                                <small class="text-primary fw-bold">
+                                    <?= $training['registered'] ?>/<?= $training['capacity'] ?>
+                                </small>
+                            </div>
+                            <div class="progress" style="height: 6px;">
+                                <div class="progress-bar <?= $capacity_percentage >= 80 ? 'bg-danger' : 'bg-primary' ?>" 
+                                     role="progressbar" 
+                                     style="width: <?= $capacity_percentage ?>%">
                                 </div>
-                                <span class="ms-2"><?= $training['registered'] ?>/<?= $training['capacity'] ?></span>
-                            </li>
-                        </ul>
+                            </div>
+                        </div>
                     </div>
 
-                    <div class="card-footer bg-transparent border-0">
-                        <?php if (!isLoggedIn()): ?>
-                            <a href="register.php" class="btn btn-primary w-100 rounded-pill hover-scale">
-                                <i class="bi bi-person-plus me-1"></i>Kayıt Ol ve Başvur
-                            </a>
-                        <?php elseif (in_array($training['id'], $user_applications)): ?>
-                            <button class="btn btn-success w-100 rounded-pill" disabled>
-                                <i class="bi bi-check-circle me-1"></i>Başvuru Yaptınız
-                            </button>
-                        <?php elseif (!isProfileComplete($_SESSION['user_id'])): ?>
-                            <a href="admin/profile.php" class="btn btn-warning w-100 rounded-pill">
-                                <i class="bi bi-person-gear me-1"></i>Profili Tamamla
-                            </a>
-                        <?php elseif ($training['registered'] >= $training['capacity']): ?>
-                            <button class="btn btn-secondary w-100 rounded-pill" disabled>
-                                <i class="bi bi-x-circle me-1"></i>Kontenjan Dolu
-                            </button>
-                        <?php else: ?>
-                            <form action="training_actions.php" method="POST">
-                                <input type="hidden" name="action" value="apply">
-                                <input type="hidden" name="training_id" value="<?= $training['id'] ?>">
-                                <button type="submit" class="btn btn-primary w-100 rounded-pill hover-scale">
-                                    <i class="bi bi-send me-1"></i>Başvur
-                                </button>
-                            </form>
-                        <?php endif; ?>
+                    <div class="card-footer bg-transparent border-0 pt-0">
+                        <a href="training-detail.php?id=<?= $training['id'] ?>" 
+                           class="btn btn-primary w-100 rounded-pill btn-hover-elevate">
+                            <i class="bi bi-info-circle me-2"></i>Detayları Gör
+                        </a>
                     </div>
                 </div>
             </div>
@@ -143,16 +179,17 @@ include 'includes/header.php';
         else:
         ?>
             <div class="col-12">
-                <div class="alert alert-info text-center">
-                    <i class="bi bi-info-circle me-2"></i>
-                    Şu anda açık eğitim bulunmamaktadır.
+                <div class="empty-state">
+                    <img src="assets/img/empty-courses.svg" alt="Eğitim Yok" class="empty-image">
+                    <h4>Şu Anda Açık Eğitim Bulunmuyor</h4>
+                    <p class="text-muted">Yeni eğitimlerimiz çok yakında!</p>
                 </div>
             </div>
         <?php endif; ?>
 
         <?php if (count($trainings) > 0): ?>
-            <div class="col-12 text-center mt-4">
-                <a href="trainings" class="btn btn-outline-primary btn-lg rounded-pill hover-scale">
+            <div class="col-12 text-center mt-5">
+                <a href="trainings" class="btn btn-lg btn-primary rounded-pill btn-hover-elevate px-5">
                     <i class="bi bi-grid me-2"></i>Tüm Eğitimleri Gör
                 </a>
             </div>
@@ -275,12 +312,11 @@ include 'includes/header.php';
     </div>
 </div>
 
-
 <!-- Haberler Section -->
 <div class="container py-5">
     <div class="section-header text-center mb-5" data-aos="fade-up">
-        <h6 class="text-primary fw-bold text-uppercase">Haberler</h6>
-        <h2 class="display-5 fw-bold">Son Gelişmeler</h2>
+        <h6 class="text-primary fw-bold text-uppercase">Etkinlikler</h6>
+        <h2 class="display-5 fw-bold">Son Etkinliklerimiz</h2>
         <div class="divider mx-auto"></div>
     </div>
     
@@ -288,9 +324,13 @@ include 'includes/header.php';
         <?php foreach ($news as $item): ?>
             <div class="col-md-3" data-aos="fade-up">
                 <div class="card h-100 news-card">
-                    <?php if ($item['image_path']): ?>
+                    <?php if (!empty($item['image_path']) && file_exists('uploads/news/' . $item['image_path'])): ?>
                         <img src="<?= SITE_URL ?>/uploads/news/<?= $item['image_path'] ?>" 
                              class="card-img-top" alt="<?= clean($item['title']) ?>"
+                             style="height: 200px; object-fit: cover;">
+                    <?php else: ?>
+                        <img src="<?= SITE_URL ?>/assets/img/default-news.jpg" 
+                             class="card-img-top" alt="Varsayılan görsel"
                              style="height: 200px; object-fit: cover;">
                     <?php endif; ?>
                     <div class="card-body d-flex flex-column">
@@ -322,9 +362,12 @@ include 'includes/header.php';
                             <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                         </div>
                         <div class="modal-body">
-                            <?php if ($item['image_path']): ?>
+                            <?php if (!empty($item['image_path']) && file_exists('uploads/news/' . $item['image_path'])): ?>
                                 <img src="<?= SITE_URL ?>/uploads/news/<?= $item['image_path'] ?>" 
                                      class="img-fluid rounded mb-3" alt="<?= clean($item['title']) ?>">
+                            <?php else: ?>
+                                <img src="<?= SITE_URL ?>/assets/img/default-news.jpg" 
+                                     class="img-fluid rounded mb-3" alt="Varsayılan görsel">
                             <?php endif; ?>
                             <div class="content">
                                 <?= $item['content'] ?>
@@ -339,7 +382,7 @@ include 'includes/header.php';
                 </div>
             </div>
         <?php endforeach; ?>
-		 <div class="col-12 text-center mt-4">
+        <div class="col-12 text-center mt-4">
             <a href="news" class="btn btn-outline-primary btn-lg rounded-pill hover-scale">
                 <i class="bi bi-grid me-2"></i>Tüm Son Gelişmeleri Gör
             </a>
@@ -359,9 +402,18 @@ include 'includes/header.php';
         <?php foreach ($projects as $project): ?>
             <div class="col-md-3" data-aos="fade-up">
                 <div class="card h-100 project-card">
-                    <img src="<?= SITE_URL ?>/uploads/projects/<?= $project['image_path'] ?>" 
-                         class="card-img-top" alt="<?= clean($project['title']) ?>"
-                         style="height: 200px; object-fit: cover;">
+                    <?php if (!empty($project['image_path']) && file_exists('uploads/projects/' . $project['image_path'])): ?>
+                        <img src="<?= SITE_URL ?>/uploads/projects/<?= $project['image_path'] ?>" 
+                             class="card-img-top" 
+                             alt="<?= clean($project['title']) ?>"
+                             style="height: 200px; object-fit: cover;">
+                    <?php else: ?>
+                        <img src="<?= SITE_URL ?>/assets/img/default-project.jpg" 
+                             class="card-img-top" 
+                             alt="Varsayılan görsel"
+                             style="height: 200px; object-fit: cover;">
+                    <?php endif; ?>
+                    
                     <div class="card-body d-flex flex-column">
                         <h5 class="card-title fw-bold"><?= clean($project['title']) ?></h5>
                         <p class="card-text flex-grow-1">
@@ -374,19 +426,85 @@ include 'includes/header.php';
                 </div>
             </div>
         <?php endforeach; ?>
-		<div class="col-12 text-center mt-4">
-            <a href="projects" class="btn btn-outline-primary btn-lg rounded-pill hover-scale">
-                <i class="bi bi-grid me-2"></i>Tüm Duyuruları Gör
-            </a>
-        </div>
     </div>
 </div>
 
+
+<!-- Gezilecek Yerler Section -->
+<!-- 
+<div class="container py-5">
+    <div class="section-header text-center mb-5" data-aos="fade-up">
+        <h6 class="text-primary fw-bold text-uppercase">Keşfedin</h6>
+        <h2 class="display-5 fw-bold">Gezilecek Yerler</h2>
+        <div class="divider mx-auto"></div>
+    </div>
+    
+    <div class="row g-4">
+        <?php if (!empty($places)): foreach ($places as $place): ?>
+            <div class="col-md-3" data-aos="fade-up">
+                <div class="card h-100 training-card">
+                    <?php if (!empty($place['image_path']) && file_exists('uploads/places/' . $place['image_path'])): ?>
+                        <img src="<?= SITE_URL ?>/uploads/places/<?= htmlspecialchars($place['image_path'] ?? '') ?>" 
+                             class="card-img-top" 
+                             alt="<?= htmlspecialchars($place['title'] ?? '') ?>"
+                             style="height: 200px; object-fit: cover;">
+                    <?php else: ?>
+                        <img src="<?= SITE_URL ?>/assets/img/default-place.jpg" 
+                             class="card-img-top" 
+                             alt="Varsayılan görsel"
+                             style="height: 200px; object-fit: cover;">
+                    <?php endif; ?>
+                    
+                    <div class="card-body">
+                        <h5 class="card-title fw-bold"><?= htmlspecialchars($place['title'] ?? '') ?></h5>
+                        
+                        <ul class="list-unstyled mb-3">
+                            <li class="mb-2 d-flex align-items-center">
+                                <i class="bi bi-geo-alt me-2 text-primary"></i>
+                                <span><?= htmlspecialchars($place['district_name'] ?? '') ?></span>
+                            </li>
+                            <li class="mb-2">
+                                <p class="card-text text-muted small">
+                                    <?= mb_substr(strip_tags($place['description'] ?? ''), 0, 100) ?>...
+                                </p>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="card-footer bg-transparent border-0">
+                        <a href="places.php?id=<?= $place['id'] ?? '' ?>" class="btn btn-primary w-100 rounded-pill hover-scale">
+                            <i class="bi bi-eye me-1"></i>Detayları Gör
+                        </a>
+                    </div>
+                </div>
+            </div>
+        <?php endforeach; else: ?>
+            <div class="col-12">
+                <div class="alert alert-info text-center">
+                    <i class="bi bi-info-circle me-2"></i>
+                    Henüz gezilecek yer eklenmemiş.
+                </div>
+            </div>
+        <?php endif; ?>
+
+        <?php if (!empty($places)): ?>
+            <div class="col-12 text-center mt-4">
+                <a href="places.php" class="btn btn-outline-primary btn-lg rounded-pill hover-scale">
+                    <i class="bi bi-grid me-2"></i>Tüm Yerleri Gör
+                </a>
+            </div>
+        <?php endif; ?>
+    </div>
+</div>
+-->
+
+
 <!-- Galeri Section -->
+
 <div class="container py-5">
     <div class="section-header text-center mb-5" data-aos="fade-up">
         <h6 class="text-primary fw-bold text-uppercase">Galeri</h6>
-        <h2 class="display-5 fw-bold">Etkinliklerimiz</h2>
+        <h2 class="display-5 fw-bold">Sınıflarımızdan Görseller</h2>
         <div class="divider mx-auto"></div>
     </div>
     
@@ -416,6 +534,7 @@ include 'includes/header.php';
             </div>
 
             <!-- Görsel Modal -->
+
             <div class="modal fade" id="galleryModal<?= $item['id'] ?>" tabindex="-1">
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content">
@@ -449,7 +568,6 @@ include 'includes/header.php';
         </div>
     </div>
 </div>
-
 
 
 <!-- Stil eklemeleri -->

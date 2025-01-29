@@ -31,21 +31,6 @@ try {
         WHERE id = ?
     ", [$user_id])->fetch();
 
-} catch (Exception $e) {
-    error_log('Database Error: ' . $e->getMessage());
-    die("Veritabanı hatası: " . $e->getMessage());
-}
-
-// ... mevcut kodlar aynı kalacak ...
-
-try {
-    // Kullanıcı bilgilerini al
-    $user = $db->query("
-        SELECT id, username, email, role 
-        FROM users 
-        WHERE id = ?
-    ", [$user_id])->fetch();
-
     // İstatistikleri al
     $stats = $db->query("
         SELECT 
@@ -56,25 +41,23 @@ try {
         WHERE user_id = ?
     ", [$user_id])->fetch();
 
-} catch (Exception $e) {
-    error_log('Database Error: ' . $e->getMessage());
-    die("Veritabanı hatası: " . $e->getMessage());
-}
-
-try {
-    // ... önceki sorgular aynı ...
-
     // Devam eden eğitimleri al
     $ongoing_trainings = $db->query("
         SELECT 
-            t.*, 
+            t.id,
+            t.title,
+            t.start_date,
+            t.end_date,
             u.name as unit_name,
             ta.status
         FROM trainings t 
         LEFT JOIN units u ON t.unit_id = u.id 
         LEFT JOIN training_applications ta ON t.id = ta.training_id AND ta.user_id = ?
-        WHERE t.start_date <= CURRENT_DATE AND t.end_date >= CURRENT_DATE
+        WHERE t.start_date <= CURRENT_DATE 
+        AND t.end_date >= CURRENT_DATE
+        AND t.is_active = 1
         ORDER BY t.end_date ASC
+        LIMIT 5
     ", [$user_id])->fetchAll();
 
     // Duyuruları al
@@ -82,40 +65,83 @@ try {
         SELECT 
             id,
             title,
-            description as content,
+            LEFT(description, 200) as content,
             image_path,
             created_at
         FROM projects 
+        WHERE status = 'approved'
         ORDER BY created_at DESC
         LIMIT 4
     ")->fetchAll();
 
+    // Başvuruları al
+    $applications = $db->query("
+        SELECT 
+            ta.status, 
+            t.title, 
+            t.start_date, 
+            t.end_date, 
+            u.name as unit_name,
+            ta.created_at as application_date
+        FROM training_applications ta
+        JOIN trainings t ON ta.training_id = t.id
+        LEFT JOIN units u ON t.unit_id = u.id
+        WHERE ta.user_id = ?
+        ORDER BY ta.created_at DESC
+        LIMIT 10
+    ", [$user_id])->fetchAll();
+
+    // Kullanıcının bildirimlerini al
+    $submissions = $db->query("
+        SELECT 
+            sh.id,
+            sh.submission_type,
+            sh.status,
+            sh.created_at,
+            sh.points,
+            CASE 
+                WHEN sh.submission_type = 'announcement' THEN p.title
+                WHEN sh.submission_type = 'event' THEN n.title
+                WHEN sh.submission_type = 'place' THEN pl.title
+            END as title,
+            CASE 
+                WHEN sh.submission_type = 'announcement' THEN 'Duyuru'
+                WHEN sh.submission_type = 'event' THEN 'Etkinlik'
+                WHEN sh.submission_type = 'place' THEN 'Gezilecek Yer'
+            END as type_text
+        FROM submission_history sh
+        LEFT JOIN projects p ON sh.submission_type = 'announcement' AND sh.submission_id = p.id
+        LEFT JOIN news n ON sh.submission_type = 'event' AND sh.submission_id = n.id
+        LEFT JOIN places pl ON sh.submission_type = 'place' AND sh.submission_id = pl.id
+        WHERE sh.user_id = ?
+        ORDER BY sh.created_at DESC
+        LIMIT 5
+    ", [$user_id])->fetchAll();
+
 } catch (Exception $e) {
     error_log('Database Error: ' . $e->getMessage());
-    die("Veritabanı hatası: " . $e->getMessage());
+    die("Veritabanı hatası oluştu. Lütfen daha sonra tekrar deneyiniz.");
+
+    // Kullanıcının toplam puanını ve sıralamasını al
+    $user_rank = $db->query("
+        SELECT 
+            up.points,
+            (SELECT COUNT(*) + 1 
+             FROM user_points up2 
+             WHERE up2.points > up.points) as rank,
+            (SELECT COUNT(*) FROM user_points) as total_users
+        FROM user_points up
+        WHERE up.user_id = ?
+    ", [$user_id])->fetch();
+
+} catch (Exception $e) {
+    error_log('Database Error: ' . $e->getMessage());
+    die("Veritabanı hatası oluştu. Lütfen daha sonra tekrar deneyiniz.");
 }
 
-// Kullanıcının başvurduğu eğitimleri al
-$applications = $db->query("
-    SELECT 
-        ta.*, 
-        t.title, 
-        t.start_date, 
-        t.end_date, 
-        u.name as unit_name,
-        ta.created_at as application_date
-    FROM training_applications ta
-    JOIN trainings t ON ta.training_id = t.id
-    LEFT JOIN units u ON t.unit_id = u.id
-    WHERE ta.user_id = ?
-    ORDER BY ta.created_at DESC
-", [$user_id])->fetchAll();
-
 $page_title = "Eğitim Portalı Dashboard";
-include 'includes/header.php';
+include '../includes/header.php';
 ?>
-
-
 
 <div class="container-fluid py-4">
     <!-- Üst Bilgi Kartı -->
@@ -133,7 +159,7 @@ include 'includes/header.php';
 
     <!-- İstatistik Kartları -->
     <div class="row mb-4">
-        <div class="col-xl-4 col-md-6 mb-4">
+        <div class="col-xl-3 col-md-6 mb-4">
             <div class="card border-left-warning shadow h-100">
                 <div class="card-body">
                     <div class="row align-items-center">
@@ -149,7 +175,7 @@ include 'includes/header.php';
             </div>
         </div>
 
-        <div class="col-xl-4 col-md-6 mb-4">
+        <div class="col-xl-3 col-md-6 mb-4">
             <div class="card border-left-success shadow h-100">
                 <div class="card-body">
                     <div class="row align-items-center">
@@ -165,7 +191,7 @@ include 'includes/header.php';
             </div>
         </div>
 
-        <div class="col-xl-4 col-md-6 mb-4">
+        <div class="col-xl-3 col-md-6 mb-4">
             <div class="card border-left-danger shadow h-100">
                 <div class="card-body">
                     <div class="row align-items-center">
@@ -180,146 +206,175 @@ include 'includes/header.php';
                 </div>
             </div>
         </div>
-    </div>
-</div>
 
-<!-- Ana İçerik -->
-<div class="row">
-    <!-- Devam Eden Eğitimler -->
-    <div class="col-xl-6 mb-4">
-        <div class="card shadow h-100">
-            <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
-                <h6 class="m-0 font-weight-bold">Duyurular</h6>
-                <a href="<?= SITE_URL ?>/trainings" class="btn btn-light btn-sm">
-                    Tümünü Gör
-                    <i class="fas fa-arrow-right ms-1"></i>
-                </a>
-            </div>
-            <div class="card-body">
-                <?php if (!empty($ongoing_trainings)): ?>
-                    <div class="list-group">
-                        <?php foreach ($ongoing_trainings as $training): ?>
-                            <div class="list-group-item">
-                                <div class="d-flex w-100 justify-content-between">
-                                    <h6 class="mb-1"><?= htmlspecialchars($training['title']) ?></h6>
-                                    <small class="text-primary">
-                                        Bitiş: <?= date('d.m.Y', strtotime($training['end_date'])) ?>
-                                    </small>
-                                </div>
-                                <p class="mb-1"><?= htmlspecialchars($training['unit_name']) ?></p>
-                                <?php if ($training['status']): ?>
-                                    <span class="badge bg-<?= $training['status'] === 'approved' ? 'success' : 
-                                        ($training['status'] === 'pending' ? 'warning' : 'danger') ?>">
-                                        <?= $training['status'] === 'approved' ? 'Onaylandı' : 
-                                            ($training['status'] === 'pending' ? 'Beklemede' : 'Reddedildi') ?>
-                                    </span>
-                                <?php endif; ?>
-                            </div>
-                        <?php endforeach; ?>
+        <!-- Puan Kartı -->
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-info shadow h-100">
+                <div class="card-body">
+                    <div class="row align-items-center">
+                        <div class="col">
+                            <div class="text-uppercase mb-1 text-info fw-bold">Yarışma Puanı</div>
+                            <div class="h2 mb-0 fw-bold"><?= number_format($user_rank['points'] ?? 0) ?></div>
+                            <small class="text-muted">
+                                Sıralama: <?= number_format($user_rank['rank'] ?? 0) ?>/<?= number_format($user_rank['total_users'] ?? 0) ?>
+                            </small>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-trophy fa-2x text-info"></i>
+                        </div>
                     </div>
-                <?php else: ?>
-                    <p class="text-muted mb-0">Devam eden eğitim bulunmamaktadır.</p>
-                <?php endif; ?>
+                </div>
             </div>
         </div>
     </div>
 
-    <!-- Duyurular -->
-    <div class="col-xl-6 mb-4">
-        <div class="card shadow h-100">
-            <div class="card-header bg-success text-white d-flex justify-content-between align-items-center">
-                <h6 class="m-0 font-weight-bold">Duyurular</h6>
-                <a href="<?= SITE_URL ?>/projects" class="btn btn-light btn-sm">
-                    Tümünü Gör
-                    <i class="fas fa-arrow-right ms-1"></i>
-                </a>
-            </div>
-            <div class="card-body" style="height: 400px; overflow-y: auto;">
-                <?php if (!empty($announcements)): ?>
-                    <div class="list-group">
-                        <?php foreach ($announcements as $announcement): ?>
-                            <div class="list-group-item">
-                                <div class="d-flex w-100 justify-content-between">
-                                    <h6 class="mb-1 text-truncate" style="max-width: 80%;">
-                                        <?= htmlspecialchars($announcement['title']) ?>
+    <!-- Bildirimler ve Duyurular -->
+    <div class="row mb-4">
+        <!-- Son Bildirimler -->
+<!-- Son Bildirimler Kartı -->
+<div class="col-xl-6 col-md-12 mb-4">
+    <div class="card shadow h-100">
+        <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+            <h6 class="m-0 font-weight-bold">Son Bildirimlerim</h6>
+            <a href="<?= SITE_URL ?>/submissions" class="btn btn-light btn-sm">
+                Tümünü Gör
+                <i class="fas fa-arrow-right ms-1"></i>
+            </a>
+        </div>
+        <div class="card-body" style="max-height: 400px; overflow-y: auto;">
+            <?php if (!empty($submissions)): ?>
+                <div class="list-group">
+                    <?php foreach ($submissions as $submission): ?>
+                        <div class="list-group-item">
+                            <div class="d-flex w-100 justify-content-between align-items-center">
+                                <div>
+                                    <h6 class="mb-1">
+                                        <?= htmlspecialchars($submission['title'] ?? 'İsimsiz Bildirim') ?>
                                     </h6>
                                     <small class="text-muted">
-                                        <?= date('d.m.Y', strtotime($announcement['created_at'])) ?>
+                                        <?= htmlspecialchars($submission['type_text']) ?> • 
+                                        <?= date('d.m.Y H:i', strtotime($submission['created_at'])) ?>
                                     </small>
                                 </div>
-                                <p class="mb-1 announcement-content">
-                                    <?php
-                                    $content = $announcement['content'];
-                                    $words = str_word_count($content, 1, 'àáãç1234567890');
-                                    $limitedContent = implode(' ', array_slice($words, 0, 30));
-                                    echo nl2br(htmlspecialchars($limitedContent));
-                                    if (count($words) > 30) {
-                                        echo ' ...';
-                                    }
-                                    ?>
-                                </p>
+                                <div class="d-flex align-items-center">
+                                    <span class="badge bg-<?= 
+                                        $submission['status'] === 'approved' ? 'success' : 
+                                        ($submission['status'] === 'pending' ? 'warning' : 'danger') 
+                                    ?> me-2">
+                                        <?= 
+                                            $submission['status'] === 'approved' ? 'Onaylandı' : 
+                                            ($submission['status'] === 'pending' ? 'Beklemede' : 'Reddedildi')
+                                        ?>
+                                    </span>
+                                    <?php if($submission['status'] === 'approved' && $submission['points'] > 0): ?>
+                                        <span class="badge bg-info">
+                                            +<?= number_format($submission['points']) ?> Puan
+                                        </span>
+                                    <?php endif; ?>
+                                </div>
                             </div>
-                        <?php endforeach; ?>
-                    </div>
-                <?php else: ?>
-                    <p class="text-muted mb-0">Duyuru bulunmamaktadır.</p>
-                <?php endif; ?>
-            </div>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+            <?php else: ?>
+                <div class="alert alert-info mb-0">
+                    <i class="fas fa-info-circle me-2"></i>
+                    Henüz bildirim bulunmamaktadır.
+                </div>
+            <?php endif; ?>
         </div>
     </div>
 </div>
 
-<!-- Tüm Başvurular Tablosu -->
-<div class="row">
-    <div class="col-12">
-        <div class="card shadow mb-4">
-            <div class="card-header py-3 d-flex justify-content-between align-items-center">
-                <h6 class="m-0 font-weight-bold text-primary">Tüm Eğitim Başvurularım</h6>
-
-            </div>
-            <div class="card-body">
-                <div class="table-responsive">
-                    <table class="table table-hover" id="applicationsTable">
-                        <thead class="table-light">
-                            <tr>
-                                <th>Eğitim Adı</th>
-                                <th>Birim</th>
-                                <th>Başvuru Tarihi</th>
-                                <th>Eğitim Tarihleri</th>
-                                <th>Durum</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php foreach ($applications as $app): ?>
-                                <tr data-status="<?= $app['status'] ?>">
-                                    <td><?= htmlspecialchars($app['title']) ?></td>
-                                    <td><?= htmlspecialchars($app['unit_name']) ?></td>
-                                    <td><?= date('d.m.Y', strtotime($app['application_date'])) ?></td>
-                                    <td>
-                                        <?= date('d.m.Y', strtotime($app['start_date'])) ?> - 
-                                        <?= date('d.m.Y', strtotime($app['end_date'])) ?>
-                                    </td>
-                                    <td>
-                                        <span class="badge bg-<?= 
-                                            $app['status'] === 'approved' ? 'success' : 
-                                            ($app['status'] === 'pending' ? 'warning' : 'danger') 
-                                        ?>">
-                                            <?= 
-                                                $app['status'] === 'approved' ? 'Onaylandı' : 
-                                                ($app['status'] === 'pending' ? 'Beklemede' : 'Reddedildi')
-                                            ?>
-                                        </span>
-                                    </td>
-                                </tr>
+        <!-- Duyurular -->
+        <div class="col-xl-6 mb-4">
+            <div class="card shadow h-100">
+                <div class="card-header bg-success text-white d-flex justify-content-between align-items-center">
+                    <h6 class="m-0 font-weight-bold">Duyurular</h6>
+                    <a href="<?= SITE_URL ?>/projects" class="btn btn-light btn-sm">
+                        Tümünü Gör
+                        <i class="fas fa-arrow-right ms-1"></i>
+                    </a>
+                </div>
+                <div class="card-body">
+                    <?php if (!empty($announcements)): ?>
+                        <div class="list-group">
+                            <?php foreach ($announcements as $announcement): ?>
+                                <div class="list-group-item">
+                                    <div class="d-flex w-100 justify-content-between">
+                                        <h6 class="mb-1 text-truncate" title="<?= htmlspecialchars($announcement['title']) ?>">
+                                            <?= htmlspecialchars($announcement['title']) ?>
+                                        </h6>
+                                        <small class="text-muted">
+                                            <?= date('d.m.Y', strtotime($announcement['created_at'])) ?>
+                                        </small>
+                                    </div>
+                                    <p class="mb-1 text-truncate">
+                                        <?= htmlspecialchars($announcement['content']) ?>
+                                    </p>
+                                </div>
                             <?php endforeach; ?>
-                        </tbody>
-                    </table>
+                        </div>
+                    <?php else: ?>
+                        <div class="alert alert-info mb-0">
+                            <i class="fas fa-info-circle me-2"></i>
+                            Henüz duyuru bulunmamaktadır.
+                        </div>
+                    <?php endif; ?>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tüm Başvurular Tablosu -->
+    <div class="row">
+        <div class="col-12">
+            <div class="card shadow mb-4">
+                <div class="card-header py-3 d-flex justify-content-between align-items-center">
+                    <h6 class="m-0 font-weight-bold text-primary">Tüm Eğitim Başvurularım</h6>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover" id="applicationsTable">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>Eğitim Adı</th>
+                                    <th>Birim</th>
+                                    <th>Başvuru Tarihi</th>
+                                    <th>Eğitim Tarihleri</th>
+                                    <th>Durum</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php foreach ($applications as $app): ?>
+                                    <tr>
+                                        <td><?= htmlspecialchars($app['title']) ?></td>
+                                        <td><?= htmlspecialchars($app['unit_name']) ?></td>
+                                        <td><?= date('d.m.Y', strtotime($app['application_date'])) ?></td>
+                                        <td>
+                                            <?= date('d.m.Y', strtotime($app['start_date'])) ?> - 
+                                            <?= date('d.m.Y', strtotime($app['end_date'])) ?>
+                                        </td>
+                                        <td>
+                                            <span class="badge bg-<?= 
+                                                $app['status'] === 'approved' ? 'success' : 
+                                                ($app['status'] === 'pending' ? 'warning' : 'danger') 
+                                            ?>">
+                                                <?= 
+                                                    $app['status'] === 'approved' ? 'Onaylandı' : 
+                                                    ($app['status'] === 'pending' ? 'Beklemede' : 'Reddedildi')
+                                                ?>
+                                            </span>
+                                        </td>
+                                    </tr>
+                                <?php endforeach; ?>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
-
 
 <?php include 'includes/footer.php'; ?>

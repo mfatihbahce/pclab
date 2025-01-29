@@ -7,6 +7,7 @@ define('DB_USER', 'gencs_anliurfa');
 define('DB_PASS', 'Sekiztane1*');
 define('DB_NAME', 'gencsanliurfa_com_pclab');
 
+
 // Mevcut config kodlarının başına ekleyin
 header('Content-Type: text/html; charset=utf-8');
 mb_internal_encoding('UTF-8');
